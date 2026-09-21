@@ -446,3 +446,12 @@ body.after-intro .slide.active{transform:translateY(-48px);height:calc(min(70vh,
 /* Circuit steps: wire and label appear together, with no drawing/flying transition. */
 #wireLayer .wire.wire-instant{animation:none!important;transition:none!important;stroke-dasharray:none!important;stroke-dashoffset:0!important}
 #wireLabelLayer .wire-label.wire-label-instant{animation:none!important;transition:none!important}
+
+/* Entry flow block: hide the closing C-shape until the repeat block appears. */
+.repeat-body{display:none;margin-left:0!important;padding-left:28px!important}
+.repeat-body.repeat-show{display:block}
+.repeat-body:not(.repeat-show)::after{display:none!important}
+/* Join the repeat body directly to the left wall: no inner gap beside the C-shape. */
+.repeat-body.repeat-show{border-left:28px solid #22b8df!important;padding-left:0!important}
+.repeat-body.repeat-show .entry-block{margin-left:0!important}
+.repeat-body.repeat-show::after{left:-28px!important}
