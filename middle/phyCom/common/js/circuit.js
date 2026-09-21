@@ -1,0 +1,14 @@
+(()=>{
+const PINS={led:{IN:[.77279,.39963],VCC:[.77538,.51097],GND:[.77675,.62098]},board:{D3:[.79468,.06550],V5:[.55263,.91500],GND2:[.62169,.91500]}};
+let step=0;
+function els(){return {demo:document.querySelector('#ledCircuitDemo'),led:document.querySelector('#lessonLed'),board:document.querySelector('#lessonBoard'),svg:document.querySelector('#lessonWireLayer')}}
+function pin(demo,el,p){const dr=demo.getBoundingClientRect(),r=el.getBoundingClientRect();return{x:r.left-dr.left+r.width*p[0],y:r.top-dr.top+r.height*p[1]}}
+function path(demo,a,b,kind,index){const exit=34+index*18;if(kind==='top'){const y=Math.max(18,Math.min(a.y,b.y)-28-index*24);return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;}const y=Math.min(demo.clientHeight-18,Math.max(a.y,b.y)+28+index*24);return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;}
+function size(){const {demo,led,board}=els();if(!demo||!led||!board||!demo.clientWidth||!demo.clientHeight)return false;const li=led.querySelector('img'),bi=board.querySelector('img');if(!li?.naturalWidth||!bi?.naturalWidth)return false;let mw=Math.min(demo.clientWidth*.24,400),mh=demo.clientHeight*.56,s=Math.min(mw/li.naturalWidth,mh/li.naturalHeight);led.style.width=li.naturalWidth*s+'px';led.style.height=li.naturalHeight*s+'px';mw=demo.clientWidth*.60;mh=demo.clientHeight*.72;s=Math.min(mw/bi.naturalWidth,mh/bi.naturalHeight);board.style.width=bi.naturalWidth*s+'px';board.style.height=bi.naturalHeight*s+'px';return true;}
+function draw(){const {demo,led,board,svg}=els();if(!demo||!svg||!led||!board||!demo.clientWidth)return;svg.setAttribute('viewBox',`0 0 ${demo.clientWidth} ${demo.clientHeight}`);const specs=[['wireVcc',pin(demo,led,PINS.led.VCC),pin(demo,board,PINS.board.V5),'bottom',0],['wireGnd',pin(demo,led,PINS.led.GND),pin(demo,board,PINS.board.GND2),'bottom',1],['wireIn',pin(demo,led,PINS.led.IN),pin(demo,board,PINS.board.D3),'top',0]];specs.forEach(x=>document.querySelector('#'+x[0])?.setAttribute('d',path(demo,x[1],x[2],x[3],x[4])));}
+function render(){['Vcc','Gnd','In'].forEach((id,i)=>{document.querySelector('#wire'+id)?.classList.toggle('hidden',i>=step);document.querySelector('#label'+id)?.classList.toggle('hidden',i>=step);});}
+function refresh(){if(size())requestAnimationFrame(draw);render();}
+function init(){const {led,board}=els();[led?.querySelector('img'),board?.querySelector('img')].filter(Boolean).forEach(img=>{if(!img.complete||!img.naturalWidth)img.addEventListener('load',refresh);img.addEventListener('error',()=>console.error('Circuit image failed:',img.src));});refresh();window.addEventListener('resize',refresh);}
+window.lessonCircuit={refresh,next(){step=Math.min(3,step+1);refresh();},prev(){step=Math.max(0,step-1);refresh();},getStep(){return step;}};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
