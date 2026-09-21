@@ -403,3 +403,15 @@ to {
 .field{background:#009b9b;border:2px solid #007e83;border-radius:24px;padding:5px 15px}
 .number-field{background:#ffca36;border:2px solid #ef8e00;border-radius:24px;padding:5px 13px}
 .entry-block.entry-show{display:flex}
+
+/* Slide 1 example titles: larger and bolder */
+.slide:first-of-type.active .usage-item strong{
+  font-size:clamp(20px,2.1vw,30px);
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-.04em;
+}
+:fullscreen .slide:first-of-type.active .usage-item strong{
+  font-size:clamp(24px,2.2vw,34px);
+  font-weight:900;
+}
