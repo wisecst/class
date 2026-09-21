@@ -19,7 +19,9 @@ body {
 header{padding:22px 28px;color:#fff;background:linear-gradient(135deg,#183b56,#457b9d);border-radius:20px}
 .title-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
 h1{margin:6px 0;font-size:clamp(2rem,5vw,3rem)}
-.title-desc{font-size:clamp(.88rem,1.5vw,1.05rem);font-weight:500;opacity:.92;line-height:1.45}
+.title-desc{position:relative;font-size:clamp(.88rem,1.5vw,1.05rem);font-weight:500;opacity:.96;line-height:1.45}
+.title-desc .diode-word{color:#ffd86b}
+.title-desc .diode-word::after{content:"";position:absolute;width:2px;height:54px;background:#d8c7e6;transform:rotate(42deg);transform-origin:top;left:54%;top:25px;z-index:2}
 h2 {
   color:#1d5d85}
 .slide {
@@ -235,9 +237,9 @@ to {
 }
 .concept-grid{display:grid;grid-template-columns:46% 54%;gap:22px;align-items:start;margin-top:8px}
 .concept-image{min-width:0}
-.diode-bubble{position:relative;margin:0 0 12px 26px;padding:9px 13px;color:#655b70;background:#faf8fc;border:1.5px dashed #c9bdd5;border-radius:12px;font-size:.84rem;line-height:1.4}
-.diode-bubble::before{content:"";position:absolute;left:-32px;top:-48px;width:30px;height:54px;border-left:2px solid #b7a5ca;border-top:2px solid #b7a5ca;border-radius:12px 0 0 0;transform:skewY(-28deg)}
-.diode-bubble::after{content:"";position:absolute;left:-35px;top:-51px;border:5px solid transparent;border-right-color:#b7a5ca;transform:rotate(35deg)}
+.diode-bubble{position:relative;display:inline-block;width:max-content;max-width:100%;margin:-10px 0 8px 0;padding:6px 9px;color:#655b70;background:#faf8fc;border:1.5px dashed #c9bdd5;border-radius:10px;font-size:.84rem;line-height:1.35}
+.diode-bubble::before{content:"";position:absolute;left:42px;top:-13px;width:2px;height:13px;background:#d8c7e6}
+.diode-bubble::after{content:"";position:absolute;left:38px;top:-5px;border:5px solid transparent;border-top-color:#d8c7e6}
 .usage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;background:#f8fbfd;border:1px solid #dce8ef;border-radius:16px}
 .usage-item {
   padding:10px;
@@ -330,7 +332,7 @@ to {
 <main class="wrap">
 <header>
 <small>중학교 피지컬 컴퓨팅 · 출력 장치</small>
-<div class="title-row"><h1>LED</h1><div class="title-desc">LED(Light Emitting Diode, 발광 <span class="diode-word">다이오드</span>)는 전류가 흐르면 빛을 내는 반도체 소자.</div></div>
+<div class="title-row"><h1>LED</h1><div class="title-desc">(Light Emitting Diode, 발광 <span class="diode-word">다이오드</span>)는 전류가 흐르면 빛을 내는 반도체 소자.</div></div>
 </header>
 <section class="slide active">
 <div class="concept-grid">
