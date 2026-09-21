@@ -532,3 +532,14 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 /* Final D13 LED position: square immediately left of the printed 13. */
 .pin13-led-glow{left:47.0%!important;top:29.35%!important}
 .pin13-led-dot{left:47.0%!important;top:29.35%!important}
+
+/* Final Entry execution result: LED module blinks every 0.2 s beside the completed code. */
+.entry-final-result{display:none;position:absolute;right:2%;top:15%;width:31%;padding:16px 18px 18px;background:#fff;border:2px solid #cbdce7;border-radius:16px;box-shadow:0 8px 24px #183b5633;text-align:center;z-index:18}
+.entry-final-result.show{display:block}
+.entry-final-result>strong{display:block;font-size:22px;color:#1d5d85;margin-bottom:6px}
+.final-led-module{position:relative;width:100%;max-width:320px;margin:0 auto 4px}
+.final-led-module img{display:block;width:100%;height:auto}
+.final-led-light{position:absolute;left:22%;top:42%;width:18%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:#fff76a;box-shadow:0 0 16px 8px rgba(255,244,40,.92),0 0 34px 15px rgba(255,226,60,.48);animation:entryLedBlink .4s steps(2,end) infinite}
+.entry-final-result>b{font-size:17px;color:#263b49}
+@keyframes entryLedBlink{0%,49%{opacity:1;filter:brightness(1.35)}50%,100%{opacity:.08;filter:brightness(.45)}}
+:fullscreen .entry-final-result{right:1.5%;top:12%;width:30%}
