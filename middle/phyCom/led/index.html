@@ -110,9 +110,10 @@ h2 {
   font-size:2rem;
   color:#f28c28}
 .circuit-demo{position:relative;height:390px;margin-top:8px;overflow:hidden;background:linear-gradient(#f2f5f7 1px,transparent 1px),linear-gradient(90deg,#f2f5f7 1px,transparent 1px);background-size:20px 20px;border-radius:14px}
-.circuit-led,.circuit-board{position:absolute;z-index:2;object-fit:contain}
-.circuit-led{left:3%;top:76px;width:25%;height:230px}
-.circuit-board{right:2%;top:36px;width:58%;height:300px}
+.circuit-component{position:absolute;z-index:2}
+.circuit-component img{display:block;width:100%;height:100%;object-fit:fill}
+.circuit-led{left:3%;top:76px}
+.circuit-board{right:2%;top:36px}
 .circuit-wire-layer{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
 .circuit-wire{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
 .circuit-wire.hidden{display:none}
@@ -373,15 +374,15 @@ to {
 <section class="slide">
 <h2>2. LED 회로 연결</h2>
 <div class="circuit-demo" id="ledCircuitDemo">
-  <img class="circuit-led" src="https://raw.githubusercontent.com/wisecst/physical-tools/main/components/modules/led/LED_white.png" alt="LED 모듈">
-  <img class="circuit-board" src="https://raw.githubusercontent.com/wisecst/physical-tools/main/components/boards/orangeboard/OrangeBoard.png" alt="오렌지보드">
+  <div class="circuit-component circuit-led" id="lessonLed"><img src="assets/LED_white.png" alt="LED 모듈"></div>
+  <div class="circuit-component circuit-board" id="lessonBoard"><img src="assets/OrangeBoard.png" alt="오렌지보드"></div>
   <svg class="circuit-wire-layer" id="lessonWireLayer" viewBox="0 0 900 390" preserveAspectRatio="none">
-    <path id="wireVcc" class="circuit-wire hidden" stroke="#e53935" d="M 223 194 L 300 194 L 300 350 L 620 350 L 620 311"/>
-    <path id="wireGnd" class="circuit-wire hidden" stroke="#222222" d="M 223 219 L 324 219 L 324 365 L 656 365 L 656 311"/>
-    <path id="wireIn" class="circuit-wire hidden" stroke="#1976d2" d="M 223 168 L 280 168 L 280 18 L 752 18 L 752 56"/>
+    <path id="wireVcc" class="circuit-wire hidden" stroke="#e53935"/>
+    <path id="wireGnd" class="circuit-wire hidden" stroke="#222222"/>
+    <path id="wireIn" class="circuit-wire hidden" stroke="#1976d2"/>
   </svg>
   <div id="labelVcc" class="circuit-label hidden" style="left:45%;top:84%;background:#e53935">VCC → 5V</div>
-  <div id="labelGnd" class="circuit-label hidden" style="left:49%;top:93%;background:#222222">GND → GND</div>
+  <div id="labelGnd" class="circuit-label hidden" style="left:49%;top:93%;background:#222222">GND → GND2</div>
   <div id="labelIn" class="circuit-label hidden" style="left:57%;top:5%;background:#1976d2">IN → D3</div>
   <div class="circuit-step" id="circuitStepText">LED 모듈과 오렌지보드</div>
 </div>
@@ -475,6 +476,42 @@ const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
 let circuitStep=0;
+const LESSON_PINS={
+  led:{IN:[.77279,.39963],VCC:[.77538,.51097],GND:[.77675,.62098]},
+  board:{D3:[.79468,.06550],V5:[.55263,.91500],GND2:[.62169,.91500]}
+};
+function sizeCircuitComponents(){
+  const demo=document.querySelector('#ledCircuitDemo'), led=document.querySelector('#lessonLed'), board=document.querySelector('#lessonBoard');
+  if(!demo||!led||!board) return;
+  const li=led.querySelector('img'), bi=board.querySelector('img');
+  if(li.naturalWidth&&li.naturalHeight){
+    const mw=Math.min(demo.clientWidth*.24,400), mh=demo.clientHeight*.56, s=Math.min(mw/li.naturalWidth,mh/li.naturalHeight);
+    led.style.width=li.naturalWidth*s+'px'; led.style.height=li.naturalHeight*s+'px';
+  }
+  if(bi.naturalWidth&&bi.naturalHeight){
+    const mw=demo.clientWidth*.60, mh=demo.clientHeight*.72, s=Math.min(mw/bi.naturalWidth,mh/bi.naturalHeight);
+    board.style.width=bi.naturalWidth*s+'px'; board.style.height=bi.naturalHeight*s+'px';
+  }
+  requestAnimationFrame(drawLessonWires);
+}
+function lessonPin(el,p){return {x:el.offsetLeft+el.offsetWidth*p[0],y:el.offsetTop+el.offsetHeight*p[1]};}
+function orthogonalPath(a,b,kind,index){
+  const exit=34+index*18;
+  if(kind==='top'){const y=Math.max(18,Math.min(a.y,b.y)-28-index*24);return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;}
+  const y=Math.min(document.querySelector('#ledCircuitDemo').clientHeight-18,Math.max(a.y,b.y)+28+index*24);
+  return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;
+}
+function drawLessonWires(){
+  const demo=document.querySelector('#ledCircuitDemo'), svg=document.querySelector('#lessonWireLayer'), led=document.querySelector('#lessonLed'), board=document.querySelector('#lessonBoard');
+  if(!demo||!svg||!led||!board) return;
+  svg.setAttribute('viewBox',`0 0 ${demo.clientWidth} ${demo.clientHeight}`);
+  const specs=[
+    ['wireVcc',lessonPin(led,LESSON_PINS.led.VCC),lessonPin(board,LESSON_PINS.board.V5),'bottom',0],
+    ['wireGnd',lessonPin(led,LESSON_PINS.led.GND),lessonPin(board,LESSON_PINS.board.GND2),'bottom',1],
+    ['wireIn',lessonPin(led,LESSON_PINS.led.IN),lessonPin(board,LESSON_PINS.board.D3),'top',0]
+  ];
+  specs.forEach(s=>document.querySelector('#'+s[0]).setAttribute('d',orthogonalPath(s[1],s[2],s[3],s[4])));
+}
 function renderCircuitStep(){
   const ids=['Vcc','Gnd','In'];
   ids.forEach((id,i)=>{
@@ -532,6 +569,9 @@ document.querySelector('#forward').onclick=()=>{bi++;
 render()};
 render();
 renderCircuitStep();
+const lessonImgs=[...document.querySelectorAll('#lessonLed img,#lessonBoard img')];
+lessonImgs.forEach(img=>{if(img.complete&&img.naturalWidth) sizeCircuitComponents(); else img.addEventListener('load',sizeCircuitComponents,{once:true});});
+window.addEventListener('resize',sizeCircuitComponents);
 
 // 편집 모드: 주소 뒤에 ?edit=1을 붙이면 표시됩니다.
 const editMode = new URLSearchParams(location.search).get('edit') === '1';
