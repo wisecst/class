@@ -300,6 +300,13 @@ to {
     grid-template-columns:repeat(2,1fr);
   }
 }
+.module-photo {
+  display:block;
+  width:min(100%,700px);
+  max-height:300px;
+  object-fit:contain;
+  margin:18px auto;
+}
 </style>
 </head>
 <body>
@@ -315,6 +322,7 @@ to {
 <strong>다이오드</strong>
 <span>전류를 한쪽 방향으로만 흐르게 하는 반도체 소자</span>
 </div>
+<img class="module-photo" src="assets/led-module-transparent.png" alt="선명한 LED 모듈과 여러 색 LED 모듈">
 <div class="lead">
 <span class="led-name">LED</span>(Light Emitting Diode, 발광 다이오드)는 전류가 흐르면 빛을 내는 반도체 소자입니다.
 </div>
