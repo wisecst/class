@@ -381,3 +381,6 @@ to {
 .entry-controls{margin-top:8px}
 @keyframes entryIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 :fullscreen .entry-workspace{height:calc(100% - 82px)}:fullscreen .entry-block{font-size:calc(23px * min(1.35,100vw/1200));min-height:64px}
+
+/* Circuit board horizontal balance */
+#workspace .board-component{transform:translateX(3.5%)}
