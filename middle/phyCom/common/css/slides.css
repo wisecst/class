@@ -341,67 +341,26 @@ to {
   line-height:1.4;
 }
 
-/* First slide: use the available 16:9/fullscreen space more fully. */
-.slide:first-of-type.active .concept-grid{height:100%;align-items:stretch}
-.slide:first-of-type.active .concept-image{display:flex;align-items:center;min-height:0}
-.slide:first-of-type.active .module-photo{width:100%;height:100%;max-height:none;object-fit:contain;object-position:center}
-.slide:first-of-type.active .concept-uses{min-height:0}
-.slide:first-of-type.active .usage-grid{height:100%;padding:5px;gap:5px}
-.slide:first-of-type.active .usage-item{padding:4px;display:flex;flex-direction:column;justify-content:center}
-.slide:first-of-type.active .usage-item svg{height:105px;max-height:42%;margin:0 auto 2px}
-:fullscreen .slide:first-of-type.active{height:calc(100vh - 190px);min-height:0}
-:fullscreen .slide:first-of-type.active .concept-grid{height:100%;grid-template-columns:48% 52%;gap:12px}
-:fullscreen .slide:first-of-type.active .module-photo{height:100%;max-height:calc(100vh - 230px)}
-:fullscreen .slide:first-of-type.active .usage-grid{padding:4px;gap:4px}
-:fullscreen .slide:first-of-type.active .usage-item{padding:3px}
-:fullscreen .slide:first-of-type.active .usage-item svg{height:clamp(115px,18vh,180px);max-height:none}
 
-/* Responsive 16:9 lesson scaling */
+/* Responsive lesson layout */
 .wrap{width:min(100%,calc(100vh * 16 / 9));max-width:none}
 .slide.active{height:min(70vh,calc((100vw - 32px) * 9 / 16));min-height:500px}
-.concept-grid{height:100%}
-.module-photo{height:100%;max-height:none}
-.usage-grid{height:100%}
-.usage-item svg{height:min(12vh,120px)}
-@media (min-aspect-ratio:16/9){
-  :fullscreen .wrap{width:calc(100vh * 16 / 9);max-width:100vw}
-}
-:fullscreen .wrap{height:100vh;padding:1.8vh 3.5vw 2vh}
+:fullscreen .wrap{width:min(100vw,calc(100vh * 16 / 9));height:100vh;padding:1.8vh 3.5vw 2vh}
 :fullscreen header{height:15vh;padding:2.2vh 2.8vw}
-:fullscreen .slide.active{height:calc(85vh - 4vh);min-height:0;margin-top:2vh;padding:2.5vh 2.5vw}
-:fullscreen .slide:first-of-type.active .concept-grid{height:100%;gap:1.2vw}
-:fullscreen .slide:first-of-type.active .module-photo{height:100%;width:100%}
-:fullscreen .slide:first-of-type.active .usage-grid{height:100%;gap:.5vw;padding:.5vw}
-:fullscreen .slide:first-of-type.active .usage-item{padding:.35vw}
-:fullscreen .slide:first-of-type.active .usage-item svg{height:calc((100% - 4.5rem)/2);min-height:0;max-height:none}
+:fullscreen .slide.active{height:81vh;min-height:0;margin-top:2vh;padding:2.5vh 2.5vw}
 
-/* LED slide 1 layout refinement */
-.slide:first-of-type.active .concept-grid{grid-template-columns:47% 53%;gap:6px}
-.slide:first-of-type.active .concept-image{justify-content:flex-start}
-.slide:first-of-type.active .module-photo{object-position:left center;transform:translateX(-5%) scale(1.08);transform-origin:left center}
-.slide:first-of-type.active .concept-uses{height:100%;display:flex;align-items:stretch}
-.slide:first-of-type.active .usage-grid{width:100%;height:100%;padding:2px;gap:3px}
-.slide:first-of-type.active .usage-item{padding:2px;min-height:0}
-.slide:first-of-type.active .usage-item svg{width:100%;height:calc(100% - 3.1rem);min-height:95px;max-height:none}
-:fullscreen .slide:first-of-type.active .concept-grid{grid-template-columns:47% 53%;gap:.5vw}
-:fullscreen .slide:first-of-type.active .module-photo{transform:translateX(-6%) scale(1.12)}
-:fullscreen .slide:first-of-type.active .usage-grid{padding:2px;gap:3px}
-:fullscreen .slide:first-of-type.active .usage-item{padding:2px}
-:fullscreen .slide:first-of-type.active .usage-item svg{width:100%;height:calc(100% - 3rem);max-height:none}
-
-/* LED slide 1: tighter example cards */
-.slide:first-of-type.active .concept-grid{grid-template-columns:52% 48%;gap:2px}
-.slide:first-of-type.active .concept-uses{justify-content:flex-end}
+/* Slide 1 */
+.slide:first-of-type.active .concept-grid{height:100%;grid-template-columns:52% 48%;gap:2px;align-items:stretch}
+.slide:first-of-type.active .concept-image{display:flex;align-items:center;justify-content:flex-start;min-height:0}
+.slide:first-of-type.active .module-photo{width:100%;height:100%;max-height:none;object-fit:contain;object-position:left center;transform:translateX(-5%) scale(1.08);transform-origin:left center}
+.slide:first-of-type.active .concept-uses{height:100%;min-height:0;display:flex;align-items:stretch;justify-content:flex-end}
 .slide:first-of-type.active .usage-grid{width:92%;height:100%;padding:1px;gap:2px;align-self:stretch}
-.slide:first-of-type.active .usage-item{padding:1px}
-.slide:first-of-type.active .usage-item svg{height:calc(100% - 2.35rem);min-height:110px;margin:0 auto}
-.slide:first-of-type.active .usage-item strong{margin-top:1px}
-.slide:first-of-type.active .usage-item span{margin-top:1px}
-:fullscreen .slide:first-of-type.active .concept-grid{grid-template-columns:52% 48%;gap:.15vw}
-:fullscreen .slide:first-of-type.active .usage-grid{width:92%;height:100%;padding:1px;gap:2px}
-:fullscreen .slide:first-of-type.active .usage-item{padding:1px}
-:fullscreen .slide:first-of-type.active .usage-item svg{height:calc(100% - 2.25rem);min-height:0;margin:0 auto}
+.slide:first-of-type.active .usage-item{padding:1px;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.slide:first-of-type.active .usage-item svg{width:100%;height:calc(100% - 2.35rem);min-height:110px;max-height:none;margin:0 auto}
+.slide:first-of-type.active .usage-item strong,.slide:first-of-type.active .usage-item span{margin-top:1px}
+:fullscreen .slide:first-of-type.active .module-photo{transform:translateX(-6%) scale(1.12)}
+:fullscreen .slide:first-of-type.active .usage-item svg{min-height:0}
 
-/* Circuit slide keeps the same 724:390 composition at every viewport size. */
-#workspace.circuit-demo{aspect-ratio:724/390;height:auto;max-height:none}
-:fullscreen #workspace.circuit-demo{height:auto;min-height:0;aspect-ratio:724/390}
+/* Slide 2: scale the complete circuit as one fixed-ratio composition. */
+#workspace.circuit-demo{width:100%;height:auto;aspect-ratio:724/390;max-height:100%;margin:8px auto 0}
+:fullscreen #workspace.circuit-demo{width:auto;height:calc(100% - 3.2rem);max-width:100%;max-height:calc(100% - 3.2rem);aspect-ratio:724/390;margin:1vh auto 0}
