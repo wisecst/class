@@ -307,6 +307,59 @@ to {
   object-fit:contain;
   margin:18px auto;
 }
+.diode-word {
+  color:#6a4c93;
+  font-weight:800;
+}
+.edit-panel {
+  position:fixed;
+  z-index:20;
+  top:12px;
+  right:12px;
+  width:min(330px,calc(100vw - 24px));
+  max-height:calc(100vh - 24px);
+  overflow:auto;
+  padding:16px;
+  color:#243447;
+  background:#fff;
+  border:2px solid #457b9d;
+  border-radius:14px;
+  box-shadow:0 8px 28px #0003;
+  font-size:.9rem;
+}
+.edit-panel h3 {
+  margin:0 0 8px;
+  color:#1d5d85;
+}
+.edit-panel label {
+  display:block;
+  margin:10px 0 4px;
+  font-weight:bold;
+}
+.edit-panel input[type="color"],
+.edit-panel input[type="range"] {
+  width:100%;
+}
+.edit-panel .edit-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
+}
+.edit-panel button {
+  padding:8px 10px;
+  border:0;
+  border-radius:7px;
+  color:#fff;
+  background:#457b9d;
+  cursor:pointer;
+}
+.edit-panel .hint {
+  margin:8px 0 0;
+  color:#607080;
+  font-size:.78rem;
+  line-height:1.4;
+}
 </style>
 </head>
 <body>
@@ -319,12 +372,11 @@ to {
 <section class="slide active">
 <h2>1. LED 개념 설명</h2>
 <div class="diode-bubble">
-<strong>다이오드</strong>
 <span>전류를 한쪽 방향으로만 흐르게 하는 반도체 소자</span>
 </div>
 <img class="module-photo" src="assets/led-module-transparent.png" alt="선명한 LED 모듈과 여러 색 LED 모듈">
 <div class="lead">
-<span class="led-name">LED</span>(Light Emitting Diode, 발광 다이오드)는 전류가 흐르면 빛을 내는 반도체 소자입니다.
+<span class="led-name">LED</span>(Light Emitting Diode, 발광 <span class="diode-word">다이오드</span>)는 전류가 흐르면 빛을 내는 반도체 소자입니다.
 </div>
 <div class="card">
 <h3>사용 예</h3>
@@ -496,6 +548,83 @@ render()};
 document.querySelector('#forward').onclick=()=>{bi++;
 render()};
 render();
+
+// 편집 모드: 주소 뒤에 ?edit=1을 붙이면 표시됩니다.
+const editMode = new URLSearchParams(location.search).get('edit') === '1';
+if (editMode) {
+  const panel = document.createElement('aside');
+  panel.className = 'edit-panel';
+  panel.innerHTML = `
+    <h3>LED 페이지 편집 모드</h3>
+    <label>글자 배경색</label>
+    <input id="editLeadBg" type="color" value="#fff3c4">
+    <label>LED 글자색</label>
+    <input id="editLedColor" type="color" value="#e63946">
+    <label>다이오드 글자색</label>
+    <input id="editDiodeColor" type="color" value="#6a4c93">
+    <label>말풍선 배경색</label>
+    <input id="editBubbleBg" type="color" value="#6a4c93">
+    <label>말풍선 위치(위·아래)</label>
+    <input id="editBubbleY" type="range" min="-20" max="30" value="0">
+    <label>이미지 크기</label>
+    <input id="editImageWidth" type="range" min="300" max="900" value="700">
+    <label>이미지 가로 위치</label>
+    <input id="editImageX" type="range" min="-180" max="180" value="0">
+    <div class="edit-actions">
+      <button id="editSave">브라우저에 저장</button>
+      <button id="editExport">HTML 다운로드</button>
+      <button id="editReset">초기화</button>
+    </div>
+    <p class="hint">수정 내용은 우선 이 브라우저에 저장됩니다. HTML 다운로드 후 GitHub에 올리면 다른 기기에서도 사용할 수 있습니다.</p>
+  `;
+  document.body.append(panel);
+  const lead = document.querySelector('.lead');
+  const led = document.querySelector('.led-name');
+  const diode = document.querySelector('.diode-word');
+  const bubble = document.querySelector('.diode-bubble');
+  const image = document.querySelector('.module-photo');
+  const controls = {
+    leadBg: document.querySelector('#editLeadBg'),
+    ledColor: document.querySelector('#editLedColor'),
+    diodeColor: document.querySelector('#editDiodeColor'),
+    bubbleBg: document.querySelector('#editBubbleBg'),
+    bubbleY: document.querySelector('#editBubbleY'),
+    imageWidth: document.querySelector('#editImageWidth'),
+    imageX: document.querySelector('#editImageX')
+  };
+  const apply = () => {
+    lead.style.backgroundColor = controls.leadBg.value;
+    led.style.color = controls.ledColor.value;
+    diode.style.color = controls.diodeColor.value;
+    bubble.style.backgroundColor = controls.bubbleBg.value;
+    bubble.style.transform = `translateY(${controls.bubbleY.value}px)`;
+    image.style.width = `${controls.imageWidth.value}px`;
+    image.style.transform = `translateX(${controls.imageX.value}px)`;
+  };
+  const key = 'led-lesson-edit-settings';
+  const saved = JSON.parse(localStorage.getItem(key) || 'null');
+  if (saved) Object.keys(controls).forEach(k => { if (saved[k] !== undefined) controls[k].value = saved[k]; });
+  Object.values(controls).forEach(input => input.addEventListener('input', apply));
+  apply();
+  document.querySelector('#editSave').onclick = () => {
+    const data = Object.fromEntries(Object.entries(controls).map(([k, v]) => [k, v.value]));
+    localStorage.setItem(key, JSON.stringify(data));
+    alert('이 브라우저에 저장했습니다.');
+  };
+  document.querySelector('#editReset').onclick = () => {
+    localStorage.removeItem(key);
+    location.reload();
+  };
+  document.querySelector('#editExport').onclick = () => {
+    panel.remove();
+    const html = '<!doctype html>\\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'led-lesson-edited.html';
+    a.click();
+  };
+}
 </script>
 </body>
 </html>
