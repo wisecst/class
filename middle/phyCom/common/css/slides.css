@@ -486,3 +486,7 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 :fullscreen body.after-intro header{height:auto!important;min-height:10vh;padding:1.2vh 2.4vw!important}
 :fullscreen body.after-intro header .title-row{margin-top:2.6vh!important}
 :fullscreen body.after-intro .slide.active{transform:none!important;height:86vh!important;margin-top:1vh!important;margin-bottom:0!important}
+
+/* Correct OrangeBoard built-in LED (L / D13) position in execution popup. */
+.pin13-led-glow{left:34.05%!important;top:29.35%!important;width:5.0%!important}
+.pin13-led-dot{left:34.05%!important;top:29.35%!important;width:2.15%!important}
