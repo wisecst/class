@@ -114,7 +114,7 @@ h2 {
 .circuit-component img{display:block;width:100%;height:100%;object-fit:fill}
 .circuit-led{left:3%;top:76px}
 .circuit-board{right:2%;top:36px}
-.circuit-wire-layer{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
+.circuit-wire-layer{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible}
 .circuit-wire{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
 .circuit-wire.hidden{display:none}
 .circuit-label{position:absolute;z-index:6;transform:translate(-50%,-50%);padding:7px 12px;border-radius:7px;color:#fff;font-size:15px;font-weight:900;line-height:1;white-space:nowrap;box-shadow:0 2px 6px #0004}
@@ -384,7 +384,7 @@ to {
   <div id="labelVcc" class="circuit-label hidden" style="left:45%;top:84%;background:#e53935">VCC → 5V</div>
   <div id="labelGnd" class="circuit-label hidden" style="left:49%;top:93%;background:#222222">GND → GND2</div>
   <div id="labelIn" class="circuit-label hidden" style="left:57%;top:5%;background:#1976d2">IN → D3</div>
-  <div class="circuit-step" id="circuitStepText">LED 모듈과 오렌지보드</div>
+  
 </div>
 </section>
 <section class="slide">
@@ -494,7 +494,11 @@ function sizeCircuitComponents(){
   }
   requestAnimationFrame(drawLessonWires);
 }
-function lessonPin(el,p){return {x:el.offsetLeft+el.offsetWidth*p[0],y:el.offsetTop+el.offsetHeight*p[1]};}
+function lessonPin(el,p){
+  const demo=document.querySelector('#ledCircuitDemo');
+  const dr=demo.getBoundingClientRect(), r=el.getBoundingClientRect();
+  return {x:r.left-dr.left+r.width*p[0],y:r.top-dr.top+r.height*p[1]};
+}
 function orthogonalPath(a,b,kind,index){
   const exit=34+index*18;
   if(kind==='top'){const y=Math.max(18,Math.min(a.y,b.y)-28-index*24);return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;}
@@ -518,8 +522,6 @@ function renderCircuitStep(){
     document.querySelector('#wire'+id)?.classList.toggle('hidden',i>=circuitStep);
     document.querySelector('#label'+id)?.classList.toggle('hidden',i>=circuitStep);
   });
-  const text=['LED 모듈과 오렌지보드','VCC → 5V','GND → GND2','IN → D3'];
-  const box=document.querySelector('#circuitStepText'); if(box) box.textContent=text[circuitStep];
 }
 function show(n){si=Math.max(0,Math.min(4,n));
 ss.forEach((s,i)=>s.classList.toggle('active',i===si));
