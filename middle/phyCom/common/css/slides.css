@@ -340,3 +340,18 @@ to {
   font-size:.78rem;
   line-height:1.4;
 }
+
+/* First slide: use the available 16:9/fullscreen space more fully. */
+.slide:first-of-type.active .concept-grid{height:100%;align-items:stretch}
+.slide:first-of-type.active .concept-image{display:flex;align-items:center;min-height:0}
+.slide:first-of-type.active .module-photo{width:100%;height:100%;max-height:none;object-fit:contain;object-position:center}
+.slide:first-of-type.active .concept-uses{min-height:0}
+.slide:first-of-type.active .usage-grid{height:100%;padding:5px;gap:5px}
+.slide:first-of-type.active .usage-item{padding:4px;display:flex;flex-direction:column;justify-content:center}
+.slide:first-of-type.active .usage-item svg{height:105px;max-height:42%;margin:0 auto 2px}
+:fullscreen .slide:first-of-type.active{height:calc(100vh - 190px);min-height:0}
+:fullscreen .slide:first-of-type.active .concept-grid{height:100%;grid-template-columns:48% 52%;gap:12px}
+:fullscreen .slide:first-of-type.active .module-photo{height:100%;max-height:calc(100vh - 230px)}
+:fullscreen .slide:first-of-type.active .usage-grid{padding:4px;gap:4px}
+:fullscreen .slide:first-of-type.active .usage-item{padding:3px}
+:fullscreen .slide:first-of-type.active .usage-item svg{height:clamp(115px,18vh,180px);max-height:none}
