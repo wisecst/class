@@ -374,3 +374,17 @@ to {
 :fullscreen .slide:first-of-type.active .usage-grid{height:100%;gap:.5vw;padding:.5vw}
 :fullscreen .slide:first-of-type.active .usage-item{padding:.35vw}
 :fullscreen .slide:first-of-type.active .usage-item svg{height:calc((100% - 4.5rem)/2);min-height:0;max-height:none}
+
+/* LED slide 1 layout refinement */
+.slide:first-of-type.active .concept-grid{grid-template-columns:47% 53%;gap:6px}
+.slide:first-of-type.active .concept-image{justify-content:flex-start}
+.slide:first-of-type.active .module-photo{object-position:left center;transform:translateX(-5%) scale(1.08);transform-origin:left center}
+.slide:first-of-type.active .concept-uses{height:100%;display:flex;align-items:stretch}
+.slide:first-of-type.active .usage-grid{width:100%;height:100%;padding:2px;gap:3px}
+.slide:first-of-type.active .usage-item{padding:2px;min-height:0}
+.slide:first-of-type.active .usage-item svg{width:100%;height:calc(100% - 3.1rem);min-height:95px;max-height:none}
+:fullscreen .slide:first-of-type.active .concept-grid{grid-template-columns:47% 53%;gap:.5vw}
+:fullscreen .slide:first-of-type.active .module-photo{transform:translateX(-6%) scale(1.12)}
+:fullscreen .slide:first-of-type.active .usage-grid{padding:2px;gap:3px}
+:fullscreen .slide:first-of-type.active .usage-item{padding:2px}
+:fullscreen .slide:first-of-type.active .usage-item svg{width:100%;height:calc(100% - 3rem);max-height:none}
