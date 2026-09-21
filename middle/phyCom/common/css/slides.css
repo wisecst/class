@@ -104,16 +104,16 @@ h2 {
   font-size:2rem;
   color:#f28c28}
 .circuit-demo{position:relative;height:390px;margin-top:8px;overflow:hidden;background:linear-gradient(#f2f5f7 1px,transparent 1px),linear-gradient(90deg,#f2f5f7 1px,transparent 1px);background-size:20px 20px;border-radius:14px}
-.circuit-component{position:absolute;z-index:2}
-.circuit-component img{display:block;width:100%;height:100%;object-fit:fill}
-.circuit-led{left:3%;top:76px}
-.circuit-board{right:2%;top:36px}
-.circuit-wire-layer{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible}
-.circuit-wire{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
-.circuit-wire.hidden{display:none}
-.circuit-label{position:absolute;z-index:6;transform:translate(-50%,-50%);padding:7px 12px;border-radius:7px;color:#fff;font-size:15px;font-weight:900;line-height:1;white-space:nowrap;box-shadow:0 2px 6px #0004}
-.circuit-label.hidden{display:none}
-.circuit-step{position:absolute;left:50%;bottom:12px;z-index:8;transform:translateX(-50%);padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.9);font-size:.86rem;font-weight:700;color:#506070}
+.circuit-demo .circuit-component{position:absolute;user-select:none;z-index:2}
+.circuit-demo .component-image{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none}
+.circuit-demo .pin-layer{position:absolute;inset:0;pointer-events:none}
+.circuit-demo .module-component{left:3%;top:30%;width:18vw;max-width:300px;max-height:45vh}
+.circuit-demo .board-component{left:35%;top:12%;width:60%}
+.circuit-demo .pin{position:absolute;width:1px;height:1px;transform:translate(-50%,-50%);pointer-events:none;opacity:0}
+#wireLayer{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+#wireLayer .wire{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#wireLabelLayer{position:absolute;inset:0;pointer-events:none;z-index:15}
+.wire-label{position:absolute;transform:translate(-50%,-50%);padding:9px 15px;border-radius:8px;font-size:19px;font-weight:900;line-height:1;white-space:nowrap;pointer-events:none;box-shadow:0 2px 6px rgba(0,0,0,.30)}
 :fullscreen .circuit-demo{height:calc(100vh - 245px);min-height:430px}
 .pins {
   width:100%;
