@@ -472,3 +472,17 @@ body.after-intro .slide.active{transform:translateY(-48px);height:calc(min(70vh,
 .entry-result-card p{margin:7px 0 0;font-size:20px}
 @keyframes pin13Pulse{from{opacity:.72;transform:translate(-50%,-50%) scale(.86)}to{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
 :fullscreen .entry-result-card{width:min(760px,70vw)}
+
+/* Header from slide 2: LED left, slide subtitle right, on one row. */
+body.after-intro header{height:auto!important;min-height:104px;padding:18px 28px!important}
+body.after-intro header .course-label{display:block;position:absolute;top:16px;right:24px}
+body.after-intro header .device-label,
+body.after-intro header .title-desc,
+body.after-intro header .diode-bubble{display:none!important}
+body.after-intro header .title-row{display:grid!important;grid-template-columns:auto 1fr;align-items:end;gap:24px;width:100%;margin-top:24px!important}
+body.after-intro header h1{grid-column:1;margin:0!important}
+body.after-intro header .slide-subtitle{grid-column:2;display:block!important;justify-self:end;align-self:center;text-align:right;font-size:clamp(1.35rem,2.5vw,2rem);font-weight:900;color:#fff;line-height:1.1}
+body.after-intro .slide.active{transform:none!important;margin-top:10px!important;height:calc(min(70vh,((100vw - 32px) * 9 / 16)))!important;margin-bottom:0!important}
+:fullscreen body.after-intro header{height:auto!important;min-height:10vh;padding:1.2vh 2.4vw!important}
+:fullscreen body.after-intro header .title-row{margin-top:2.6vh!important}
+:fullscreen body.after-intro .slide.active{transform:none!important;height:86vh!important;margin-top:1vh!important;margin-bottom:0!important}
