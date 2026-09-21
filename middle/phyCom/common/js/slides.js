@@ -19,63 +19,14 @@ const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
 let circuitStep=0;
-const LESSON_PINS={
-  led:{IN:[.77279,.39963],VCC:[.77538,.51097],GND:[.77675,.62098]},
-  board:{D3:[.79468,.06550],V5:[.55263,.91500],GND2:[.62169,.91500]}
-};
-function sizeCircuitComponents(){
-  const demo=document.querySelector('#ledCircuitDemo'), led=document.querySelector('#lessonLed'), board=document.querySelector('#lessonBoard');
-  if(!demo||!led||!board) return;
-  const li=led.querySelector('img'), bi=board.querySelector('img');
-  if(li.naturalWidth&&li.naturalHeight){
-    const mw=Math.min(demo.clientWidth*.24,400), mh=demo.clientHeight*.56, s=Math.min(mw/li.naturalWidth,mh/li.naturalHeight);
-    led.style.width=li.naturalWidth*s+'px'; led.style.height=li.naturalHeight*s+'px';
-  }
-  if(bi.naturalWidth&&bi.naturalHeight){
-    const mw=demo.clientWidth*.60, mh=demo.clientHeight*.72, s=Math.min(mw/bi.naturalWidth,mh/bi.naturalHeight);
-    board.style.width=bi.naturalWidth*s+'px'; board.style.height=bi.naturalHeight*s+'px';
-  }
-  requestAnimationFrame(drawLessonWires);
-}
-function lessonPin(el,p){
-  const demo=document.querySelector('#ledCircuitDemo');
-  const dr=demo.getBoundingClientRect(), r=el.getBoundingClientRect();
-  const sx=demo.clientWidth/dr.width, sy=demo.clientHeight/dr.height;
-  return {
-    x:(r.left-dr.left+r.width*p[0])*sx,
-    y:(r.top-dr.top+r.height*p[1])*sy
-  };
-}
-function orthogonalPath(a,b,kind,index){
-  const exit=34+index*18;
-  if(kind==='top'){const y=Math.max(18,Math.min(a.y,b.y)-28-index*24);return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;}
-  const y=Math.min(document.querySelector('#ledCircuitDemo').clientHeight-18,Math.max(a.y,b.y)+28+index*24);
-  return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;
-}
-function drawLessonWires(){
-  const demo=document.querySelector('#ledCircuitDemo'), svg=document.querySelector('#lessonWireLayer'), led=document.querySelector('#lessonLed'), board=document.querySelector('#lessonBoard');
-  if(!demo||!svg||!led||!board) return;
-  svg.setAttribute('viewBox',`0 0 ${demo.clientWidth} ${demo.clientHeight}`);
-  const specs=[
-    ['wireVcc',lessonPin(led,LESSON_PINS.led.VCC),lessonPin(board,LESSON_PINS.board.V5),'bottom',0],
-    ['wireGnd',lessonPin(led,LESSON_PINS.led.GND),lessonPin(board,LESSON_PINS.board.GND2),'bottom',1],
-    ['wireIn',lessonPin(led,LESSON_PINS.led.IN),lessonPin(board,LESSON_PINS.board.D3),'top',0]
-  ];
-  specs.forEach(s=>document.querySelector('#'+s[0]).setAttribute('d',orthogonalPath(s[1],s[2],s[3],s[4])));
-}
-function renderCircuitStep(){
-  const ids=['Vcc','Gnd','In'];
-  ids.forEach((id,i)=>{
-    document.querySelector('#wire'+id)?.classList.toggle('hidden',i>=circuitStep);
-    document.querySelector('#label'+id)?.classList.toggle('hidden',i>=circuitStep);
-  });
-}
 function show(n){si=Math.max(0,Math.min(ss.length-1,n));
 ss.forEach((s,i)=>s.classList.toggle('active',i===si));
 pv.disabled=si===0;
 nx.disabled=si===ss.length-1;
-document.querySelector('#slides').textContent=(si+1)+' / '+ss.length}pv.onclick=()=>{if(si===1&&circuitStep>0){circuitStep--;renderCircuitStep();}else show(si-1)};
-nx.onclick=()=>{if(si===1&&circuitStep<3){circuitStep++;renderCircuitStep();}else show(si+1)};
+document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
+if(si===1&&window.lessonCircuit) requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));
+}pv.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else show(si-1)};
+nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else show(si+1)};
 
 // 키보드/프리젠터 조작
 // 일반적인 프리젠터는 PageUp/PageDown 또는 좌/우 방향키 신호를 보내므로 함께 지원합니다.
@@ -86,12 +37,12 @@ document.addEventListener('keydown', async (e)=>{
   if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;
   if(['ArrowRight','PageDown',' '].includes(e.key)){
     e.preventDefault();
-    if(si===1&&circuitStep<3){circuitStep++;renderCircuitStep();}else show(si+1);
+    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else show(si+1);
     return;
   }
   if(['ArrowLeft','PageUp'].includes(e.key)){
     e.preventDefault();
-    if(si===1&&circuitStep>0){circuitStep--;renderCircuitStep();}else show(si-1);
+    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else show(si-1);
     return;
   }
   if(e.key==='Home'){e.preventDefault(); show(0); return;}
@@ -117,10 +68,6 @@ render()};
 document.querySelector('#forward').onclick=()=>{bi++;
 render()};
 render();
-renderCircuitStep();
-const lessonImgs=[...document.querySelectorAll('#lessonLed img,#lessonBoard img')];
-lessonImgs.forEach(img=>{if(img.complete&&img.naturalWidth) sizeCircuitComponents(); else img.addEventListener('load',sizeCircuitComponents,{once:true});});
-window.addEventListener('resize',sizeCircuitComponents);
 
 // 편집 모드: 주소 뒤에 ?edit=1을 붙이면 표시됩니다.
 const editMode = new URLSearchParams(location.search).get('edit') === '1';
