@@ -442,3 +442,7 @@ body.after-intro .pwm-demo{width:100%;height:calc(100% - 112px);min-height:0}
 /* Slides 2+: reclaim exactly the space formerly occupied by the in-body h2 */
 body.after-intro .slide.active{transform:translateY(-48px);height:calc(min(70vh,((100vw - 32px) * 9 / 16)) + 48px);margin-bottom:-48px}
 :fullscreen body.after-intro .slide.active{transform:translateY(-48px);height:calc(86vh + 48px);margin-bottom:-48px}
+
+/* Circuit steps: wire and label appear together, with no drawing/flying transition. */
+#wireLayer .wire.wire-instant{animation:none!important;transition:none!important;stroke-dasharray:none!important;stroke-dashoffset:0!important}
+#wireLabelLayer .wire-label.wire-label-instant{animation:none!important;transition:none!important}
