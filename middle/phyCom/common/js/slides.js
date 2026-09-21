@@ -1,0 +1,200 @@
+
+const fullscreenBtn=document.querySelector('#fullscreenBtn');
+function syncFullscreenButton(){
+  const on=!!document.fullscreenElement;
+  fullscreenBtn.textContent=on?'×':'⛶';
+  fullscreenBtn.setAttribute('aria-label',on?'전체화면 종료':'전체화면으로 보기');
+  fullscreenBtn.title=on?'전체화면 종료 (Esc)':'전체화면';
+}
+fullscreenBtn.addEventListener('click',async()=>{
+  try{
+    if(!document.fullscreenElement){await document.documentElement.requestFullscreen();}
+    else{await document.exitFullscreen();}
+  }catch(e){alert('이 브라우저에서는 전체화면 전환을 사용할 수 없습니다.');}
+});
+document.addEventListener('fullscreenchange',syncFullscreenButton);
+syncFullscreenButton();
+
+const ss=[...document.querySelectorAll('.slide')];
+let si=0;
+const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
+let circuitStep=0;
+const LESSON_PINS={
+  led:{IN:[.77279,.39963],VCC:[.77538,.51097],GND:[.77675,.62098]},
+  board:{D3:[.79468,.06550],V5:[.55263,.91500],GND2:[.62169,.91500]}
+};
+function sizeCircuitComponents(){
+  const demo=document.querySelector('#ledCircuitDemo'), led=document.querySelector('#lessonLed'), board=document.querySelector('#lessonBoard');
+  if(!demo||!led||!board) return;
+  const li=led.querySelector('img'), bi=board.querySelector('img');
+  if(li.naturalWidth&&li.naturalHeight){
+    const mw=Math.min(demo.clientWidth*.24,400), mh=demo.clientHeight*.56, s=Math.min(mw/li.naturalWidth,mh/li.naturalHeight);
+    led.style.width=li.naturalWidth*s+'px'; led.style.height=li.naturalHeight*s+'px';
+  }
+  if(bi.naturalWidth&&bi.naturalHeight){
+    const mw=demo.clientWidth*.60, mh=demo.clientHeight*.72, s=Math.min(mw/bi.naturalWidth,mh/bi.naturalHeight);
+    board.style.width=bi.naturalWidth*s+'px'; board.style.height=bi.naturalHeight*s+'px';
+  }
+  requestAnimationFrame(drawLessonWires);
+}
+function lessonPin(el,p){
+  const demo=document.querySelector('#ledCircuitDemo');
+  const dr=demo.getBoundingClientRect(), r=el.getBoundingClientRect();
+  const sx=demo.clientWidth/dr.width, sy=demo.clientHeight/dr.height;
+  return {
+    x:(r.left-dr.left+r.width*p[0])*sx,
+    y:(r.top-dr.top+r.height*p[1])*sy
+  };
+}
+function orthogonalPath(a,b,kind,index){
+  const exit=34+index*18;
+  if(kind==='top'){const y=Math.max(18,Math.min(a.y,b.y)-28-index*24);return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;}
+  const y=Math.min(document.querySelector('#ledCircuitDemo').clientHeight-18,Math.max(a.y,b.y)+28+index*24);
+  return `M ${a.x} ${a.y} L ${a.x+exit} ${a.y} L ${a.x+exit} ${y} L ${b.x} ${y} L ${b.x} ${b.y}`;
+}
+function drawLessonWires(){
+  const demo=document.querySelector('#ledCircuitDemo'), svg=document.querySelector('#lessonWireLayer'), led=document.querySelector('#lessonLed'), board=document.querySelector('#lessonBoard');
+  if(!demo||!svg||!led||!board) return;
+  svg.setAttribute('viewBox',`0 0 ${demo.clientWidth} ${demo.clientHeight}`);
+  const specs=[
+    ['wireVcc',lessonPin(led,LESSON_PINS.led.VCC),lessonPin(board,LESSON_PINS.board.V5),'bottom',0],
+    ['wireGnd',lessonPin(led,LESSON_PINS.led.GND),lessonPin(board,LESSON_PINS.board.GND2),'bottom',1],
+    ['wireIn',lessonPin(led,LESSON_PINS.led.IN),lessonPin(board,LESSON_PINS.board.D3),'top',0]
+  ];
+  specs.forEach(s=>document.querySelector('#'+s[0]).setAttribute('d',orthogonalPath(s[1],s[2],s[3],s[4])));
+}
+function renderCircuitStep(){
+  const ids=['Vcc','Gnd','In'];
+  ids.forEach((id,i)=>{
+    document.querySelector('#wire'+id)?.classList.toggle('hidden',i>=circuitStep);
+    document.querySelector('#label'+id)?.classList.toggle('hidden',i>=circuitStep);
+  });
+}
+function show(n){si=Math.max(0,Math.min(ss.length-1,n));
+ss.forEach((s,i)=>s.classList.toggle('active',i===si));
+pv.disabled=si===0;
+nx.disabled=si===ss.length-1;
+document.querySelector('#slides').textContent=(si+1)+' / '+ss.length}pv.onclick=()=>{if(si===1&&circuitStep>0){circuitStep--;renderCircuitStep();}else show(si-1)};
+nx.onclick=()=>{if(si===1&&circuitStep<3){circuitStep++;renderCircuitStep();}else show(si+1)};
+
+// 키보드/프리젠터 조작
+// 일반적인 프리젠터는 PageUp/PageDown 또는 좌/우 방향키 신호를 보내므로 함께 지원합니다.
+// F5는 브라우저 기본 새로고침 키라 웹페이지가 직접 가로챌 수 없습니다.
+// 대신 F 키로 전체화면을 전환하고, 브라우저 자체 F11 전체화면도 사용할 수 있습니다.
+document.addEventListener('keydown', async (e)=>{
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){
+    e.preventDefault();
+    if(si===1&&circuitStep<3){circuitStep++;renderCircuitStep();}else show(si+1);
+    return;
+  }
+  if(['ArrowLeft','PageUp'].includes(e.key)){
+    e.preventDefault();
+    if(si===1&&circuitStep>0){circuitStep--;renderCircuitStep();}else show(si-1);
+    return;
+  }
+  if(e.key==='Home'){e.preventDefault(); show(0); return;}
+  if(e.key==='End'){e.preventDefault(); show(ss.length-1); return;}
+  if(e.key==='f'||e.key==='F'){
+    e.preventDefault();
+    try{
+      if(!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    }catch(err){}
+  }
+});
+const msg=[['시작 전','다음 블록을 눌러 시작하세요.'],['시작하기','프로그램이 시작되면 LED를 제어할 준비를 합니다.'],['LED 켜기','LED에 켜짐 신호를 보냅니다.'],['1초 기다리기','LED가 켜진 상태를 1초 유지합니다.'],['LED 끄기','LED에 꺼짐 신호를 보냅니다.']];
+let bi=0;
+const bs=[...document.querySelectorAll('.block')];
+function render(){bs.forEach(b=>b.classList.toggle('show',+b.dataset.i<=bi));
+document.querySelector('#t').textContent=msg[bi][0];
+document.querySelector('#d').textContent=msg[bi][1];
+document.querySelector('#back').disabled=bi===0;
+document.querySelector('#forward').disabled=bi===4;
+document.querySelector('#step').textContent=bi+' / 4'}document.querySelector('#back').onclick=()=>{bi--;
+render()};
+document.querySelector('#forward').onclick=()=>{bi++;
+render()};
+render();
+renderCircuitStep();
+const lessonImgs=[...document.querySelectorAll('#lessonLed img,#lessonBoard img')];
+lessonImgs.forEach(img=>{if(img.complete&&img.naturalWidth) sizeCircuitComponents(); else img.addEventListener('load',sizeCircuitComponents,{once:true});});
+window.addEventListener('resize',sizeCircuitComponents);
+
+// 편집 모드: 주소 뒤에 ?edit=1을 붙이면 표시됩니다.
+const editMode = new URLSearchParams(location.search).get('edit') === '1';
+if (editMode) {
+  const panel = document.createElement('aside');
+  panel.className = 'edit-panel';
+  panel.innerHTML = `
+    <h3>LED 페이지 편집 모드</h3>
+    <label>글자 배경색</label>
+    <input id="editLeadBg" type="color" value="#fff3c4">
+    <label>LED 글자색</label>
+    <input id="editLedColor" type="color" value="#e63946">
+    <label>다이오드 글자색</label>
+    <input id="editDiodeColor" type="color" value="#6a4c93">
+    <label>말풍선 배경색</label>
+    <input id="editBubbleBg" type="color" value="#6a4c93">
+    <label>말풍선 위치(위·아래)</label>
+    <input id="editBubbleY" type="range" min="-20" max="30" value="0">
+    <label>이미지 크기</label>
+    <input id="editImageWidth" type="range" min="300" max="900" value="700">
+    <label>이미지 가로 위치</label>
+    <input id="editImageX" type="range" min="-180" max="180" value="0">
+    <div class="edit-actions">
+      <button id="editSave">브라우저에 저장</button>
+      <button id="editExport">HTML 다운로드</button>
+      <button id="editReset">초기화</button>
+    </div>
+    <p class="hint">수정 내용은 우선 이 브라우저에 저장됩니다. HTML 다운로드 후 GitHub에 올리면 다른 기기에서도 사용할 수 있습니다.</p>
+  `;
+  document.body.append(panel);
+  const lead = document.querySelector('.lead');
+  const led = document.querySelector('.led-name');
+  const diode = document.querySelector('.diode-word');
+  const bubble = document.querySelector('.diode-bubble');
+  const image = document.querySelector('.module-photo');
+  const controls = {
+    leadBg: document.querySelector('#editLeadBg'),
+    ledColor: document.querySelector('#editLedColor'),
+    diodeColor: document.querySelector('#editDiodeColor'),
+    bubbleBg: document.querySelector('#editBubbleBg'),
+    bubbleY: document.querySelector('#editBubbleY'),
+    imageWidth: document.querySelector('#editImageWidth'),
+    imageX: document.querySelector('#editImageX')
+  };
+  const apply = () => {
+    lead.style.backgroundColor = controls.leadBg.value;
+    led.style.color = controls.ledColor.value;
+    diode.style.color = controls.diodeColor.value;
+    bubble.style.backgroundColor = controls.bubbleBg.value;
+    bubble.style.transform = `translateY(${controls.bubbleY.value}px)`;
+    image.style.width = `${controls.imageWidth.value}px`;
+    image.style.transform = `translateX(${controls.imageX.value}px)`;
+  };
+  const key = 'led-lesson-edit-settings';
+  const saved = JSON.parse(localStorage.getItem(key) || 'null');
+  if (saved) Object.keys(controls).forEach(k => { if (saved[k] !== undefined) controls[k].value = saved[k]; });
+  Object.values(controls).forEach(input => input.addEventListener('input', apply));
+  apply();
+  document.querySelector('#editSave').onclick = () => {
+    const data = Object.fromEntries(Object.entries(controls).map(([k, v]) => [k, v.value]));
+    localStorage.setItem(key, JSON.stringify(data));
+    alert('이 브라우저에 저장했습니다.');
+  };
+  document.querySelector('#editReset').onclick = () => {
+    localStorage.removeItem(key);
+    location.reload();
+  };
+  document.querySelector('#editExport').onclick = () => {
+    panel.remove();
+    const html = '<!doctype html>\\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'led-lesson-edited.html';
+    a.click();
+  };
+}
