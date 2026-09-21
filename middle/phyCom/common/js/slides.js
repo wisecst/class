@@ -25,8 +25,8 @@ pv.disabled=si===0;
 nx.disabled=si===ss.length-1;
 document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 if(si===1&&window.lessonCircuit) requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));
-}pv.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else show(si-1)};
-nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else show(si+1)};
+}pv.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}else show(si-1)};
+nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}else show(si+1)};
 
 // 키보드/프리젠터 조작
 // 일반적인 프리젠터는 PageUp/PageDown 또는 좌/우 방향키 신호를 보내므로 함께 지원합니다.
@@ -37,12 +37,16 @@ document.addEventListener('keydown', async (e)=>{
   if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;
   if(['ArrowRight','PageDown',' '].includes(e.key)){
     e.preventDefault();
-    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else show(si+1);
+    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}
+    else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}
+    else show(si+1);
     return;
   }
   if(['ArrowLeft','PageUp'].includes(e.key)){
     e.preventDefault();
-    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else show(si-1);
+    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}
+    else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
+    else show(si-1);
     return;
   }
   if(e.key==='Home'){e.preventDefault(); show(0); return;}
