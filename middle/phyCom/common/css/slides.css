@@ -401,3 +401,7 @@ to {
 :fullscreen .slide:first-of-type.active .usage-grid{width:92%;height:100%;padding:1px;gap:2px}
 :fullscreen .slide:first-of-type.active .usage-item{padding:1px}
 :fullscreen .slide:first-of-type.active .usage-item svg{height:calc(100% - 2.25rem);min-height:0;margin:0 auto}
+
+/* Circuit slide keeps the same 724:390 composition at every viewport size. */
+#workspace.circuit-demo{aspect-ratio:724/390;height:auto;max-height:none}
+:fullscreen #workspace.circuit-demo{height:auto;min-height:0;aspect-ratio:724/390}
