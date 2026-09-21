@@ -528,3 +528,7 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
   0%,45%{opacity:1;filter:brightness(1.35)}
   46%,100%{opacity:.38;filter:brightness(.8)}
 }
+
+/* Final D13 LED position: square immediately left of the printed 13. */
+.pin13-led-glow{left:47.0%!important;top:29.35%!important}
+.pin13-led-dot{left:47.0%!important;top:29.35%!important}
