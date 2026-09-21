@@ -55,7 +55,7 @@
   <div class="entry-stage">
     <div class="entry-program">
       <div class="entry-block start-block" data-entry-step="1"><span class="play-dot">▶</span><b>시작하기 버튼을 클릭했을 때</b></div>
-      <div class="entry-block hardware-block indent-0" data-entry-step="2"><b>디지털</b><span class="field">13⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
+      <div class="entry-block hardware-block indent-0" data-entry-step="2"><b>디지털</b><span class="field">13⌄</span><b>번 핀</b><span class="field">켜기⌄</span><button type="button" class="entry-run-btn" id="runPin13">▶ 실행</button></div>
       <div class="entry-block repeat-block" data-entry-step="3"><b>계속 반복하기</b></div>
       <div class="repeat-body" data-repeat-body>
         <div class="entry-block hardware-block indent-1" data-entry-step="4"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
@@ -75,6 +75,18 @@
 <button id="forward">다음 블록</button>
 </div>
 <div class="count" id="step">0 / 7</div>
+<div class="entry-result-modal" id="pin13Modal" aria-hidden="true">
+  <div class="entry-result-card" role="dialog" aria-modal="true" aria-label="실행 결과">
+    <button type="button" class="entry-result-close" id="pin13Close" aria-label="닫기">×</button>
+    <strong>실행 결과</strong>
+    <div class="pin13-board-view">
+      <img src="../assets/OrangeBoard.png" alt="오렌지보드">
+      <span class="pin13-led-glow" aria-hidden="true"></span>
+      <span class="pin13-led-dot" aria-hidden="true"></span>
+    </div>
+    <p>오렌지보드의 <b>13번 핀</b>이 켜졌습니다.</p>
+  </div>
+</div>
 </section>
 <section class="slide">
 <h2>4. 실행 결과 확인</h2>
