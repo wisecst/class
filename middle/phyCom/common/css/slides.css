@@ -388,3 +388,16 @@ to {
 :fullscreen .slide:first-of-type.active .usage-grid{padding:2px;gap:3px}
 :fullscreen .slide:first-of-type.active .usage-item{padding:2px}
 :fullscreen .slide:first-of-type.active .usage-item svg{width:100%;height:calc(100% - 3rem);max-height:none}
+
+/* LED slide 1: tighter example cards */
+.slide:first-of-type.active .concept-grid{grid-template-columns:52% 48%;gap:2px}
+.slide:first-of-type.active .concept-uses{justify-content:flex-end}
+.slide:first-of-type.active .usage-grid{width:92%;height:100%;padding:1px;gap:2px;align-self:stretch}
+.slide:first-of-type.active .usage-item{padding:1px}
+.slide:first-of-type.active .usage-item svg{height:calc(100% - 2.35rem);min-height:110px;margin:0 auto}
+.slide:first-of-type.active .usage-item strong{margin-top:1px}
+.slide:first-of-type.active .usage-item span{margin-top:1px}
+:fullscreen .slide:first-of-type.active .concept-grid{grid-template-columns:52% 48%;gap:.15vw}
+:fullscreen .slide:first-of-type.active .usage-grid{width:92%;height:100%;padding:1px;gap:2px}
+:fullscreen .slide:first-of-type.active .usage-item{padding:1px}
+:fullscreen .slide:first-of-type.active .usage-item svg{height:calc(100% - 2.25rem);min-height:0;margin:0 auto}
