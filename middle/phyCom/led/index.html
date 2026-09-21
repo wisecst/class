@@ -16,14 +16,10 @@ body {
   max-width:1000px;
   margin:auto;
   padding:28px 16px 50px}
-header {
-  padding:32px;
-  color:#fff;
-  background:linear-gradient(135deg,#183b56,#457b9d);
-  border-radius:20px}
-h1 {
-  margin:8px 0;
-  font-size:clamp(2rem,5vw,3rem)}
+header{padding:22px 28px;color:#fff;background:linear-gradient(135deg,#183b56,#457b9d);border-radius:20px}
+.title-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+h1{margin:6px 0;font-size:clamp(2rem,5vw,3rem)}
+.title-desc{font-size:clamp(.88rem,1.5vw,1.05rem);font-weight:500;opacity:.92;line-height:1.45}
 h2 {
   color:#1d5d85}
 .slide {
@@ -237,10 +233,9 @@ to {
   color:#e63946;
   font-weight:800;
 }
-.concept-lead{position:relative;margin:0 0 22px;padding:18px 22px;background:#fff3c4;border-left:6px solid #f28c28;border-radius:10px;font-size:1.2rem;font-weight:bold}
-.concept-grid{display:grid;grid-template-columns:minmax(320px,1fr) minmax(360px,1.15fr);gap:28px;align-items:center}
+.concept-grid{display:grid;grid-template-columns:46% 54%;gap:22px;align-items:start;margin-top:8px}
 .concept-image{min-width:0}
-.diode-bubble{position:relative;margin:0 0 14px 34px;padding:10px 14px;color:#5e5270;background:#f5f0fa;border:1.5px dashed #b7a5ca;border-radius:14px;font-size:.9rem;line-height:1.45}
+.diode-bubble{position:relative;margin:0 0 12px 26px;padding:9px 13px;color:#655b70;background:#faf8fc;border:1.5px dashed #c9bdd5;border-radius:12px;font-size:.84rem;line-height:1.4}
 .diode-bubble::before{content:"";position:absolute;left:-32px;top:-48px;width:30px;height:54px;border-left:2px solid #b7a5ca;border-top:2px solid #b7a5ca;border-radius:12px 0 0 0;transform:skewY(-28deg)}
 .diode-bubble::after{content:"";position:absolute;left:-35px;top:-51px;border:5px solid transparent;border-right-color:#b7a5ca;transform:rotate(35deg)}
 .usage-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:12px;background:#f8fbfd;border:1px solid #dce8ef;border-radius:16px}
@@ -274,7 +269,7 @@ to {
     grid-template-columns:repeat(2,1fr);
   }
 }
-.module-photo{display:block;width:100%;max-height:310px;object-fit:contain;margin:0 auto}
+.module-photo{display:block;width:100%;height:330px;object-fit:contain;object-position:left top;margin:0}
 @media(max-width:760px){.concept-grid{grid-template-columns:1fr}.diode-bubble{margin-left:0}.diode-bubble::before,.diode-bubble::after{display:none}}
 .diode-word {
   color:#6a4c93;
@@ -335,12 +330,9 @@ to {
 <main class="wrap">
 <header>
 <small>중학교 피지컬 컴퓨팅 · 출력 장치</small>
-<h1>LED</h1>
+<div class="title-row"><h1>LED</h1><div class="title-desc">LED(Light Emitting Diode, 발광 <span class="diode-word">다이오드</span>)는 전류가 흐르면 빛을 내는 반도체 소자.</div></div>
 </header>
 <section class="slide active">
-<div class="concept-lead">
-  <span class="led-name">LED</span>(Light Emitting Diode, 발광 <span class="diode-word">다이오드</span>)는 전류가 흐르면 빛을 내는 반도체 소자.
-</div>
 <div class="concept-grid">
   <div class="concept-image">
     <img class="module-photo" src="assets/LED_WBGY.png" alt="흰색, 파란색, 초록색, 노란색 LED 모듈">
