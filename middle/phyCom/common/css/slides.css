@@ -490,3 +490,16 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 /* Correct OrangeBoard built-in LED (L / D13) position in execution popup. */
 .pin13-led-glow{left:34.05%!important;top:29.35%!important;width:5.0%!important}
 .pin13-led-dot{left:34.05%!important;top:29.35%!important;width:2.15%!important}
+
+/* Entry result: compact side panel so code remains visible. */
+.entry-result-modal{position:absolute!important;inset:0!important;background:transparent!important;backdrop-filter:none!important;pointer-events:none!important;align-items:flex-start!important;justify-content:flex-end!important;padding:18px 18px 0 0!important}
+.entry-result-modal.show{display:flex!important}
+.entry-result-card{pointer-events:auto!important;width:min(38%,440px)!important;padding:14px 18px 16px!important;margin:0!important;border:2px solid #cbdce7!important;border-radius:15px!important;box-shadow:0 8px 24px #183b5633!important}
+.entry-result-card>strong{font-size:21px!important;margin-bottom:3px!important}
+.pin13-board-view{width:100%!important;max-width:390px!important}
+.entry-result-card p{font-size:17px!important;margin-top:3px!important}
+/* D13 built-in L LED: corrected square immediately to the right of the 13 marking. */
+.pin13-led-glow{left:40.8%!important;top:29.35%!important;width:4.2%!important}
+.pin13-led-dot{left:40.8%!important;top:29.35%!important;width:1.8%!important}
+.entry-slide{position:relative}
+:fullscreen .entry-result-card{width:min(36%,500px)!important}
