@@ -55,20 +55,6 @@ document.addEventListener('keydown', async (e)=>{
     }catch(err){}
   }
 });
-const msg=[['시작 전','다음 블록을 눌러 시작하세요.'],['시작하기','프로그램이 시작되면 LED를 제어할 준비를 합니다.'],['LED 켜기','LED에 켜짐 신호를 보냅니다.'],['1초 기다리기','LED가 켜진 상태를 1초 유지합니다.'],['LED 끄기','LED에 꺼짐 신호를 보냅니다.']];
-let bi=0;
-const bs=[...document.querySelectorAll('.block')];
-function render(){bs.forEach(b=>b.classList.toggle('show',+b.dataset.i<=bi));
-document.querySelector('#t').textContent=msg[bi][0];
-document.querySelector('#d').textContent=msg[bi][1];
-document.querySelector('#back').disabled=bi===0;
-document.querySelector('#forward').disabled=bi===4;
-document.querySelector('#step').textContent=bi+' / 4'}document.querySelector('#back').onclick=()=>{bi--;
-render()};
-document.querySelector('#forward').onclick=()=>{bi++;
-render()};
-render();
-
 // 편집 모드: 주소 뒤에 ?edit=1을 붙이면 표시됩니다.
 const editMode = new URLSearchParams(location.search).get('edit') === '1';
 if (editMode) {
