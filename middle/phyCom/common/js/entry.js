@@ -14,7 +14,7 @@ function showPin13Result(){const m=document.querySelector('#pin13Modal');if(!m)r
 function hidePin13Result(){const m=document.querySelector('#pin13Modal');if(!m)return;m.classList.remove('show');m.setAttribute('aria-hidden','true');pin13ResultShown=false}
 function next(){
  if(step===2&&!pin13ResultShown){showPin13Result();return;}
- if(step===2&&pin13ResultShown){hidePin13Result();step=3;render();return;}
+ if(step===2&&pin13ResultShown){hidePin13Result();return;}
  step=Math.min(steps.length,step+1);render();
 }
 function prev(){if(pin13ResultShown)hidePin13Result();step=Math.max(0,step-1);render()}
