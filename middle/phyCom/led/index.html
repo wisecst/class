@@ -16,7 +16,9 @@ body {
   max-width:1000px;
   margin:auto;
   padding:28px 16px 50px}
-header{padding:22px 28px;color:#fff;background:linear-gradient(135deg,#183b56,#457b9d);border-radius:20px}
+header{position:relative;padding:22px 28px;color:#fff;background:linear-gradient(135deg,#183b56,#457b9d);border-radius:20px}
+.course-label{position:absolute;top:18px;right:24px;font-size:.78rem;opacity:.82}
+.device-label{display:block;margin-bottom:2px;font-size:.82rem;opacity:.9}
 .title-row{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
 h1{margin:6px 0;font-size:clamp(2rem,5vw,3rem)}
 .title-desc{position:relative;font-size:clamp(.88rem,1.5vw,1.05rem);font-weight:500;opacity:.96;line-height:1.45}
@@ -331,7 +333,8 @@ to {
 <body>
 <main class="wrap">
 <header>
-<small>중학교 피지컬 컴퓨팅 · 출력 장치</small>
+<span class="course-label">중학교 피지컬 컴퓨팅</span>
+<span class="device-label">출력 장치</span>
 <div class="title-row"><h1>LED</h1><div class="title-desc">(Light Emitting Diode, 발광 <span class="diode-anchor"><span class="diode-bubble">전류를 한쪽 방향으로만 흐르게 하는 반도체 소자</span><span class="diode-word">다이오드</span></span>)는 전류가 흐르면 빛을 내는 반도체 소자.</div></div>
 </header>
 <section class="slide active">
