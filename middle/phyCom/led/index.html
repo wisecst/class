@@ -31,18 +31,17 @@
 </section>
 <section class="slide">
 <h2>2. LED 회로 연결</h2>
-<div class="circuit-demo" id="ledCircuitDemo">
-  <div class="circuit-component circuit-led" id="lessonLed"><img src="../assets/LED_white.png" alt="LED 모듈"></div>
-  <div class="circuit-component circuit-board" id="lessonBoard"><img src="../assets/OrangeBoard.png" alt="오렌지보드"></div>
-  <svg class="circuit-wire-layer" id="lessonWireLayer" viewBox="0 0 900 390" preserveAspectRatio="none">
-    <path id="wireVcc" class="circuit-wire hidden" stroke="#e53935"/>
-    <path id="wireGnd" class="circuit-wire hidden" stroke="#222222"/>
-    <path id="wireIn" class="circuit-wire hidden" stroke="#1976d2"/>
-  </svg>
-  <div id="labelVcc" class="circuit-label hidden" style="left:45%;top:84%;background:#e53935">VCC → 5V</div>
-  <div id="labelGnd" class="circuit-label hidden" style="left:49%;top:93%;background:#222222">GND → GND</div>
-  <div id="labelIn" class="circuit-label hidden" style="left:57%;top:5%;background:#1976d2">IN → D3</div>
-  
+<div class="circuit-demo workspace" id="workspace">
+  <div id="module" class="circuit-component module-component">
+    <img class="component-image" src="../assets/LED_white.png" alt="LED Module">
+    <div class="pin-layer"></div>
+  </div>
+  <div id="board" class="circuit-component board-component">
+    <img class="component-image" src="../assets/OrangeBoard.png" alt="OrangeBoard">
+    <div class="pin-layer"></div>
+  </div>
+  <svg id="wireLayer" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="wireLabelLayer"></div>
 </div>
 </section>
 <section class="slide">
