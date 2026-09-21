@@ -91,6 +91,31 @@
 </div>
 <div class="video">완성된 실행 결과 영상을 나중에 추가할 수 있습니다.</div>
 </section>
+<section class="slide pwm-slide">
+<h2>5. 한 걸음 더: 깜빡임의 마술, PWM</h2>
+<div class="pwm-intro"><b>PWM</b>은 전기를 아주 빠르게 켰다 껐다 하면서 <b>켜져 있는 시간의 비율</b>로 LED 밝기를 조절합니다.</div>
+<div class="pwm-demo">
+  <div class="pwm-visual">
+    <div class="pwm-status"><span>켜져 있는 시간</span><strong id="pwmDuty">25%</strong></div>
+    <svg id="pwmGraph" class="pwm-graph" viewBox="0 0 760 300" aria-label="PWM 파형 그래프">
+      <line x1="58" y1="28" x2="58" y2="260" class="axis"/><line x1="58" y1="260" x2="735" y2="260" class="axis"/>
+      <text x="12" y="68">5V</text><text x="14" y="264">0V</text>
+      <g class="pwm-grid"></g><path id="pwmWave" class="pwm-wave" d=""/>
+    </svg>
+    <div class="pwm-ratio" id="pwmRatio">켜는 시간 1 : 끄는 시간 3</div>
+  </div>
+  <div class="pwm-lamp-panel">
+    <div class="pwm-bulb-wrap"><div id="pwmGlow" class="pwm-glow"></div><div id="pwmBulb" class="pwm-bulb">💡</div></div>
+    <strong id="pwmBrightness">밝기 약 25%</strong>
+    <span>빠른 깜빡임이 평균 밝기로 느껴져요.</span>
+  </div>
+</div>
+<div class="pwm-controls">
+  <button type="button" data-duty="0">0%</button><button type="button" data-duty="25" class="active">25%</button><button type="button" data-duty="50">50%</button><button type="button" data-duty="75">75%</button><button type="button" data-duty="100">100%</button>
+  <button type="button" id="pwmPlay">▶ 자동 재생</button>
+</div>
+<div class="pwm-note">← / → 키로 밝기를 단계별로 바꿔 보세요.</div>
+</section>
 <div class="slide-nav">
 <button id="prev" disabled aria-label="이전 슬라이드">‹</button>
 <button id="next" aria-label="다음 슬라이드">›</button>
@@ -99,6 +124,7 @@
 </main>
 <script src="../common/js/circuit.js"></script>
 <script src="../common/js/entry.js"></script>
+<script src="../common/js/pwm.js"></script>
 <script src="../common/js/slides.js"></script>
 </body>
 </html>
