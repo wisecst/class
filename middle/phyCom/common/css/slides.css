@@ -503,3 +503,28 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 .pin13-led-dot{left:40.8%!important;top:29.35%!important;width:1.8%!important}
 .entry-slide{position:relative}
 :fullscreen .entry-result-card{width:min(36%,500px)!important}
+
+/* D13 built-in LED: yellow square immediately left of the printed 13. */
+.pin13-led-glow{
+  left:44.0%!important;
+  top:29.35%!important;
+  width:3.4%!important;
+  aspect-ratio:1!important;
+  border-radius:3px!important;
+  background:#fff200!important;
+  box-shadow:0 0 10px 4px rgba(255,242,0,.95),0 0 22px 9px rgba(255,225,0,.62)!important;
+  animation:pin13SquareBlink .72s steps(2,end) infinite!important;
+}
+.pin13-led-dot{
+  left:44.0%!important;
+  top:29.35%!important;
+  width:2.25%!important;
+  aspect-ratio:1!important;
+  border-radius:2px!important;
+  background:#fff86a!important;
+  box-shadow:0 0 5px #fff600!important;
+}
+@keyframes pin13SquareBlink{
+  0%,45%{opacity:1;filter:brightness(1.35)}
+  46%,100%{opacity:.38;filter:brightness(.8)}
+}
