@@ -384,3 +384,22 @@ to {
 
 /* Circuit board horizontal balance */
 #workspace .board-component{transform:translateX(3.5%)}
+
+/* Entry blocks: geometry matched to Entry workspace blocks */
+.entry-program{width:min(720px,76%);padding-left:18px}
+.entry-block{position:relative;border:2px solid rgba(0,0,0,.13);box-shadow:none;margin:0;font-family:"Noto Sans KR",Arial,sans-serif;letter-spacing:-.03em}
+.start-block{width:max-content;min-width:440px;height:62px;border-radius:31px;padding:0 24px 0 10px;background:#00b52b;border-color:#009c25}
+.start-block:after{content:"";position:absolute;left:22px;bottom:-14px;border-left:14px solid transparent;border-right:14px solid transparent;border-top:14px solid #00b52b;filter:drop-shadow(0 2px 0 #009c25)}
+.play-dot{width:50px;height:50px;flex:0 0 50px}
+.hardware-block{width:max-content;min-width:475px;height:58px;background:#00b6b2;border-color:#008f94;border-radius:0 29px 29px 0;padding-left:28px}
+.hardware-block:before,.wait-block:before{content:"";position:absolute;left:16px;top:-2px;width:20px;height:9px;background:inherit;border-left:2px solid rgba(0,0,0,.13);border-right:2px solid rgba(0,0,0,.13);clip-path:polygon(0 0,100% 0,75% 100%,25% 100%)}
+.hardware-block:after,.wait-block:after{content:"";position:absolute;left:16px;bottom:-9px;width:20px;height:10px;background:inherit;clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);z-index:2}
+.repeat-block{width:260px;height:58px;background:#22b8df;border-color:#0798bf;border-radius:0 29px 29px 0;padding-left:28px}
+.repeat-block:before{content:"";position:absolute;left:16px;top:-2px;width:20px;height:9px;background:inherit;clip-path:polygon(0 0,100% 0,75% 100%,25% 100%)}
+.repeat-body{position:relative;margin-left:0;padding:0 0 0 28px;border-left:28px solid #22b8df;width:max-content}
+.repeat-body:after{content:"";position:absolute;left:-28px;bottom:-30px;width:230px;height:30px;background:#22b8df;border-radius:0 0 20px 0}
+.repeat-body .hardware-block,.repeat-body .wait-block{margin-left:0}
+.wait-block{width:max-content;min-width:330px;height:58px;background:#22b8df;border-color:#0798bf;border-radius:0 29px 29px 0;padding-left:28px}
+.field{background:#009b9b;border:2px solid #007e83;border-radius:24px;padding:5px 15px}
+.number-field{background:#ffca36;border:2px solid #ef8e00;border-radius:24px;padding:5px 13px}
+.entry-block.entry-show{display:flex}
