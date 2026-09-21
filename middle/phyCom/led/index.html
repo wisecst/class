@@ -44,27 +44,37 @@
   <div id="wireLabelLayer"></div>
 </div>
 </section>
-<section class="slide">
+<section class="slide entry-slide">
 <h2>3. 엔트리 코드 블록 만들기</h2>
-<p>다음 블록 버튼을 눌러 코드가 단계별로 나타나는 것을 확인하세요.</p>
-<div class="code">
-<div class="blocks">
-<div class="block start" data-i="1">시작하기</div>
-<div class="block event" data-i="2">LED 켜기</div>
-<div class="block wait" data-i="3">1초 기다리기</div>
-<div class="block action" data-i="4">LED 끄기</div>
+<div class="entry-workspace">
+  <aside class="entry-tabs">
+    <div class="entry-tab start-tab" data-tab="start">⚑<span>시작</span></div>
+    <div class="entry-tab flow-tab" data-tab="flow">⌘<span>흐름</span></div>
+    <div class="entry-tab hardware-tab" data-tab="hardware">⌁<span>하드웨어</span></div>
+  </aside>
+  <div class="entry-stage">
+    <div class="entry-program">
+      <div class="entry-block start-block" data-entry-step="1"><span class="play-dot">▶</span><b>시작하기 버튼을 클릭했을 때</b></div>
+      <div class="entry-block hardware-block indent-0" data-entry-step="2"><b>디지털</b><span class="field">13⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
+      <div class="entry-block repeat-block" data-entry-step="3"><b>계속 반복하기</b></div>
+      <div class="repeat-body">
+        <div class="entry-block hardware-block indent-1" data-entry-step="4"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
+        <div class="entry-block wait-block indent-1" data-entry-step="5"><span class="number-field">0.2</span><b>초 기다리기</b></div>
+        <div class="entry-block hardware-block indent-1" data-entry-step="6"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">끄기⌄</span></div>
+        <div class="entry-block wait-block indent-1" data-entry-step="7"><span class="number-field">0.2</span><b>초 기다리기</b></div>
+      </div>
+    </div>
+    <div class="entry-guide">
+      <strong id="entryGuideTitle">다음 블록을 눌러 시작하세요.</strong>
+      <span id="entryGuideText">블록이 추가될 때 왼쪽에서 해당 블록의 탭이 함께 강조됩니다.</span>
+    </div>
+  </div>
 </div>
-<div class="explain">
-<h3 id="t">시작 전</h3>
-<p id="d">다음 블록을 눌러 시작하세요.</p>
-<div class="video">이 단계의 실행 결과 영상을 추가할 수 있는 자리입니다.</div>
-</div>
-</div>
-<div class="nav">
+<div class="nav entry-controls">
 <button id="back" disabled>이전 블록</button>
 <button id="forward">다음 블록</button>
 </div>
-<div class="count" id="step">0 / 4</div>
+<div class="count" id="step">0 / 7</div>
 </section>
 <section class="slide">
 <h2>4. 실행 결과 확인</h2>
@@ -88,6 +98,7 @@
 <div class="count" id="slides">1 / 5</div>
 </main>
 <script src="../common/js/circuit.js"></script>
+<script src="../common/js/entry.js"></script>
 <script src="../common/js/slides.js"></script>
 </body>
 </html>
