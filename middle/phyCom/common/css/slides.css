@@ -1942,3 +1942,57 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   max-width:none!important;
   margin-left:0!important;
 }
+
+/* Restore the known-good Entry execution controls and comparison layout
+   from before the block-shape experiments. */
+.entry-run-btn,.entry-loop-run-btn,.entry-block-run-btn{
+  position:absolute!important;
+  left:calc(100% + 12px)!important;
+  right:auto!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:26px!important;min-width:26px!important;height:26px!important;
+  padding:0!important;margin:0!important;
+  border:0!important;border-radius:50%!important;
+  align-items:center!important;justify-content:center!important;
+  font-size:11px!important;line-height:1!important;
+  color:#fff!important;background:#607783!important;
+  opacity:.38!important;box-shadow:none!important;
+  z-index:30!important;cursor:pointer!important;
+}
+.entry-block[data-entry-step="2"].entry-show .entry-run-btn{display:flex!important}
+.entry-loop-run-btn{display:flex!important}
+.entry-block-run-btn{display:flex!important}
+.entry-run-btn:hover,.entry-loop-run-btn:hover,.entry-block-run-btn:hover,
+.entry-run-btn:focus-visible,.entry-loop-run-btn:focus-visible,.entry-block-run-btn:focus-visible{opacity:.75!important}
+.entry-run-btn.running,.entry-loop-run-btn.running,.entry-block-run-btn.running{opacity:.55!important}
+
+/* Stable side-by-side code comparison: replacement stack stays left,
+   original four-block stack moves right with a fixed clear gap. */
+.basic-repeat-body{position:relative!important;overflow:visible!important}
+#entryCompareFour.compare-left{
+  display:flex!important;
+  position:relative!important;
+  left:0!important;right:auto!important;top:0!important;
+  width:max-content!important;max-width:55%!important;
+  flex-direction:column!important;align-items:flex-start!important;
+  z-index:10!important;overflow:visible!important;
+}
+#entryCompareFour.compare-left .entry-block:not(.entry-show){display:none!important}
+#entryCompareFour.compare-left .entry-block.entry-show{display:flex!important}
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{
+  display:flex!important;
+  position:absolute!important;
+  left:calc(100% + 150px)!important;right:auto!important;top:0!important;
+  width:max-content!important;min-width:max-content!important;
+  max-width:none!important;
+  flex-direction:column!important;align-items:flex-start!important;
+  visibility:visible!important;opacity:1!important;
+  z-index:20!important;pointer-events:auto!important;
+}
+#entryBasicFour.compare-right .entry-block,
+#entryBasicFour.entry-cleared .entry-block{
+  display:flex!important;visibility:visible!important;opacity:1!important;
+  width:max-content!important;max-width:none!important;
+}
