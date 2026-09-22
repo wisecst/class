@@ -788,4 +788,13 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 #entryCompareFour.compare-left .entry-block.entry-show{display:flex!important}
 
 /* After first blink result: leave Repeat shell empty for one presenter step. */
-#entryBasicFour.entry-cleared{display:none!important}
+#entryBasicFour.entry-cleared{
+  display:flex!important;
+  position:absolute!important;
+  left:calc(100% + 34px + 92px)!important;
+  right:auto!important;
+  top:0!important;
+  width:max-content!important;
+  min-width:0!important;
+  z-index:7!important;
+}
