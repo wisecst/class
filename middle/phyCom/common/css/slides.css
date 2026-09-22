@@ -2677,3 +2677,33 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   top:-10px!important;
   transform:rotate(45deg)!important;
 }
+
+/* Entry save control — mirrors the reference toolbar: compact circular save
+   control with a white dropdown anchored directly beneath it. */
+.entry-code-toolbar .entry-top-actions{display:flex!important;align-items:center!important;gap:10px!important}
+.entry-save-wrap{position:relative!important;display:flex!important;align-items:center!important;height:100%!important}
+.entry-save-btn{
+  height:34px!important;min-width:52px!important;padding:0 8px!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;
+  border:1px solid rgba(255,255,255,.48)!important;border-radius:18px!important;
+  background:rgba(255,255,255,.10)!important;color:#fff!important;font-weight:900!important;
+}
+.entry-save-icon{font-size:17px!important;line-height:1!important}
+.entry-save-caret{font-size:11px!important;line-height:1!important}
+.entry-save-menu{
+  display:none;position:absolute!important;top:calc(100% + 8px)!important;right:-18px!important;
+  width:176px!important;padding:8px 0!important;background:#fff!important;border:1px solid #d8e0e4!important;
+  border-radius:8px!important;box-shadow:0 4px 14px rgba(25,44,55,.22)!important;z-index:120!important;
+}
+.entry-save-menu::before{
+  content:"";position:absolute;right:54px;top:-9px;width:16px;height:16px;background:#fff;
+  border-left:1px solid #d8e0e4;border-top:1px solid #d8e0e4;transform:rotate(45deg);
+}
+.entry-save-menu.show{display:block!important}
+.entry-save-item{
+  position:relative;z-index:1;width:100%;height:48px;padding:0 16px;border:0;background:#fff;
+  text-align:left;font-size:14px;font-weight:800;color:#26343c;
+}
+.entry-save-item:hover,.entry-save-item.save-click{background:#eef7f1!important}
+.entry-save-wrap.save-focus .entry-save-btn{box-shadow:0 0 0 4px #ffd800!important}
+.entry-save-item.save-click{box-shadow:inset 4px 0 0 #00b928!important}
