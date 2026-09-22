@@ -1468,3 +1468,28 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .entry-program .start-block + .entry-block{
   margin-top:-7px!important;
 }
+
+/* Every stackable Entry block exposes a visible lower V tongue.
+   The next block keeps its matching upper V socket. */
+.entry-program .entry-block:not(.start-block):not(.repeat-block),
+.repeat-body .entry-block{
+  clip-path:polygon(
+    0 0,25px 0,32px 7px,39px 0,100% 0,
+    100% calc(100% - 9px),
+    calc(100% - 12px) 100%,
+    42px 100%,32px calc(100% - 9px),22px 100%,
+    10px 100%,0 calc(100% - 10px)
+  )!important;
+  padding-bottom:12px!important;
+}
+/* Repeat header also has a lower V tongue while its body remains an open C-shaped container. */
+.entry-program .repeat-block{
+  clip-path:polygon(
+    0 0,25px 0,32px 7px,39px 0,100% 0,
+    100% calc(100% - 9px),
+    calc(100% - 12px) 100%,
+    42px 100%,32px calc(100% - 9px),22px 100%,
+    0 100%
+  )!important;
+  padding-bottom:12px!important;
+}
