@@ -1996,3 +1996,81 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   display:flex!important;visibility:visible!important;opacity:1!important;
   width:max-content!important;max-width:none!important;
 }
+
+/* Entry layout stabilization — keep controls inside blocks and reserve two independent columns. */
+.entry-program{overflow:visible!important}
+.entry-run-btn,.entry-loop-run-btn,.entry-block-run-btn{
+  position:static!important;
+  transform:none!important;
+  flex:0 0 26px!important;
+  margin-left:auto!important;
+  width:26px!important;min-width:26px!important;height:26px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  z-index:4!important;
+}
+.entry-block{white-space:nowrap!important}
+
+/* Repeat must be wide enough for one-line title + run control. */
+.entry-program .repeat-block{
+  width:520px!important;max-width:52%!important;
+  min-height:58px!important;
+  display:flex!important;align-items:center!important;
+  white-space:nowrap!important;
+  border-radius:10px 24px 0 10px!important;
+  margin:0!important;padding:8px 14px 8px 20px!important;
+  clip-path:none!important;
+}
+/* C-shaped repeat shell: header above, connected left spine, open middle, bottom jaw. */
+.entry-program .repeat-body{
+  position:relative!important;
+  width:520px!important;max-width:52%!important;
+  min-height:46px!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:10px 0 22px 28px!important;
+  border-left:13px solid #20b5dd!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+.entry-program .repeat-body:before{
+  content:""!important;display:block!important;
+  position:absolute!important;left:0!important;right:0!important;top:0!important;
+  height:10px!important;background:#20b5dd!important;
+}
+.entry-program .repeat-body:after{
+  content:""!important;display:block!important;
+  position:absolute!important;left:-13px!important;right:0!important;bottom:0!important;
+  height:18px!important;background:#20b5dd!important;
+  border-radius:0 0 22px 10px!important;
+}
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{position:relative!important}
+
+/* Comparison mode: explicit left/right columns, never overlap. */
+.entry-program:has(#entryBasicFour.compare-right),
+.entry-program:has(#entryBasicFour.entry-cleared){
+  width:100%!important;max-width:none!important;padding-right:0!important;
+}
+.basic-repeat-body{width:100%!important;max-width:none!important}
+#entryCompareFour.compare-left{
+  position:absolute!important;
+  left:28px!important;right:auto!important;top:10px!important;
+  width:46%!important;max-width:46%!important;
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  z-index:10!important;
+}
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{
+  position:absolute!important;
+  left:54%!important;right:0!important;top:10px!important;
+  width:44%!important;min-width:0!important;max-width:44%!important;
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  z-index:10!important;
+}
+#entryCompareFour.compare-left .entry-block,
+#entryBasicFour.compare-right .entry-block,
+#entryBasicFour.entry-cleared .entry-block{
+  box-sizing:border-box!important;
+  width:100%!important;max-width:100%!important;
+  white-space:nowrap!important;
+}
