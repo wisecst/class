@@ -2177,3 +2177,15 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   height:min(86%,610px)!important;
   max-height:calc(100% - 20px)!important;
 }
+
+/* Slide 3 compare spacing: once the wider PWM-value block (255) is introduced,
+   park the old blinking stack beyond that new block's full width plus clearance. */
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+  left:calc(100% + 72px)!important;
+}
+/* At the exact 255-introduction state, use extra clearance so the long
+   '디지털 3번 핀을 255로 정하기' block never covers the moved stack. */
+.entry-program:has([data-entry-step="8"].entry-show) #entryBasicFour.compare-right{
+  left:calc(100% + 110px)!important;
+}
