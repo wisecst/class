@@ -1681,3 +1681,34 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   max-width:none!important;
   margin-left:0!important;
 }
+
+/* Entry wordmark: green bold lettering inside a white speech bubble. */
+.entry-code-toolbar .entry-brand{
+  color:#00b928!important;
+  background:#fff!important;
+  border:0!important;
+  border-radius:8px!important;
+  font-size:19px!important;
+  font-weight:1000!important;
+  letter-spacing:2px!important;
+  padding:0 10px!important;
+  height:30px!important;
+}
+.entry-code-toolbar .entry-brand:before{
+  content:""!important;
+  position:absolute!important;
+  left:14px!important;
+  bottom:-6px!important;
+  top:auto!important;
+  width:11px!important;
+  height:11px!important;
+  background:#fff!important;
+  border:0!important;
+  transform:rotate(45deg)!important;
+  border-radius:1px!important;
+}
+.entry-code-toolbar .entry-lesson-title{
+  font-size:19px!important;
+  font-weight:1000!important;
+  color:#fff!important;
+}
