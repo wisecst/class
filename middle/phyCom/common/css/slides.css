@@ -2144,3 +2144,81 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   width:100%!important;min-width:0!important;max-width:100%!important;
   box-sizing:border-box!important;
 }
+
+/* === Layout baseline: the lesson canvas is ALWAYS 16:9 ===
+   Sidebar occupies its own column; the canvas scales to fit the remaining viewport
+   without changing page proportions or creating document scrollbars. */
+html,body{width:100%;height:100%;overflow:hidden!important}
+body{display:block!important}
+body:not(:fullscreen){padding-left:190px!important}
+body:not(:fullscreen) .wrap{
+  position:relative!important;
+  margin:0 auto!important;
+  padding:0!important;
+  width:min(calc(100vw - 190px),calc(100vh * 16 / 9))!important;
+  height:min(100vh,calc((100vw - 190px) * 9 / 16))!important;
+  max-width:none!important;min-height:0!important;
+  overflow:hidden!important;
+}
+body:not(:fullscreen) .wrap>header,
+body:not(:fullscreen) .wrap>.slide.active{
+  position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;
+  margin:0!important;
+}
+body:not(:fullscreen) .wrap>.slide.active{overflow:hidden!important}
+@media(max-width:900px){
+  body:not(:fullscreen){padding-left:150px!important}
+  body:not(:fullscreen) .wrap{
+    width:min(calc(100vw - 150px),calc(100vh * 16 / 9))!important;
+    height:min(100vh,calc((100vw - 150px) * 9 / 16))!important;
+  }
+}
+:fullscreen .wrap{
+  width:min(100vw,calc(100vh * 16 / 9))!important;
+  height:min(100vh,calc(100vw * 9 / 16))!important;
+  padding:0!important;margin:auto!important;overflow:hidden!important;
+}
+:fullscreen .wrap>.slide.active{
+  width:100%!important;height:100%!important;min-height:0!important;
+  margin:0!important;overflow:hidden!important;
+}
+
+/* Entry canvas scales internally; never crop its left edge. */
+.entry-slide .entry-stage{overflow:hidden!important}
+.entry-slide .entry-program{
+  transform-origin:top left!important;
+  margin-left:0!important;
+}
+
+/* Repeat C-shell: remove the horizontal seam/gap by overlapping header, spine and jaw. */
+.entry-program .repeat-block{
+  margin-bottom:-2px!important;
+  border-radius:10px 24px 0 10px!important;
+  z-index:3!important;
+}
+.entry-program .repeat-body{
+  margin-top:-2px!important;
+  border-left:13px solid #20b5dd!important;
+  padding-top:10px!important;
+  padding-bottom:20px!important;
+}
+.entry-program .repeat-body:before{
+  top:0!important;left:-13px!important;right:0!important;height:12px!important;
+  background:#20b5dd!important;z-index:0!important;
+}
+.entry-program .repeat-body:after{
+  left:-13px!important;right:0!important;bottom:0!important;height:20px!important;
+  background:#20b5dd!important;z-index:0!important;
+}
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{z-index:2!important}
+
+/* During comparison, only the two actual code stacks occupy the C-body.
+   No cloned/old repeat header can remain over the right-hand stack. */
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared,
+#entryCompareFour.compare-left{margin-top:0!important}
+#entryBasicFour.compare-right .repeat-block,
+#entryBasicFour.entry-cleared .repeat-block,
+#entryCompareFour.compare-left .repeat-block{display:none!important}
