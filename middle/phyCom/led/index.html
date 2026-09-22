@@ -164,10 +164,10 @@
 </section>
 <section class="slide pwm-slide">
 <h2>5. 한 걸음 더: 깜빡임의 마술, PWM</h2>
-<div class="pwm-intro"><b>PWM</b>은 전기를 아주 빠르게 켰다 껐다 하면서 <b>켜져 있는 시간의 비율</b>로 LED 밝기를 조절합니다.</div>
+<div class="pwm-intro"><b>PWM</b>은 디지털 신호를 아주 빠르게 켰다 껐다 하면서 <b>켜져 있는 시간의 비율</b>을 조절하는 방법입니다. PWM 기능을 지원하는 디지털 핀은 이렇게 ON/OFF 시간을 조절하여 <b>아날로그 출력과 비슷한 효과</b>를 만들 수 있습니다.</div>
 <div class="pwm-demo">
   <div class="pwm-visual">
-    <div class="pwm-status"><span>엔트리 설정값</span><strong id="pwmEntryValue">0</strong><span>→ 켜져 있는 시간</span><strong id="pwmDuty">0%</strong></div>
+    <div class="pwm-status"><span class="entry-value-label">엔트리 설정값</span><strong class="entry-value-text" id="pwmEntryValue">0</strong><span class="pwm-map-arrow">→</span><span class="duty-label">켜져 있는 시간</span><strong class="duty-value-text" id="pwmDuty">0%</strong></div>
     <svg id="pwmGraph" class="pwm-graph" viewBox="0 0 760 300" aria-label="PWM 파형 그래프">
       <line x1="58" y1="28" x2="58" y2="260" class="axis"/><line x1="58" y1="260" x2="735" y2="260" class="axis"/>
       <text x="12" y="68">5V</text><text x="14" y="264">0V</text>
@@ -182,7 +182,7 @@
   </div>
 </div>
 <div class="pwm-controls">
-  <button type="button" data-duty="0"><b>0</b><span>0%</span></button><button type="button" data-duty="25"><b>64</b><span>25%</span></button><button type="button" data-duty="50"><b>128</b><span>50%</span></button><button type="button" data-duty="75"><b>191</b><span>75%</span></button><button type="button" data-duty="100"><b>255</b><span>100%</span></button>
+  <button type="button" data-duty="0"><b class="entry-value-text">0</b><i>→</i><span class="duty-value-text">0%</span></button><button type="button" data-duty="25"><b class="entry-value-text">64</b><i>→</i><span class="duty-value-text">25%</span></button><button type="button" data-duty="50"><b class="entry-value-text">128</b><i>→</i><span class="duty-value-text">50%</span></button><button type="button" data-duty="75"><b class="entry-value-text">191</b><i>→</i><span class="duty-value-text">75%</span></button><button type="button" data-duty="100"><b class="entry-value-text">255</b><i>→</i><span class="duty-value-text">100%</span></button>
   <button type="button" id="pwmPlay">▶ 자동 재생</button>
 </div>
 <div class="pwm-note">엔트리 설정값 0~255가 PWM의 켜져 있는 시간 0~100%에 대응합니다. ← / → 키로 단계별로 확인해 보세요.</div>
