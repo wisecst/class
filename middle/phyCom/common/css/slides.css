@@ -1521,3 +1521,25 @@ body.after-intro .wrap>.slide.active{top:12px}
 .pwm-controls button[data-duty].active .entry-value-text{color:#075a9c!important}
 .pwm-controls button[data-duty].active .duty-value-text{color:#a94b00!important}
 .pwm-controls button[data-duty].active i{color:#3d4d56!important}
+
+/* Page headings are part of the slide content. Keep them visible on every lesson page. */
+body.after-intro .slide.active>h2{
+  display:block!important;
+  flex:0 0 auto!important;
+  margin:0 0 8px!important;
+  line-height:1.15!important;
+}
+/* Reserve heading height instead of letting circuit/PWM content cover it. */
+body.after-intro #workspace.circuit-demo{
+  height:calc(100% - 48px)!important;
+  max-height:calc(100% - 48px)!important;
+}
+body.after-intro .pwm-demo{
+  height:auto!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+}
+:fullscreen body.after-intro #workspace.circuit-demo{
+  height:calc(100% - 48px)!important;
+  max-height:calc(100% - 48px)!important;
+}
