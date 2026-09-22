@@ -35,8 +35,10 @@ function ledResult(mode,button=null){
 function render(){
  qa('[data-entry-step]').forEach(el=>{const n=+el.dataset.entryStep;el.classList.toggle('entry-show',n<=step);el.classList.toggle('entry-current',n===step&&step>0)});
  qa('[data-repeat-body]').forEach(el=>el.classList.toggle('repeat-show',step>=4));
- const compare=phase==='compare';
+ const compare=phase==='compare'||phase==='done';
+ const cleared=phase==='cleared';
  q('#entryBasicFour')?.classList.toggle('compare-right',compare);
+ q('#entryBasicFour')?.classList.toggle('entry-cleared',cleared);
  q('#entryCompareFour')?.classList.toggle('compare-left',compare);
  qa('.entry-tab').forEach(el=>el.classList.remove('active-tab'));
  if(step){const info=steps[step-1];q('.entry-tab[data-tab="'+info.tab+'"]')?.classList.add('active-tab');if(q('#entryGuideTitle'))q('#entryGuideTitle').textContent=info.title;if(q('#entryGuideText'))q('#entryGuideText').textContent=info.text}
@@ -63,7 +65,8 @@ function next(){
  if(step===4){const b=q('[data-entry-step="4"] .entry-block-run-btn');ledResult('on',b);autoResult='on4';return}
  if(step===6){const b=q('[data-entry-step="6"] .entry-block-run-btn');ledResult('off',b);autoResult='off6';return}
  if(step===7&&phase==='build'){ledResult('blink',q('#runLoop'));phase='blinked';return}
- if(step===7&&phase==='blinked'){phase='compare';step=8;render();return}
+ if(step===7&&phase==='blinked'){phase='cleared';render();return}
+ if(step===7&&phase==='cleared'){phase='compare';step=8;render();return}
  if(step===8&&phase==='compare'){const b=q('[data-entry-step="8"] .entry-block-run-btn');ledResult('on',b);autoResult='on8';return}
  if(step===10&&phase==='compare'){const b=q('[data-entry-step="10"] .entry-block-run-btn');ledResult('off',b);autoResult='off10';return}
  if(step===11&&phase==='compare'){ledResult('blink',q('#runLoop'));phase='done';return}
@@ -73,7 +76,8 @@ function next(){
 function prev(){
  closeResults();
  if(phase==='done'){phase='compare';return}
- if(phase==='blinked'){phase='build';return}
+ if(phase==='cleared'){phase='blinked';render();return}
+ if(phase==='blinked'){phase='build';render();return}
  if(phase==='compare'&&step===8){phase='build';step=7;render();return}
  step=Math.max(0,step-1);if(step<2)pin13Done=false;render();
 }
