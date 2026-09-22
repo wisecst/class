@@ -2661,3 +2661,19 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
     width:max-content!important;
   }
 }
+
+/* Slide 4 LEFT pin menu only: actual class is .digital-pins.
+   Add the scrollbar without changing the finalized shared pointer coordinates. */
+.entry-compare-slide .pin-compare-item:first-child .pin-dropdown.digital-pins{
+  height:300px!important;
+  max-height:300px!important;
+  overflow-y:scroll!important;
+  overflow-x:hidden!important;
+  scrollbar-gutter:stable!important;
+}
+/* Pointer geometry intentionally unchanged. */
+.entry-compare-slide .pin-compare-item:first-child .pin-dropdown.digital-pins::before{
+  left:50px!important;
+  top:-10px!important;
+  transform:rotate(45deg)!important;
+}
