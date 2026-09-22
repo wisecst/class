@@ -1504,3 +1504,64 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .entry-code-toolbar .entry-by{flex:0 0 auto!important;color:#fff!important;font-size:9px!important;margin:0 10px 0 -5px!important}
 .entry-code-toolbar .entry-lesson-title{flex:0 1 auto!important;overflow:hidden!important;text-overflow:ellipsis!important}
 .entry-code-toolbar .entry-top-actions{flex:0 0 auto!important}
+
+/* Repeat is a true Entry C-block from the instant it appears.
+   Header and left/bottom arms grow around whatever commands are nested inside. */
+.entry-program .repeat-block{
+  width:58%!important;
+  min-height:58px!important;
+  margin-bottom:0!important;
+  border-radius:9px 24px 0 9px!important;
+  /* top V socket + lower V tongue at the mouth */
+  clip-path:polygon(
+    0 0,25px 0,32px 7px,39px 0,100% 0,
+    100% calc(100% - 9px),42px calc(100% - 9px),
+    32px 100%,22px calc(100% - 9px),0 calc(100% - 9px)
+  )!important;
+  padding-bottom:13px!important;
+}
+.entry-program .repeat-body{
+  position:relative!important;
+  width:58%!important;
+  min-height:38px!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:5px 0 18px 26px!important;
+  border-left:13px solid #20b5dd!important;
+  background:transparent!important;
+  border-radius:0!important;
+}
+/* Bottom arm closes the C and always keeps an outward V tongue for the next block. */
+.entry-program .repeat-body:after{
+  content:""!important;
+  position:absolute!important;
+  left:-13px!important;right:0!important;bottom:0!important;
+  height:18px!important;
+  margin:0!important;
+  background:#20b5dd!important;
+  border-radius:0 18px 18px 9px!important;
+  clip-path:polygon(
+    0 0,22px 0,32px 9px,42px 0,100% 0,
+    100% 55%,calc(100% - 10px) 100%,
+    42px 100%,32px 9px,22px 100%,0 100%
+  )!important;
+}
+/* Nested blocks occupy the open middle exactly; adding blocks naturally lengthens the C. */
+.entry-program .repeat-body>.entry-block{
+  box-sizing:border-box!important;
+  width:calc(100% - 2px)!important;
+  max-width:none!important;
+  margin-left:0!important;
+  border-radius:8px 22px 22px 8px!important;
+}
+/* Every ordinary command retains both interfaces: upper V socket + lower V tongue. */
+.entry-program .entry-block:not(.start-block):not(.repeat-block),
+.entry-program .repeat-body>.entry-block{
+  clip-path:polygon(
+    0 0,22px 0,32px 9px,42px 0,100% 0,
+    100% calc(100% - 9px),calc(100% - 12px) 100%,
+    42px 100%,32px calc(100% - 9px),22px 100%,
+    10px 100%,0 calc(100% - 10px)
+  )!important;
+}
+.entry-program .repeat-body>.entry-block + .entry-block{margin-top:-9px!important}
