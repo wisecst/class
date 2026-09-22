@@ -2381,3 +2381,15 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   margin-top:-20px!important;
   margin-left:44px!important;
 }
+
+/* Blocks without a run button reserve one full run-button diameter (26px)
+   at the right end, in addition to the normal text-to-button gap. */
+.entry-slide .entry-program .entry-block:not(:has(.entry-run-btn)):not(:has(.entry-block-run-btn)):not(:has(.entry-loop-run-btn)){
+  padding-right:34px!important; /* 8px gap + 26px button diameter */
+}
+.entry-slide .entry-program .wait-block:not(:has(.entry-block-run-btn)){
+  padding-right:34px!important;
+}
+.entry-compare-slide .pin-block-compare .entry-block:not(:has(.entry-run-btn)):not(:has(.entry-block-run-btn)){
+  padding-right:34px!important;
+}
