@@ -837,3 +837,9 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 #entryBasicFour.group-selected .entry-block.entry-current{
   outline:4px solid #ffd400!important;
 }
+
+/* While the blinking execution result is open, no last-added block is highlighted. */
+.entry-program.result-running .entry-block.entry-current{
+  outline:none!important;
+  box-shadow:none!important;
+}
