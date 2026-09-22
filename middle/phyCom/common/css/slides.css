@@ -1849,3 +1849,53 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   margin-left:0!important;
   box-sizing:border-box!important;
 }
+
+/* Repeat block geometry correction:
+   '계속 반복하기' is the TOP of one continuous C block.
+   The element below it draws only the left spine + bottom foot (ㄴ), not another C. */
+.entry-program .repeat-block{
+  position:relative!important;
+  width:360px!important;min-width:360px!important;
+  min-height:58px!important;
+  margin:0!important;
+  padding:8px 14px 8px 28px!important;
+  display:flex!important;align-items:center!important;
+  background:#20b5dd!important;
+  border-radius:0 26px 26px 0!important;
+  z-index:3!important;
+}
+/* overlap by 2px so header and spine are visually one solid piece */
+.entry-program .repeat-body{
+  position:relative!important;
+  width:360px!important;min-width:360px!important;
+  min-height:46px!important;
+  margin:-2px 0 0 0!important;
+  padding:8px 0 20px 28px!important;
+  border:0!important;
+  border-left:13px solid #20b5dd!important;
+  background:transparent!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+}
+/* No top horizontal bar: the header itself is already the C-block top. */
+.entry-program .repeat-body:before{
+  display:none!important;
+  content:none!important;
+}
+/* Only the bottom foot of the ㄴ body. It joins directly to the left spine. */
+.entry-program .repeat-body:after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  left:-13px!important;right:0!important;bottom:0!important;
+  height:20px!important;
+  background:#20b5dd!important;
+  border-radius:0 0 24px 0!important;
+  z-index:0!important;
+}
+/* Nested commands sit in the open cavity of the single C-shaped repeat block. */
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{
+  position:relative!important;
+  z-index:2!important;
+}
