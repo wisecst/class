@@ -19,8 +19,8 @@ function hidePin13Result(){const m=document.querySelector('#pin13Modal'),b=docum
 function showFinalResult(){const p=document.querySelector('#entryFinalResult');if(!p)return;p.classList.add('show');p.setAttribute('aria-hidden','false');finalResultShown=true}
 function hideFinalResult(){const p=document.querySelector('#entryFinalResult');if(!p)return;p.classList.remove('show');p.setAttribute('aria-hidden','true');finalResultShown=false}
 function next(){
- if(step===6&&!basicResultDone&&!basicResultShown){showFinalResult();basicResultShown=true;return;}
- if(step===6&&basicResultShown){hideFinalResult();basicResultShown=false;basicResultDone=true;return;}
+ if(step===7&&!basicResultDone&&!basicResultShown){showFinalResult();basicResultShown=true;return;}
+ if(step===7&&basicResultShown){hideFinalResult();basicResultShown=false;basicResultDone=true;return;}
  if(step===steps.length&&!finalResultShown){showFinalResult();return;}
  if(step===2&&!pin13ResultDone&&!pin13ResultShown){showPin13Result();return;}
  if(step===2&&pin13ResultShown){hidePin13Result();pin13ResultDone=true;return;}
