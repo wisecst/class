@@ -3,9 +3,9 @@ const steps=[
  {tab:'start',title:'시작하기 버튼을 클릭했을 때',text:'시작 탭에서 가져옵니다.'},
  {tab:'hardware',title:'디지털 13번 핀 켜기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'계속 반복하기',text:'흐름 탭에서 가져옵니다.'},
- {tab:'hardware',title:'디지털 3번 핀 켜기',text:'하드웨어 탭에서 가져옵니다.'},
+ {tab:'hardware',title:'디지털 3번 핀을 255로 정하기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'},
- {tab:'hardware',title:'디지털 3번 핀 끄기',text:'하드웨어 탭에서 가져옵니다.'},
+ {tab:'hardware',title:'디지털 3번 핀을 0으로 정하기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'}
 ];
 let step=0,pin13ResultShown=false,pin13ResultDone=false,finalResultShown=false;
