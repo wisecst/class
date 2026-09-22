@@ -32,6 +32,18 @@ window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,isResultO
 function setLoopRun(on){loopRunning=on;const b=document.querySelector('#runLoop');if(b)b.textContent=on?'■ 정지':'▶ 실행';}
 function initRunResult(){
  const run=document.querySelector('#runPin13'),loop=document.querySelector('#runLoop'),modal=document.querySelector('#pin13Modal'),close=document.querySelector('#pin13Close');
+ const ledModal=document.querySelector('#entryLedTestModal'),ledText=document.querySelector('#entryLedTestText'),ledLight=ledModal?.querySelector('.entry-led-test-light');
+ document.querySelectorAll('.entry-block-run-btn').forEach(btn=>btn.addEventListener('click',e=>{
+   e.stopPropagation();
+   const active=btn.classList.contains('running');
+   document.querySelectorAll('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶ 실행';});
+   if(active){ledModal?.classList.remove('show');ledModal?.setAttribute('aria-hidden','true');return;}
+   const on=btn.dataset.ledState==='on';
+   btn.classList.add('running');btn.textContent='■ 정지';
+   ledLight?.classList.toggle('off',!on);
+   if(ledText)ledText.textContent=on?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';
+   ledModal?.classList.add('show');ledModal?.setAttribute('aria-hidden','false');
+ }));
  if(!run||!modal)return;
  run.addEventListener('click',e=>{e.stopPropagation();pin13ResultShown?hidePin13Result():showPin13Result();});loop?.addEventListener('click',e=>{e.stopPropagation();setLoopRun(!loopRunning);});
  const hide=()=>hidePin13Result();
