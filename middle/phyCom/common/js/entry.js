@@ -21,15 +21,15 @@ function closeResults(){
  q('#pin13Modal')?.classList.remove('show'); q('#pin13Modal')?.setAttribute('aria-hidden','true');
  q('#entryLedTestModal')?.classList.remove('show'); q('#entryLedTestModal')?.setAttribute('aria-hidden','true');
  q('#entryFinalResult')?.classList.remove('show'); q('#entryFinalResult')?.setAttribute('aria-hidden','true');
- qa('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶ 실행'});
- if(activeButton&&activeButton.id==='runLoop')activeButton.textContent='▶ 실행';
- if(activeButton&&activeButton.id==='runPin13')activeButton.textContent='▶ 실행';
+ qa('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶'});
+ if(activeButton&&activeButton.id==='runLoop')activeButton.textContent='▶';
+ if(activeButton&&activeButton.id==='runPin13')activeButton.textContent='▶';
  activeButton=null;
 }
 function ledResult(mode,button=null){
  closeResults(); activeButton=button;
  const program=q('.entry-program'); if(program)program.classList.toggle('result-running',mode==='blink');
- if(button){button.classList.add('running');button.textContent='■ 정지'}
+ if(button){button.classList.add('running');button.textContent='■'}
  const m=q('#entryLedTestModal'),t=q('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
  const paint=on=>{l?.classList.toggle('off',!on);if(t)t.textContent=on?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';m?.classList.add('show');m?.setAttribute('aria-hidden','false')};
  if(mode==='blink'){let on=true;paint(on);timer=setInterval(()=>{on=!on;paint(on)},200)}else paint(mode==='on');
@@ -52,7 +52,7 @@ function render(){
  if(q('#entryBlockCount'))q('#entryBlockCount').textContent=step;
 }
 function showPin13(){
- closeResults();const m=q('#pin13Modal'),b=q('#runPin13');m?.classList.add('show');m?.setAttribute('aria-hidden','false');if(b)b.textContent='■ 정지';activeButton=b;
+ closeResults();const m=q('#pin13Modal'),b=q('#runPin13');m?.classList.add('show');m?.setAttribute('aria-hidden','false');if(b)b.textContent='■';activeButton=b;
 }
 function next(){
  if(autoResult){
