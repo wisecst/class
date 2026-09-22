@@ -1438,3 +1438,33 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   )!important;
   padding-bottom:10px!important;
 }
+
+/* Correct Entry stacking geometry:
+   keep the Start block's original appearance; command blocks have a top V socket
+   for the previous block's bottom V tongue. */
+.entry-program .start-block{
+  clip-path:none!important;
+  padding-bottom:8px!important;
+  border-radius:28px!important;
+}
+/* Do not alter Start itself; its existing visual/state styling remains intact. */
+.entry-program .entry-block:not(.start-block),
+.repeat-body .entry-block{
+  clip-path:polygon(
+    0 0,
+    25px 0, 32px 7px, 39px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 14px) 100%,
+    39px 100%, 32px calc(100% - 7px), 25px 100%,
+    10px 100%, 0 calc(100% - 10px)
+  )!important;
+  padding-top:11px!important;
+  padding-bottom:10px!important;
+}
+/* Pull the receiving block upward so the upper block's V tongue sits in its V socket. */
+.entry-program .entry-block + .entry-block,
+.repeat-body .entry-block + .entry-block,
+.entry-program .start-block + .entry-block{
+  margin-top:-7px!important;
+}
