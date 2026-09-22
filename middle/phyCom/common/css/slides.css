@@ -1364,3 +1364,17 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   background:linear-gradient(transparent 46%,#ffe39a 46%,#ffe39a 92%,transparent 92%)!important;
 }
 .pwm-intro-lines .pwm-bullet{color:#56717f!important}
+
+/* Full-height, light highlighters: stronger emphasis without reducing text contrast. */
+.pwm-intro-lines mark{
+  padding:1px 4px!important;
+  border-radius:4px!important;
+  -webkit-box-decoration-break:clone!important;
+  box-decoration-break:clone!important;
+}
+.pwm-intro-lines>div:first-child mark{
+  background:#d9f2ff!important;
+}
+.pwm-intro-lines>div:nth-child(2) mark{
+  background:#ffd9e6!important;
+}
