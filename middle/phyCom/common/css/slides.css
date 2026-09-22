@@ -843,3 +843,16 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   outline:none!important;
   box-shadow:none!important;
 }
+
+/* Compact icon-only Entry execution controls. */
+.entry-run-btn,.entry-loop-run-btn,.entry-block-run-btn{
+  width:36px!important;
+  min-width:36px!important;
+  height:36px!important;
+  padding:0!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1!important;
+}
