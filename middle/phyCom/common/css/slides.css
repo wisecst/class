@@ -856,3 +856,13 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   justify-content:center!important;
   line-height:1!important;
 }
+
+/* Slide 4: Entry pin-block comparison, retaining the Entry workspace background. */
+.entry-compare-slide .compare-stage{position:relative;overflow:visible}
+.pin-block-compare{position:absolute;left:8%;right:5%;top:28%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:start}
+.pin-compare-item{position:relative;min-height:300px}
+.compare-sample{display:flex!important;position:relative!important;width:max-content!important;max-width:100%;font-size:clamp(18px,1.55vw,28px)!important}
+.pin-dropdown{margin-top:8px;width:max-content;min-width:210px;max-width:360px;padding:8px;background:#fff;border:1px solid #b8c4cc;border-radius:7px;box-shadow:0 8px 20px #18364a28;display:grid;grid-template-columns:repeat(4,minmax(42px,1fr));gap:4px;z-index:20}
+.pin-dropdown span{padding:7px 9px;border-radius:5px;text-align:center;font-weight:800;color:#344b5d;background:#f4f7f9}
+.pin-dropdown span.selected{background:#159ec4;color:#fff}
+.pwm-pins{grid-template-columns:repeat(3,minmax(52px,1fr))}
