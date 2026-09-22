@@ -2074,3 +2074,73 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   width:100%!important;max-width:100%!important;
   white-space:nowrap!important;
 }
+
+/* Responsive Entry scene: preserve one 16:9 composition and scale its contents with the viewport. */
+.entry-slide .entry-stage{
+  container-type:inline-size!important;
+  overflow:hidden!important;
+}
+.entry-slide .entry-program{
+  width:100%!important;max-width:none!important;
+  padding-right:0!important;
+  transform-origin:top left!important;
+}
+@container (max-width:1100px){
+  .entry-slide .entry-program{transform:scale(.90)!important;width:111.111%!important}
+}
+@container (max-width:900px){
+  .entry-slide .entry-program{transform:scale(.78)!important;width:128.205%!important}
+}
+@container (max-width:720px){
+  .entry-slide .entry-program{transform:scale(.66)!important;width:151.515%!important}
+}
+
+/* Visibility follows the lesson step only. Hidden future blocks must never leak in via later display rules. */
+.entry-slide .entry-block[data-entry-step]:not(.entry-show){display:none!important}
+.entry-slide .entry-block[data-entry-step].entry-show{display:flex!important}
+.entry-slide .repeat-body:not(.repeat-show){display:none!important}
+
+/* Execution controls live INSIDE the right end of their block. */
+.entry-slide .entry-block{position:relative!important}
+.entry-slide .entry-run-btn,
+.entry-slide .entry-loop-run-btn,
+.entry-slide .entry-block-run-btn{
+  position:static!important;
+  left:auto!important;right:auto!important;top:auto!important;
+  transform:none!important;
+  margin:0 0 0 auto!important;
+  flex:0 0 26px!important;
+  width:26px!important;min-width:26px!important;height:26px!important;
+}
+.entry-slide .entry-block[data-entry-step="2"]:not(.entry-show) .entry-run-btn,
+.entry-slide .entry-block[data-entry-step]:not(.entry-show) .entry-block-run-btn{display:none!important}
+
+/* Comparison uses two fixed grid tracks inside the same scalable composition.
+   No absolute left/right percentages, so the stacks cannot collide as the viewport shrinks. */
+.entry-program:has(#entryBasicFour.compare-right) .basic-repeat-body,
+.entry-program:has(#entryBasicFour.entry-cleared) .basic-repeat-body{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  column-gap:48px!important;
+  align-items:start!important;
+  width:100%!important;max-width:none!important;
+  padding-left:28px!important;padding-right:18px!important;
+  border-left:13px solid #20b5dd!important;
+}
+#entryCompareFour.compare-left,
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{
+  position:relative!important;
+  left:auto!important;right:auto!important;top:auto!important;
+  width:100%!important;min-width:0!important;max-width:none!important;
+  grid-row:1!important;
+}
+#entryCompareFour.compare-left{grid-column:1!important}
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{grid-column:2!important}
+#entryCompareFour.compare-left .entry-block,
+#entryBasicFour.compare-right .entry-block,
+#entryBasicFour.entry-cleared .entry-block{
+  width:100%!important;min-width:0!important;max-width:100%!important;
+  box-sizing:border-box!important;
+}
