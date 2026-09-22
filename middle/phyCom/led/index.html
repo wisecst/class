@@ -156,10 +156,6 @@
         <span class="pwm-tilde-mark m9" data-pwm-pin="9">~9</span><span class="pwm-tilde-mark m10" data-pwm-pin="10">~10</span><span class="pwm-tilde-mark m11" data-pwm-pin="11">~11</span>
       </div>
       <p><b>3, 5, 6, 9, 10, 11</b>번 핀 옆에는 <b>~</b> 표시가 있습니다.</p>
-<div class="pwm-coordinate-tools">
-  <code id="pwmCoordinateReadout">표시를 드래그하면 좌표가 여기에 표시됩니다.</code>
-  <button type="button" id="copyPwmCoordinates">좌표 복사</button>
-</div>
     </div>
   </div>
 </div>
@@ -169,7 +165,7 @@
 <div class="pwm-intro"><b>PWM</b>은 전기를 아주 빠르게 켰다 껐다 하면서 <b>켜져 있는 시간의 비율</b>로 LED 밝기를 조절합니다.</div>
 <div class="pwm-demo">
   <div class="pwm-visual">
-    <div class="pwm-status"><span>켜져 있는 시간</span><strong id="pwmDuty">25%</strong></div>
+    <div class="pwm-status"><span>엔트리 설정값</span><strong id="pwmEntryValue">0</strong><span>→ 켜져 있는 시간</span><strong id="pwmDuty">0%</strong></div>
     <svg id="pwmGraph" class="pwm-graph" viewBox="0 0 760 300" aria-label="PWM 파형 그래프">
       <line x1="58" y1="28" x2="58" y2="260" class="axis"/><line x1="58" y1="260" x2="735" y2="260" class="axis"/>
       <text x="12" y="68">5V</text><text x="14" y="264">0V</text>
@@ -179,15 +175,15 @@
   </div>
   <div class="pwm-lamp-panel">
     <div class="pwm-bulb-wrap"><div id="pwmGlow" class="pwm-glow"></div><div id="pwmBulb" class="pwm-bulb">💡</div></div>
-    <strong id="pwmBrightness">밝기 약 25%</strong>
+    <strong id="pwmBrightness">밝기 0%</strong>
     <span>빠른 깜빡임이 평균 밝기로 느껴져요.</span>
   </div>
 </div>
 <div class="pwm-controls">
-  <button type="button" data-duty="0">0%</button><button type="button" data-duty="25" class="active">25%</button><button type="button" data-duty="50">50%</button><button type="button" data-duty="75">75%</button><button type="button" data-duty="100">100%</button>
+  <button type="button" data-duty="0">0</button><button type="button" data-duty="25">64</button><button type="button" data-duty="50">128</button><button type="button" data-duty="75">191</button><button type="button" data-duty="100">255</button>
   <button type="button" id="pwmPlay">▶ 자동 재생</button>
 </div>
-<div class="pwm-note">← / → 키로 밝기를 단계별로 바꿔 보세요.</div>
+<div class="pwm-note">엔트리 설정값 0~255가 PWM의 켜져 있는 시간 0~100%에 대응합니다. ← / → 키로 단계별로 확인해 보세요.</div>
 </section>
 <div class="slide-nav">
 <button id="prev" disabled aria-label="이전 슬라이드">‹</button>
@@ -199,52 +195,5 @@
 <script src="../common/js/entry.js"></script>
 <script src="../common/js/pwm.js"></script>
 <script src="../common/js/slides.js"></script>
-<script>
-(()=>{
- const box=document.querySelector('.pwm-pin-board-image');
- if(!box)return;
- let drag=null;
- const updateCoordinateReadout=()=>{
-   const out=document.querySelector('#pwmCoordinateReadout');
-   if(!out)return;
-   const vals=[...box.querySelectorAll('.pwm-tilde-mark')].map(m=>{
-     const cs=getComputedStyle(m);
-     const x=(parseFloat(cs.left)/box.clientWidth*100).toFixed(2);
-     const y=(parseFloat(cs.top)/box.clientHeight*100).toFixed(2);
-     return '~'+m.dataset.pwmPin+': x='+x+'%, y='+y+'%';
-   });
-   out.textContent=vals.join('  |  ');
- };
- const copyBtn=document.querySelector('#copyPwmCoordinates');
- copyBtn?.addEventListener('click',async()=>{
-   updateCoordinateReadout();
-   const txt=document.querySelector('#pwmCoordinateReadout')?.textContent||'';
-   try{await navigator.clipboard.writeText(txt);copyBtn.textContent='복사됨';setTimeout(()=>copyBtn.textContent='좌표 복사',1200);}catch(e){}
- });
- box.querySelectorAll('.pwm-tilde-mark').forEach(mark=>{
-   mark.title='드래그해서 위치 조정';
-   const saved=JSON.parse(localStorage.getItem('led-pwm-pin-positions')||'{}')[mark.dataset.pwmPin];
-   if(saved){mark.style.setProperty('left',saved.x+'%','important');mark.style.setProperty('top',saved.y+'%','important');}
-   mark.addEventListener('pointerdown',e=>{drag=mark;mark.setPointerCapture(e.pointerId);e.preventDefault()});
-   mark.addEventListener('pointermove',e=>{
-     if(drag!==mark)return;
-     const r=box.getBoundingClientRect();
-     const x=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100));
-     const y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
-     mark.style.setProperty('left',x.toFixed(2)+'%','important');mark.style.setProperty('top',y.toFixed(2)+'%','important');
-   });
-   mark.addEventListener('pointerup',()=>{
-     const all=JSON.parse(localStorage.getItem('led-pwm-pin-positions')||'{}');
-     const x=parseFloat(mark.style.left),y=parseFloat(mark.style.top);
-     all[mark.dataset.pwmPin]={x,y};
-     localStorage.setItem('led-pwm-pin-positions',JSON.stringify(all));
-     mark.title='~'+mark.dataset.pwmPin+'  x:'+x.toFixed(2)+'%  y:'+y.toFixed(2)+'%';
-     updateCoordinateReadout();
-     drag=null;
-   });
- });
- updateCoordinateReadout();
-})();
-</script>
 </body>
 </html>
