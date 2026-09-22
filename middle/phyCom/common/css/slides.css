@@ -1071,3 +1071,40 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   z-index:40!important;
 }
 .entry-compare-slide .pin-dropdown span{z-index:41!important}
+
+/* True Entry selector glyph and visible speech-bubble pointers on both menus. */
+.entry-block .field{white-space:nowrap}
+.entry-compare-slide .pin-dropdown{overflow-y:auto!important;overflow-x:visible!important}
+.entry-compare-slide .pin-dropdown::before{
+  display:block!important;
+  content:""!important;
+  position:absolute!important;
+  left:50px!important;
+  top:-10px!important;
+  width:18px!important;height:18px!important;
+  background:#fff!important;
+  border-left:1px solid #d9dee2!important;
+  border-top:1px solid #d9dee2!important;
+  transform:rotate(45deg)!important;
+  z-index:60!important;
+}
+/* Draggable ~number highlights for final board alignment. */
+.pwm-pin-board-image .pwm-tilde-mark{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-width:38px!important;
+  padding:2px 4px!important;
+  border-radius:8px!important;
+  font-size:24px!important;
+  font-weight:1000!important;
+  color:#ffe500!important;
+  background:rgba(31,47,58,.78)!important;
+  transform:translate(-50%,-50%) rotate(90deg)!important;
+  cursor:grab!important;
+  user-select:none!important;
+  touch-action:none!important;
+  text-shadow:0 1px 2px #000!important;
+  box-shadow:0 0 0 2px rgba(255,229,0,.35)!important;
+}
+.pwm-pin-board-image .pwm-tilde-mark:active{cursor:grabbing!important}
