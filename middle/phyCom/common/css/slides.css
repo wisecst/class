@@ -1735,3 +1735,96 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   margin-left:0!important;
   margin-top:-7px!important;
 }
+
+/* === Entry block geometry from supplied real samples ===
+   1) One-line command block: compact bar, LEFT connector profile on both top/bottom.
+   2) Repeat block: C-shaped clamp, same outer connector profile plus an inner
+      receiving edge; its left spine/bottom jaw grow as nested blocks are added. */
+
+/* 1. ONE-LINE BLOCK */
+.entry-program .entry-block:not(.start-block):not(.repeat-block),
+.entry-program .repeat-body>.entry-block{
+  box-sizing:border-box!important;
+  min-height:46px!important;
+  margin-left:0!important;
+  border-radius:0 20px 20px 0!important;
+  clip-path:polygon(
+    0 0,
+    8px 0,8px 7px,14px 12px,20px 7px,20px 0,
+    100% 0,
+    100% calc(100% - 12px),
+    20px calc(100% - 12px),20px calc(100% - 5px),
+    14px 100%,8px calc(100% - 5px),8px calc(100% - 12px),
+    0 calc(100% - 12px)
+  )!important;
+  padding:8px 18px 18px 18px!important;
+}
+.entry-program .entry-block + .entry-block,
+.entry-program .start-block + .entry-block,
+.entry-program .repeat-body>.entry-block + .entry-block{
+  margin-left:0!important;
+  margin-top:-12px!important;
+}
+
+/* 2. C-SHAPED REPEAT BLOCK — header */
+.entry-program .repeat-block{
+  box-sizing:border-box!important;
+  width:62%!important;
+  min-height:46px!important;
+  margin:0!important;
+  padding:8px 18px 12px 18px!important;
+  border-radius:0 20px 0 0!important;
+  clip-path:polygon(
+    0 0,
+    8px 0,8px 7px,14px 12px,20px 7px,20px 0,
+    100% 0,100% 100%,0 100%
+  )!important;
+}
+/* C-block open cavity + continuous left spine */
+.entry-program .repeat-body{
+  position:relative!important;
+  box-sizing:border-box!important;
+  width:62%!important;
+  min-height:48px!important;
+  margin:0!important;
+  padding:12px 0 24px 24px!important;
+  border-left:12px solid #20b5dd!important;
+  background:transparent!important;
+  border-radius:0!important;
+}
+/* inner receiving edge: same small left connector profile */
+.entry-program .repeat-body:before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;right:0!important;top:0!important;
+  height:12px!important;
+  background:#20b5dd!important;
+  clip-path:polygon(
+    0 0,8px 0,8px 7px,14px 12px,20px 7px,20px 0,
+    100% 0,100% 5px,20px 5px,14px 10px,8px 5px,0 5px
+  )!important;
+  pointer-events:none!important;
+}
+/* bottom jaw: closes C and exposes the outer lower tongue */
+.entry-program .repeat-body:after{
+  content:""!important;
+  position:absolute!important;
+  left:-12px!important;right:0!important;bottom:0!important;
+  height:20px!important;
+  margin:0!important;
+  background:#20b5dd!important;
+  border-radius:0 18px 18px 0!important;
+  clip-path:polygon(
+    0 0,100% 0,100% calc(100% - 12px),
+    20px calc(100% - 12px),20px calc(100% - 5px),
+    14px 100%,8px calc(100% - 5px),8px calc(100% - 12px),
+    0 calc(100% - 12px)
+  )!important;
+}
+/* Nested one-line blocks fill only the cavity; C-block grows with their total height. */
+.entry-program .repeat-body>.entry-block{
+  width:calc(100% - 2px)!important;
+  max-width:none!important;
+  position:relative!important;
+  z-index:2!important;
+}
