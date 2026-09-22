@@ -1299,3 +1299,30 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .pwm-controls button[data-duty] i{
   font-style:normal!important;font-size:17px!important;font-weight:900!important;color:#65747c!important;line-height:1!important;
 }
+
+/* Non-fullscreen layout with sidebar: preserve the lesson's 16:9 canvas instead of clipping its left edge. */
+@media (min-width:901px){
+  body:not(:fullscreen){
+    padding-left:190px!important;
+    box-sizing:border-box!important;
+  }
+  body:not(:fullscreen) .wrap{
+    margin:0 auto!important;
+    width:min(calc(100vw - 190px), calc(100vh * 16 / 9))!important;
+    max-width:calc(100vw - 190px)!important;
+    box-sizing:border-box!important;
+  }
+}
+@media (max-width:900px){
+  body:not(:fullscreen){
+    padding-left:150px!important;
+    box-sizing:border-box!important;
+  }
+  body:not(:fullscreen) .wrap{
+    margin:0 auto!important;
+    width:calc(100vw - 150px)!important;
+    max-width:calc(100vw - 150px)!important;
+    box-sizing:border-box!important;
+  }
+}
+:fullscreen body{padding-left:0!important}
