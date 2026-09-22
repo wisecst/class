@@ -93,6 +93,6 @@ function init(){
  q('#pin13Close')?.addEventListener('click',closeResults);
  q('#pin13Modal')?.addEventListener('click',e=>{if(e.target===q('#pin13Modal'))closeResults()});
 }
-window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,closeResults};
+window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,closeResults,isFinished:()=>phase==='finished'};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
