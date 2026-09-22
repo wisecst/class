@@ -1121,3 +1121,17 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   margin:0!important;
   z-index:45!important;
 }
+
+/* Entry selector arrow: visually subordinate to the field value. */
+.entry-block .select-arrow{
+  display:inline-block!important;
+  margin-left:2px!important;
+  font-size:.5em!important;
+  line-height:1!important;
+  vertical-align:.12em!important;
+}
+
+/* Board is rotated in the popup: rotate ~number labels 180° from current orientation. */
+.pwm-pin-board-image .pwm-tilde-mark{
+  transform:translate(-50%,-50%) rotate(270deg)!important;
+}
