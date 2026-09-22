@@ -41,6 +41,7 @@ pv.disabled=si===0;
 nx.disabled=si===ss.length-1;
 document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 document.body.classList.toggle('after-intro',si>0);
+  document.body.classList.toggle('entry-page',si===2||si===3);
 document.querySelectorAll('.slide-sidebar-item').forEach((b,i)=>b.classList.toggle('active',i===si));
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
