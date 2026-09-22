@@ -1021,3 +1021,20 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 }
 .entry-compare-slide .pin-dropdown::-webkit-scrollbar{width:8px!important}
 .entry-compare-slide .pin-dropdown::-webkit-scrollbar-thumb{background:#9fc5d5!important;border-radius:8px!important}
+
+/* PWM popup: highlight the printed vertical ~ marks beside digital pin numbers,
+   not the header holes. OrangeBoard top digital header runs right-to-left. */
+.pwm-pin-board-image .pwm-tilde-mark{
+  top:13.8%!important;
+  font-size:29px!important;
+  transform:translate(-50%,-50%) rotate(90deg)!important;
+  color:#ffe500!important;
+  text-shadow:0 0 2px #111,0 0 7px #fff,0 0 12px #ffe500!important;
+  z-index:12!important;
+}
+.pwm-pin-board-image .pwm-tilde-mark.m3{left:79.0%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m5{left:72.5%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m6{left:69.2%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m9{left:59.4%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m10{left:56.1%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m11{left:52.8%!important}
