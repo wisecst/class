@@ -15,6 +15,7 @@ const steps=[
 let step=0, phase='build', pin13Done=false, timer=null, activeButton=null, autoResult=null;
 const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
 function closeResults(){
+ q('.entry-program')?.classList.remove('result-running');
  autoResult=null;
  if(timer){clearInterval(timer);timer=null}
  q('#pin13Modal')?.classList.remove('show'); q('#pin13Modal')?.setAttribute('aria-hidden','true');
@@ -27,6 +28,7 @@ function closeResults(){
 }
 function ledResult(mode,button=null){
  closeResults(); activeButton=button;
+ const program=q('.entry-program'); if(program)program.classList.toggle('result-running',mode==='blink');
  if(button){button.classList.add('running');button.textContent='■ 정지'}
  const m=q('#entryLedTestModal'),t=q('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
  const paint=on=>{l?.classList.toggle('off',!on);if(t)t.textContent=on?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';m?.classList.add('show');m?.setAttribute('aria-hidden','false')};
