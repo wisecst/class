@@ -2121,3 +2121,59 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-program:has(#entryBasicFour.entry-cleared) #entryCompareFour{
   min-height:0!important;
 }
+
+/* Slide 4 PWM-pin popup: always fit completely inside the visible lesson frame. */
+.pwm-pin-board-popup{
+  position:absolute!important;
+  inset:0!important;
+  padding:14px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.pwm-pin-board-card{
+  width:min(82%,900px)!important;
+  height:min(88%,640px)!important;
+  max-width:900px!important;
+  max-height:calc(100% - 28px)!important;
+  padding:12px 20px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+}
+.pwm-pin-board-card>strong{
+  flex:0 0 auto!important;
+  font-size:clamp(22px,2vw,30px)!important;
+  line-height:1.15!important;
+}
+.pwm-pin-board-image{
+  flex:1 1 auto!important;
+  width:auto!important;
+  max-width:92%!important;
+  min-height:0!important;
+  margin:7px auto 3px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.pwm-pin-board-image img{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  object-fit:contain!important;
+}
+.pwm-pin-board-card p{
+  flex:0 0 auto!important;
+  margin:4px 0 0!important;
+  font-size:clamp(16px,1.45vw,22px)!important;
+  line-height:1.2!important;
+}
+:fullscreen .pwm-pin-board-popup{padding:10px!important}
+:fullscreen .pwm-pin-board-card{
+  width:min(76%,880px)!important;
+  height:min(86%,610px)!important;
+  max-height:calc(100% - 20px)!important;
+}
