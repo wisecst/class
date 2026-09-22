@@ -550,3 +550,32 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 
 /* Circuit slide: move OrangeBoard right by 5 background grid cells (5 × 20px). */
 #workspace .board-component{transform:translateX(calc(3.5% + 100px))!important}
+
+/* Entry slide: closer to the actual Entry study/code workspace. */
+.entry-slide.active{padding:0!important;overflow:hidden;background:#eef8ff}
+.entry-study-bar{height:48px;background:#00c400;color:#fff;display:flex;align-items:center;gap:14px;padding:0 18px;font-size:18px;font-weight:800}
+.entry-brand{font-family:monospace;font-size:24px;font-weight:900;letter-spacing:3px}
+.entry-study-bar b{font-size:18px}
+.entry-scene-label{margin-left:auto;font-size:15px;background:rgba(255,255,255,.18);padding:6px 12px;border-radius:16px}
+.entry-slide .entry-workspace{height:calc(100% - 48px)!important;border-radius:0!important;border:0!important;background:#eaf7ff}
+.entry-slide .entry-tabs{border-radius:0!important;background:#eef8ff}
+.entry-slide .entry-stage{border-radius:0!important;background-color:#f7fcff;background-image:radial-gradient(#c9e4f3 1.15px,transparent 1.15px);background-size:14px 14px}
+.entry-slide .entry-program{padding-top:42px}
+.entry-slide .entry-program:before{content:"장면 1  ·  엔트리";position:absolute;top:12px;left:22px;font-size:18px;font-weight:800;color:#516d7d}
+.entry-tab{background:#f3f8fb!important}
+.entry-tab.start-tab{color:#00b52b!important}.entry-tab.flow-tab{color:#22b8df!important}.entry-tab.hardware-tab{color:#00a8a5!important}
+.entry-tab.active-tab{color:#fff!important}
+.entry-tab.start-tab.active-tab{background:#00b52b!important}
+.entry-tab.flow-tab.active-tab{background:#22b8df!important}
+.entry-tab.hardware-tab.active-tab{background:#00a8a5!important}
+/* Newly connected block: yellow Entry-style selection outline. */
+.entry-block.entry-current{outline:5px solid #ffd400!important;outline-offset:2px;z-index:7}
+/* Make connected blocks visually continuous instead of separate floating cards. */
+.entry-program .entry-block.entry-show{margin-top:-2px}
+.entry-program .start-block.entry-show{margin-top:0}
+.repeat-body.repeat-show .entry-block.entry-show{margin-top:-2px!important}
+/* Remove lesson-only guide/card chrome so the code canvas fills the page. */
+.entry-slide .entry-guide{display:none!important}
+.entry-slide .entry-controls,.entry-slide>.count{opacity:.18}
+:fullscreen .entry-study-bar{height:5.2vh;font-size:1.15vw}
+:fullscreen .entry-slide .entry-workspace{height:calc(100% - 5.2vh)!important}
