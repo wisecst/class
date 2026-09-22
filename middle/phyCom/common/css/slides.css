@@ -2893,3 +2893,11 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   border-right:5px solid transparent!important;
   border-top:7px solid #fff!important;
 }
+
+/* Entry toolbar text hierarchy: match the lesson-title (entry lesson title) size/weight. */
+.entry-code-toolbar .entry-goal-btn,
+.entry-code-toolbar .entry-complete-btn{
+  font-size:18px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+}
