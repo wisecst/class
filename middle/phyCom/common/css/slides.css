@@ -1767,3 +1767,53 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   white-space:nowrap!important;
   box-shadow:0 1px 2px rgba(38,59,71,.08)!important;
 }
+
+/* PWM fullscreen composition from visual review:
+   larger two-line definition, wider graph, narrower lamp panel, no dead vertical gap. */
+:fullscreen .pwm-slide .pwm-intro{
+  font-size:clamp(25px,1.95vw,34px)!important;
+  line-height:1.42!important;
+  padding:10px 16px!important;
+}
+:fullscreen .pwm-slide .pwm-intro-lines>div{
+  white-space:nowrap!important;
+  letter-spacing:-.02em!important;
+}
+:fullscreen .pwm-slide .pwm-demo{
+  display:grid!important;
+  grid-template-columns:78% 22%!important;
+  flex:1 1 0!important;
+  min-height:0!important;
+}
+:fullscreen .pwm-slide .pwm-visual{
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) auto!important;
+  min-height:0!important;
+  padding:6px 14px 4px!important;
+}
+:fullscreen .pwm-slide .pwm-graph{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  align-self:stretch!important;
+}
+:fullscreen .pwm-slide .pwm-ratio{
+  align-self:end!important;
+  margin:0!important;
+  padding:0 0 2px!important;
+  line-height:1!important;
+}
+:fullscreen .pwm-slide .pwm-lamp-panel{
+  width:auto!important;
+  min-width:0!important;
+  padding:4px 6px!important;
+  gap:2px!important;
+}
+:fullscreen .pwm-slide .pwm-bulb-wrap{
+  width:100px!important;height:100px!important;
+}
+:fullscreen .pwm-slide .pwm-bulb{font-size:64px!important}
+:fullscreen .pwm-slide .pwm-controls{
+  margin:1px 0 0!important;
+}
