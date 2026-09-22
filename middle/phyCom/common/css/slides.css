@@ -1747,3 +1747,23 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   min-height:95px!important;
   max-height:190px!important;
 }
+
+/* Entry page labels (LED 기본코드 / 디지털 출력 블록 비교):
+   make them visually distinct beside the block-count label. */
+.entry-code-page-label{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:30px!important;
+  margin-left:10px!important;
+  padding:3px 14px!important;
+  border:2px solid #5f7784!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  color:#263b47!important;
+  font-size:15px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  box-shadow:0 1px 2px rgba(38,59,71,.08)!important;
+}
