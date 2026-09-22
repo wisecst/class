@@ -28,7 +28,8 @@ document.body.classList.toggle('after-intro',si>0);
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
 if(si===1&&window.lessonCircuit){if(from===2)window.lessonCircuit.setStep(3);requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));}
-}pv.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else if(si===2){show(1);}else show(si-1)};
+}pv.onclick=()=>{if(si===1){show(0);}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
+    else if(si===2){show(1);}else show(si-1)};
 nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}else show(si+1)};
 
 // 키보드/프리젠터 조작
