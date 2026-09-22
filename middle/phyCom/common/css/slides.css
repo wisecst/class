@@ -579,3 +579,15 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 .entry-slide .entry-controls,.entry-slide>.count{opacity:.18}
 :fullscreen .entry-study-bar{height:5.2vh;font-size:1.15vw}
 :fullscreen .entry-slide .entry-workspace{height:calc(100% - 5.2vh)!important}
+
+/* Slide 3 is a full-height Entry workspace: remove the global LED header entirely. */
+body:has(.entry-slide.active) header{display:none!important}
+body:has(.entry-slide.active) main{height:100vh!important;max-height:none!important;margin:0!important;padding:0!important}
+body:has(.entry-slide.active) .entry-slide.active{height:100vh!important;max-height:none!important;margin:0!important;padding:0!important;border-radius:0!important}
+body:has(.entry-slide.active) .entry-slide>h2{display:none!important}
+body:has(.entry-slide.active) .entry-study-bar{height:52px}
+body:has(.entry-slide.active) .entry-workspace{height:calc(100vh - 52px)!important;min-height:0!important}
+:fullscreen body:has(.entry-slide.active) main,
+:fullscreen body:has(.entry-slide.active) .entry-slide.active{height:100vh!important;margin:0!important}
+:fullscreen body:has(.entry-slide.active) .entry-study-bar{height:5.2vh}
+:fullscreen body:has(.entry-slide.active) .entry-workspace{height:94.8vh!important}
