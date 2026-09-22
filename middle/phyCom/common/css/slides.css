@@ -1244,3 +1244,15 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .pwm-coordinate-tools{margin:10px auto 0;display:flex;align-items:center;justify-content:center;gap:10px;max-width:94%}
 #pwmCoordinateReadout{display:block;flex:1;padding:8px 10px;background:#f3f6f8;border:1px solid #d4dee4;border-radius:7px;font-size:12px;line-height:1.4;text-align:left;white-space:normal;color:#294657}
 #copyPwmCoordinates{border:0;border-radius:7px;padding:8px 12px;background:#547382;color:#fff;font-weight:800;cursor:pointer;white-space:nowrap}
+
+/* Final PWM marker coordinates from visual alignment.
+   Align by top edge so different label widths/heights do not visually drift. */
+.pwm-pin-board-image .pwm-tilde-mark{
+  top:12.89%!important;
+}
+.pwm-pin-board-image .pwm-tilde-mark.m3{left:79.82%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m5{left:73.05%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m6{left:69.39%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m9{left:57.70%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m10{left:54.09%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m11{left:50.59%!important}
