@@ -1899,3 +1899,54 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   position:relative!important;
   z-index:2!important;
 }
+
+/* Repeat lifecycle:
+   step 3 starts as an EMPTY C; commands fill it flush.
+   After the first four-command set moves right, the C contracts again and
+   grows naturally with each newly revealed replacement command. */
+.entry-program .repeat-body{
+  min-height:42px!important;
+  padding:0 0 20px 13px!important; /* no cavity gap between spine and nested blocks */
+}
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{
+  margin:0!important;
+  padding:0!important;
+}
+.entry-program .repeat-body .entry-block{
+  margin-left:0!important;
+}
+/* Empty repeat: visible immediately with just enough open cavity to read as C. */
+.entry-program .repeat-body.repeat-show:not(:has(.entry-block.entry-show)){
+  min-height:46px!important;
+}
+/* Filled commands begin directly beside the left spine. */
+.entry-program .repeat-body.repeat-show:has(.entry-block.entry-show){
+  min-height:0!important;
+  padding-top:0!important;
+}
+/* Transition: old blinking set moves farther than its longest block width. */
+.entry-program:has(#entryBasicFour.compare-right) .basic-repeat-body,
+.entry-program:has(#entryBasicFour.entry-cleared) .basic-repeat-body{
+  --entry-stack-w:min(46%,520px)!important;
+  --entry-stack-gap:24px!important;
+  grid-template-columns:var(--entry-stack-w) var(--entry-stack-w)!important;
+  column-gap:var(--entry-stack-gap)!important;
+}
+/* The new stack starts at the original cavity position; old set occupies the
+   second track, i.e. one longest-block width + a small safety gap to the right. */
+#entryCompareFour.compare-left{grid-column:1!important}
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{grid-column:2!important}
+
+/* In the cleared moment no replacement command is visible yet:
+   contract the repeat shell back to its initial empty-C height. */
+.entry-program:has(#entryBasicFour.entry-cleared) .basic-repeat-body{
+  min-height:46px!important;
+  padding-bottom:20px!important;
+}
+/* As replacement commands are revealed, normal content height expands the C
+   exactly with the stack instead of preserving the old four-block height. */
+.entry-program:has(#entryCompareFour.compare-left) .basic-repeat-body{
+  height:auto!important;
+}
