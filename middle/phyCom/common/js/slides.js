@@ -35,7 +35,13 @@ if(sidebarList){
 }
 let circuitStep=0;
 let comparePopupShown=false;
-function show(n){const from=si;si=Math.max(0,Math.min(ss.length-1,n));
+function show(n){const from=si;const target=Math.max(0,Math.min(ss.length-1,n));
+const pwmPopup=document.querySelector('#pwmPinBoardPopup');
+/* Returning from PWM (5) to comparison (4): show the board popup again.
+   It is transient; the next backward signal closes it and reveals page 4. */
+const returnToCompare=from===4&&target===3;
+if(!returnToCompare){pwmPopup?.classList.remove('show');pwmPopup?.setAttribute('aria-hidden','true');}
+si=target;
 ss.forEach((s,i)=>s.classList.toggle('active',i===si));
 pv.disabled=si===0;
 nx.disabled=si===ss.length-1;
@@ -45,6 +51,12 @@ document.body.classList.toggle('after-intro',si>0);
 document.querySelectorAll('.slide-sidebar-item').forEach((b,i)=>b.classList.toggle('active',i===si));
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
+if(returnToCompare){
+ pwmPopup?.classList.add('show');pwmPopup?.setAttribute('aria-hidden','false');
+ comparePopupShown=true;
+}else if(si===3){
+ comparePopupShown=false;
+}
 if(si===2&&from!==2&&window.entryLesson?.isFinished?.()){
  requestAnimationFrame(()=>window.entryLesson.showCompleted());
 }
@@ -86,7 +98,12 @@ document.addEventListener('keydown', async (e)=>{
     else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}
-    else if(si===4&&window.pwmLesson&&window.pwmLesson.canPrev()){window.pwmLesson.prev();}
+    else if(si===4){show(3);}
+    else if(si===3&&comparePopupShown){
+      document.querySelector('#pwmPinBoardPopup')?.classList.remove('show');
+      document.querySelector('#pwmPinBoardPopup')?.setAttribute('aria-hidden','true');
+      comparePopupShown=false;
+    }
     else show(si-1);
     return;
   }
