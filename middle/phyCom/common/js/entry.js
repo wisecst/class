@@ -93,6 +93,17 @@ function init(){
  q('#pin13Close')?.addEventListener('click',closeResults);
  q('#pin13Modal')?.addEventListener('click',e=>{if(e.target===q('#pin13Modal'))closeResults()});
 }
-window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,closeResults,isFinished:()=>phase==='finished'};
+function showCompleted(){
+ closeResults();
+ step=steps.length;
+ phase='finished';
+ pin13Done=true;
+ render();
+ q('#entryBasicFour')?.classList.add('compare-right');
+ q('#entryBasicFour')?.classList.remove('entry-cleared','group-selected');
+ q('#entryCompareFour')?.classList.add('compare-left');
+ qa('.entry-block.entry-current').forEach(el=>el.classList.remove('entry-current'));
+}
+window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,closeResults,isFinished:()=>phase==='finished',showCompleted};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
