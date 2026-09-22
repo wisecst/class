@@ -1135,3 +1135,14 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .pwm-pin-board-image .pwm-tilde-mark{
   transform:translate(-50%,-50%) rotate(270deg)!important;
 }
+
+/* Pin 13 result: move only; preserve its original card/modal size. */
+#pin13Modal{
+  left:auto!important;
+  right:2.5%!important;
+  top:20%!important;
+  bottom:auto!important;
+  transform:none!important;
+  margin:0!important;
+  width:unset!important;
+}
