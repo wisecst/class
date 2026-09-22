@@ -1899,3 +1899,46 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 }
 /* Slight overlap beneath the C-block foot prevents a visible background seam. */
 .entry-program .repeat-body + .entry-block{margin-top:-13px!important}
+
+/* RESET experimental Entry connector geometry.
+   Restore the stable pre-connector block layout so no workspace background leaks between blocks. */
+.entry-program .entry-block:not(.start-block):not(.repeat-block),
+.entry-program .repeat-body>.entry-block{
+  clip-path:none!important;
+  min-height:58px!important;
+  margin-left:0!important;
+  margin-top:-2px!important;
+  padding:8px 20px!important;
+  border-radius:9px 24px 24px 9px!important;
+  overflow:visible!important;
+}
+.entry-program .start-block + .entry-block,
+.entry-program>.entry-block + .entry-block,
+.entry-program .repeat-body>.entry-block + .entry-block{
+  margin-top:-2px!important;
+}
+/* Restore the earlier stable repeat container instead of the experimental cut-out polygons. */
+.entry-program .repeat-block{
+  clip-path:none!important;
+  width:58%!important;
+  min-height:58px!important;
+  margin:0!important;
+  padding:8px 20px!important;
+  border-radius:9px 24px 24px 9px!important;
+}
+.entry-program .repeat-body{
+  width:58%!important;
+  min-height:0!important;
+  margin-left:30px!important;
+  padding:0!important;
+  border-left:12px solid #20b5dd!important;
+  background:transparent!important;
+  border-radius:0!important;
+}
+.entry-program .repeat-body:before,
+.entry-program .repeat-body:after{display:none!important;content:none!important}
+.entry-program .repeat-body>.entry-block{
+  width:auto!important;
+  max-width:none!important;
+  margin-left:0!important;
+}
