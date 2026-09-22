@@ -16,8 +16,23 @@ let step=0,pin13ResultShown=false,pin13ResultDone=false,basicResultShown=false,b
 function render(){document.querySelectorAll('[data-entry-step]').forEach(el=>{const n=+el.dataset.entryStep;el.classList.toggle('entry-show',n<=step);el.classList.toggle('entry-current',n===step&&step>0)});document.querySelectorAll('[data-repeat-body]').forEach(el=>el.classList.toggle('repeat-show',step>=4));const old4=document.querySelector('#entryBasicFour'),new4=document.querySelector('#entryCompareFour');if(old4)old4.classList.toggle('compare-right',basicResultDone);if(new4)new4.classList.toggle('compare-left',basicResultDone);document.querySelectorAll('.entry-tab').forEach(el=>el.classList.remove('active-tab'));if(step){const info=steps[step-1];document.querySelector('.entry-tab[data-tab="'+info.tab+'"]').classList.add('active-tab');document.querySelector('#entryGuideTitle').textContent=info.title;document.querySelector('#entryGuideText').textContent=info.text;}else{document.querySelector('#entryGuideTitle').textContent='다음 블록을 눌러 시작하세요.';document.querySelector('#entryGuideText').textContent='블록이 추가될 때 왼쪽에서 해당 블록의 탭이 함께 강조됩니다.';}document.querySelector('#back').disabled=step===0;document.querySelector('#forward').disabled=step===steps.length;document.querySelector('#step').textContent=step+' / '+steps.length;const bc=document.querySelector('#entryBlockCount');if(bc)bc.textContent=step;}
 function showPin13Result(){const m=document.querySelector('#pin13Modal'),b=document.querySelector('#runPin13');if(!m)return;m.classList.add('show');m.setAttribute('aria-hidden','false');pin13ResultShown=true;if(b)b.textContent='■ 종료'}
 function hidePin13Result(){const m=document.querySelector('#pin13Modal'),b=document.querySelector('#runPin13');if(!m)return;m.classList.remove('show');m.setAttribute('aria-hidden','true');pin13ResultShown=false;if(b)b.textContent='▶ 실행'}
-function showFinalResult(){const p=document.querySelector('#entryFinalResult');if(!p)return;p.classList.add('show');p.setAttribute('aria-hidden','false');finalResultShown=true}
-function hideFinalResult(){const p=document.querySelector('#entryFinalResult');if(!p)return;p.classList.remove('show');p.setAttribute('aria-hidden','true');finalResultShown=false}
+function stopManualRuns(){
+ setLoopRun(false);
+ document.querySelectorAll('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶ 실행';});
+ const lm=document.querySelector('#entryLedTestModal');lm?.classList.remove('show');lm?.setAttribute('aria-hidden','true');
+ if(pin13ResultShown)hidePin13Result();
+}
+function showFinalResult(){
+ stopManualRuns();
+ const p=document.querySelector('#entryFinalResult'),m=document.querySelector('#entryLedTestModal'),t=document.querySelector('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
+ if(!p)return;
+ p.classList.remove('show');p.setAttribute('aria-hidden','true');
+ finalResultShown=true;
+ let lit=true;
+ const paint=()=>{l?.classList.toggle('off',!lit);if(t)t.textContent=lit?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';m?.classList.add('show');m?.setAttribute('aria-hidden','false');lit=!lit;};
+ paint();loopTimer=setInterval(paint,200);
+}
+function hideFinalResult(){const p=document.querySelector('#entryFinalResult'),m=document.querySelector('#entryLedTestModal');if(loopTimer){clearInterval(loopTimer);loopTimer=null;}p?.classList.remove('show');p?.setAttribute('aria-hidden','true');m?.classList.remove('show');m?.setAttribute('aria-hidden','true');finalResultShown=false}
 function next(){
  if(step===7&&!basicResultDone&&!basicResultShown){showFinalResult();basicResultShown=true;return;}
  if(step===7&&basicResultShown){hideFinalResult();basicResultShown=false;basicResultDone=true;return;}
@@ -27,7 +42,7 @@ function next(){
  if(step===2&&pin13ResultShown){hidePin13Result();pin13ResultDone=true;return;}
  step=Math.min(steps.length,step+1);render();
 }
-function prev(){if(finalResultShown){hideFinalResult();basicResultShown=false;return;}if(pin13ResultShown)hidePin13Result();step=Math.max(0,step-1);if(step<2)pin13ResultDone=false;render()}
+function prev(){stopManualRuns();if(finalResultShown){hideFinalResult();basicResultShown=false;return;}if(pin13ResultShown)hidePin13Result();step=Math.max(0,step-1);if(step<2)pin13ResultDone=false;render()}
 window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,isResultOpen:()=>pin13ResultShown||finalResultShown,showPin13Result,hidePin13Result,showFinalResult,hideFinalResult};
 function setLoopRun(on){
  loopRunning=on;
@@ -54,7 +69,7 @@ function initRunResult(){
  document.querySelectorAll('.entry-block-run-btn').forEach(btn=>btn.addEventListener('click',e=>{
    e.stopPropagation();
    const active=btn.classList.contains('running');
-   document.querySelectorAll('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶ 실행';});
+   stopManualRuns();
    if(active){ledModal?.classList.remove('show');ledModal?.setAttribute('aria-hidden','true');return;}
    const on=btn.dataset.ledState==='on';
    btn.classList.add('running');btn.textContent='■ 정지';
@@ -63,7 +78,8 @@ function initRunResult(){
    ledModal?.classList.add('show');ledModal?.setAttribute('aria-hidden','false');
  }));
  if(!run||!modal)return;
- run.addEventListener('click',e=>{e.stopPropagation();pin13ResultShown?hidePin13Result():showPin13Result();});loop?.addEventListener('click',e=>{e.stopPropagation();setLoopRun(!loopRunning);});
+ run.addEventListener('click',e=>{e.stopPropagation();const was=pin13ResultShown;stopManualRuns();if(!was)showPin13Result();});
+ loop?.addEventListener('click',e=>{e.stopPropagation();const was=loopRunning;stopManualRuns();if(!was)setLoopRun(true);});
  const hide=()=>hidePin13Result();
  close?.addEventListener('click',hide);
  modal.addEventListener('click',e=>{if(e.target===modal)hide();});
