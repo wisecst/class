@@ -2201,3 +2201,40 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   filter:none!important;
   box-shadow:none!important;
 }
+
+/* Slide 3: old four-block stack must clear the NEW widest PWM block.
+   Previous left:calc(100% + ...) was relative to the 360px repeat body and was
+   too short. Anchor the parked stack beyond the actual 255-block width. */
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+  left:760px!important;
+  right:auto!important;
+  width:520px!important;
+  max-width:520px!important;
+}
+/* Keep the replacement stack in the C cavity and cap its long value block so
+   it ends before the parked stack begins. */
+.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+  width:660px!important;
+  max-width:660px!important;
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left .entry-block{
+  max-width:660px!important;
+  box-sizing:border-box!important;
+}
+/* On narrower lesson frames scale both columns together instead of allowing overlap. */
+@media (max-width:1500px){
+  .entry-program:has(#entryCompareFour.compare-left){
+    transform-origin:left top!important;
+  }
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+    left:700px!important;
+    width:470px!important;
+    max-width:470px!important;
+  }
+  .entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+    width:610px!important;
+    max-width:610px!important;
+  }
+}
