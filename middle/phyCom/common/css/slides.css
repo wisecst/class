@@ -827,3 +827,13 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   z-index:10!important;
   overflow:visible!important;
 }
+
+/* Group-move cue: all four original blocks are selected together. */
+#entryBasicFour.group-selected .entry-block{
+  outline:4px solid #ffd400!important;
+  outline-offset:1px!important;
+  box-shadow:0 0 0 2px rgba(255,212,0,.22)!important;
+}
+#entryBasicFour.group-selected .entry-block.entry-current{
+  outline:4px solid #ffd400!important;
+}
