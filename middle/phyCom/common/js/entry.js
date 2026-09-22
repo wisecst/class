@@ -12,9 +12,10 @@ const steps=[
  {tab:'hardware',title:'디지털 3번 핀을 0으로 정하기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'}
 ];
-let step=0, phase='build', pin13Done=false, timer=null, activeButton=null;
+let step=0, phase='build', pin13Done=false, timer=null, activeButton=null, autoResult=null;
 const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
 function closeResults(){
+ autoResult=null;
  if(timer){clearInterval(timer);timer=null}
  q('#pin13Modal')?.classList.remove('show'); q('#pin13Modal')?.setAttribute('aria-hidden','true');
  q('#entryLedTestModal')?.classList.remove('show'); q('#entryLedTestModal')?.setAttribute('aria-hidden','true');
@@ -49,14 +50,21 @@ function showPin13(){
  closeResults();const m=q('#pin13Modal'),b=q('#runPin13');m?.classList.add('show');m?.setAttribute('aria-hidden','false');if(b)b.textContent='■ 정지';activeButton=b;
 }
 function next(){
+ if(autoResult){
+   closeResults();
+   if(autoResult==='on4'){step=5;render();return}
+   if(autoResult==='off6'){step=7;render();return}
+   if(autoResult==='on8'){step=9;render();return}
+   if(autoResult==='off10'){step=11;render();return}
+ }
  closeResults();
  if(step===2&&!pin13Done){showPin13();pin13Done=true;return}
- if(step===4){ledResult('on');return}
- if(step===6){ledResult('off');return}
+ if(step===4){const b=q('[data-entry-step="4"] .entry-block-run-btn');ledResult('on',b);autoResult='on4';return}
+ if(step===6){const b=q('[data-entry-step="6"] .entry-block-run-btn');ledResult('off',b);autoResult='off6';return}
  if(step===7&&phase==='build'){ledResult('blink');phase='blinked';return}
  if(step===7&&phase==='blinked'){phase='compare';step=8;render();return}
- if(step===8&&phase==='compare'){ledResult('on');return}
- if(step===10&&phase==='compare'){ledResult('off');return}
+ if(step===8&&phase==='compare'){const b=q('[data-entry-step="8"] .entry-block-run-btn');ledResult('on',b);autoResult='on8';return}
+ if(step===10&&phase==='compare'){const b=q('[data-entry-step="10"] .entry-block-run-btn');ledResult('off',b);autoResult='off10';return}
  if(step===11&&phase==='compare'){ledResult('blink');phase='done';return}
  if(phase==='done'){closeResults();return}
  step=Math.min(steps.length,step+1);render();
@@ -71,7 +79,7 @@ function prev(){
 function init(){
  render();
  q('#runPin13')?.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===e.currentTarget;if(was)closeResults();else showPin13()});
- q('#runLoop')?.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===e.currentTarget;if(was)closeResults();else{activeButton=e.currentTarget;e.currentTarget.textContent='■ 정지';ledResult('blink',e.currentTarget)}});
+ q('#runLoop')?.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===e.currentTarget;if(was)closeResults();else{ledResult('blink',e.currentTarget)}});
  qa('.entry-block-run-btn').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===b;if(was){closeResults();return}ledResult(b.dataset.ledState==='on'?'on':'off',b)}));
  q('#pin13Close')?.addEventListener('click',closeResults);
  q('#pin13Modal')?.addEventListener('click',e=>{if(e.target===q('#pin13Modal'))closeResults()});
