@@ -12,7 +12,7 @@ const steps=[
  {tab:'hardware',title:'디지털 3번 핀을 0으로 정하기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'}
 ];
-let step=0, phase='build', pin13Done=false, timer=null, activeButton=null, autoResult=null;
+let step=0, phase='build', pin13Done=false, timer=null, activeButton=null, autoResult=null, savePending=null;
 const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
 function closeResults(){
  q('.entry-program')?.classList.remove('result-running');
@@ -54,26 +54,43 @@ function render(){
 function showPin13(){
  closeResults();const m=q('#pin13Modal'),b=q('#runPin13');m?.classList.add('show');m?.setAttribute('aria-hidden','false');if(b)b.textContent='■';activeButton=b;
 }
-function next(){
+function showSaveThen(action){
+  closeResults();
+  const wrap=q('.slide.active .entry-save-wrap')||q('.entry-save-wrap');
+  const menu=wrap?.querySelector('.entry-save-menu');
+  const item=menu?.querySelector('.entry-save-item');
+  if(!wrap||!menu||!item){action();return}
+  savePending=action;
+  wrap.classList.add('save-focus');
+  menu.classList.add('show'); menu.setAttribute('aria-hidden','false');
+  setTimeout(()=>{item.classList.add('save-click')},350);
+  setTimeout(()=>{
+    item.classList.remove('save-click'); menu.classList.remove('show');
+    menu.setAttribute('aria-hidden','true'); wrap.classList.remove('save-focus');
+    const done=savePending; savePending=null; if(done)done();
+  },850);
+ }
+ function next(){
+ if(savePending)return;
  if(autoResult){
    const done=autoResult;
    closeResults();
-   if(done==='on4'){step=5;render();return}
-   if(done==='off6'){step=7;render();return}
-   if(done==='on8'){step=9;render();return}
-   if(done==='off10'){step=11;render();return}
+   if(done==='on4'){showSaveThen(()=>{step=5;render()});return}
+   if(done==='off6'){showSaveThen(()=>{step=7;render()});return}
+   if(done==='on8'){showSaveThen(()=>{step=9;render()});return}
+   if(done==='off10'){showSaveThen(()=>{step=11;render()});return}
  }
  closeResults();
  if(step===2&&!pin13Done){showPin13();pin13Done=true;return}
  if(step===4){const b=q('[data-entry-step="4"] .entry-block-run-btn');ledResult('on',b);autoResult='on4';return}
  if(step===6){const b=q('[data-entry-step="6"] .entry-block-run-btn');ledResult('off',b);autoResult='off6';return}
  if(step===7&&phase==='build'){ledResult('blink',q('#runLoop'));phase='blinked';return}
- if(step===7&&phase==='blinked'){phase='cleared';render();return}
+ if(step===7&&phase==='blinked'){showSaveThen(()=>{phase='cleared';render()});return}
  if(step===7&&phase==='cleared'){phase='compare';step=8;render();return}
  if(step===8&&phase==='compare'){const b=q('[data-entry-step="8"] .entry-block-run-btn');ledResult('on',b);autoResult='on8';return}
  if(step===10&&phase==='compare'){const b=q('[data-entry-step="10"] .entry-block-run-btn');ledResult('off',b);autoResult='off10';return}
  if(step===11&&phase==='compare'){ledResult('blink',q('#runLoop'));phase='done';return}
- if(phase==='done'){closeResults();q('[data-entry-step="11"]')?.classList.remove('entry-current');phase='finished';return}
+ if(phase==='done'){showSaveThen(()=>{q('[data-entry-step="11"]')?.classList.remove('entry-current');phase='finished';render()});return}
  if(phase==='finished'){return}
  step=Math.min(steps.length,step+1);render();
 }
