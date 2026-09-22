@@ -2238,3 +2238,64 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
     max-width:610px!important;
   }
 }
+
+/* Entry block sizing rule:
+   every command block is only as wide as its one-line contents + run button.
+   Same command => same width everywhere, regardless of left/right stack. */
+.entry-slide .entry-program .entry-block.hardware-block,
+.entry-slide .entry-program .entry-block.wait-block,
+.entry-slide .entry-program #entryBasicFour .entry-block,
+.entry-slide .entry-program #entryCompareFour .entry-block{
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  padding-right:10px!important;
+  box-sizing:border-box!important;
+}
+.entry-slide .entry-program .entry-block.wait-block{
+  padding-right:20px!important;
+}
+.entry-slide .entry-program .entry-block .entry-run-btn,
+.entry-slide .entry-program .entry-block .entry-block-run-btn{
+  margin-left:8px!important;
+  margin-right:0!important;
+  flex:0 0 26px!important;
+}
+/* Containers must not stretch their child blocks to the stack width. */
+.entry-slide .entry-program #entryBasicFour,
+.entry-slide .entry-program #entryCompareFour{
+  align-items:flex-start!important;
+}
+.entry-slide .entry-program #entryBasicFour.compare-right .entry-block,
+.entry-slide .entry-program #entryBasicFour.entry-cleared .entry-block,
+.entry-slide .entry-program #entryCompareFour.compare-left .entry-block{
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+}
+/* Park the old stack after the actual longest new PWM block plus a small gap.
+   This value is only positioning; it no longer changes individual block widths. */
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+  left:720px!important;
+  width:max-content!important;
+  max-width:none!important;
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+  width:max-content!important;
+  max-width:none!important;
+}
+@media (max-width:1500px){
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+    left:680px!important;
+    width:max-content!important;
+    max-width:none!important;
+  }
+  .entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+    width:max-content!important;
+    max-width:none!important;
+  }
+}
