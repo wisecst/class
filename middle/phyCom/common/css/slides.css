@@ -1378,3 +1378,34 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .pwm-intro-lines>div:nth-child(2) mark{
   background:#ffd9e6!important;
 }
+
+/* Entry lesson chrome based on the supplied real Entry reference. */
+.entry-study-bar{position:relative!important}
+.entry-study-bar .entry-by{font-size:11px!important;font-weight:500!important;margin-left:-9px!important;white-space:nowrap}
+.entry-top-actions{margin-left:auto!important;display:flex!important;align-items:center!important;gap:9px!important;height:100%}
+.entry-top-actions button{
+ border:0!important;border-radius:999px!important;height:34px!important;padding:0 15px!important;
+ color:#fff!important;font-size:13px!important;font-weight:900!important;white-space:nowrap!important;
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)!important;
+}
+.entry-goal-btn{background:#28c940!important}
+.entry-complete-btn{background:#ffb900!important}
+.entry-scene-tabs{border-radius:12px 12px 0 0!important;overflow:visible!important}
+.entry-scene-tab{border-radius:12px 12px 0 0!important}
+.entry-scene-tab.active{border-radius:12px 12px 0 0!important}
+.entry-scene-add{border-radius:0 12px 12px 0!important}
+
+/* Entry blocks use soft connected contours instead of square joins. */
+.entry-block{
+ border-radius:9px 24px 24px 9px!important;
+}
+.start-block{border-radius:28px!important}
+.repeat-block{border-radius:9px 24px 24px 9px!important}
+.repeat-body{border-radius:0 0 0 12px!important}
+.repeat-body .entry-block{
+ border-radius:8px 22px 22px 8px!important;
+}
+.entry-program .entry-block + .entry-block,
+.repeat-body .entry-block + .entry-block{
+ margin-top:-2px!important;
+}
