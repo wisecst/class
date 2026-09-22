@@ -965,3 +965,15 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   z-index:32;
 }
 .entry-compare-slide .pin-dropdown span{position:relative;z-index:33}
+
+/* Slide 4 OrangeBoard PWM-pin callout. */
+.pwm-pin-board-popup{display:none;position:absolute;inset:0;z-index:80;background:rgba(22,43,58,.32);align-items:center;justify-content:center}
+.pwm-pin-board-popup.show{display:flex}
+.pwm-pin-board-card{width:min(72vw,980px);background:#fff;border-radius:24px;padding:22px 28px;text-align:center;box-shadow:0 18px 55px rgba(0,0,0,.28)}
+.pwm-pin-board-card>strong{font-size:30px;color:#205f83}
+.pwm-pin-board-image{position:relative;width:min(88%,820px);margin:12px auto 6px}
+.pwm-pin-board-image img{display:block;width:100%;height:auto}
+.pwm-tilde-mark{position:absolute;color:#ffe600;font-size:34px;font-weight:1000;line-height:1;text-shadow:0 0 3px #222,0 0 8px #fff;transform:translate(-50%,-50%)}
+.pwm-tilde-mark.m3{left:79.7%;top:7.1%}.pwm-tilde-mark.m5{left:73.1%;top:7.1%}.pwm-tilde-mark.m6{left:69.8%;top:7.1%}
+.pwm-tilde-mark.m9{left:56.8%;top:7.1%}.pwm-tilde-mark.m10{left:53.5%;top:7.1%}.pwm-tilde-mark.m11{left:50.2%;top:7.1%}
+.pwm-pin-board-card p{margin:8px 0 0;font-size:22px;color:#30495a}
