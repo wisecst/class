@@ -2463,3 +2463,10 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
     left:calc(100% + var(--repeat-compare-gap))!important;
   }
 }
+
+/* Slide 4: align the LEFT dropdown speech-tail horizontally with its 3▼ selector,
+   matching the right dropdown. */
+.entry-compare-slide .pin-compare-item:first-child::after{
+  left:174px!important;
+  transform:translateX(-50%) rotate(45deg)!important;
+}
