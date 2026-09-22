@@ -19,7 +19,7 @@ const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
 let circuitStep=0;
-function show(n){si=Math.max(0,Math.min(ss.length-1,n));
+function show(n){const from=si;si=Math.max(0,Math.min(ss.length-1,n));
 ss.forEach((s,i)=>s.classList.toggle('active',i===si));
 pv.disabled=si===0;
 nx.disabled=si===ss.length-1;
@@ -27,7 +27,7 @@ document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 document.body.classList.toggle('after-intro',si>0);
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
-if(si===1&&window.lessonCircuit) requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));
+if(si===1&&window.lessonCircuit){if(from===2){while(window.lessonCircuit.getStep()<3)window.lessonCircuit.next();}requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));}
 }pv.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}else show(si-1)};
 nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}else show(si+1)};
 
