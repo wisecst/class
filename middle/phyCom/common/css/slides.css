@@ -2334,3 +2334,50 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-slide .entry-program .wait-block:not(:has(.entry-block-run-btn)){
   padding-right:16px!important;
 }
+
+/* Slide 4 block comparison: use the exact same content-fit sizing rule as slide 3. */
+.entry-compare-slide .pin-block-compare .entry-block{
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  box-sizing:border-box!important;
+  padding-right:10px!important;
+}
+.entry-compare-slide .pin-block-compare .entry-block .entry-run-btn,
+.entry-compare-slide .pin-block-compare .entry-block .entry-block-run-btn{
+  margin-left:8px!important;
+  margin-right:0!important;
+  flex:0 0 26px!important;
+}
+/* Move both pin menus slightly lower. */
+.entry-compare-slide .pin-compare-item .pin-dropdown{
+  top:66px!important;
+}
+/* Give BOTH dropdowns the same speech-bubble pointer, aligned under the 3 selector. */
+.entry-compare-slide .pin-compare-item .pin-dropdown::before{
+  display:block!important;
+  content:""!important;
+  position:absolute!important;
+  left:50px!important;
+  top:-10px!important;
+  width:18px!important;
+  height:18px!important;
+  background:#fff!important;
+  border-left:1px solid #d9dee2!important;
+  border-top:1px solid #d9dee2!important;
+  transform:rotate(45deg)!important;
+  z-index:60!important;
+}
+/* Ensure the left menu does not lose its pointer through clipping/scrolling. */
+.entry-compare-slide .pin-dropdown.all-pins{
+  overflow-y:auto!important;
+  overflow-x:visible!important;
+}
+.entry-compare-slide .pin-dropdown.all-pins::before{
+  position:sticky!important;
+  float:left!important;
+  margin-top:-20px!important;
+  margin-left:44px!important;
+}
