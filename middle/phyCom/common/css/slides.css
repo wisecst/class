@@ -1950,3 +1950,51 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-program:has(#entryCompareFour.compare-left) .basic-repeat-body{
   height:auto!important;
 }
+
+/* Repeat C final geometry: nested commands touch the left spine, the bottom jaw
+   matches the rounded/thick header, and the whole empty C is highlighted on arrival. */
+.entry-program .repeat-body{
+  padding-left:0!important;
+}
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{
+  margin-left:-1px!important;
+  width:calc(100% + 1px)!important;
+}
+.entry-program .repeat-body:after{
+  left:-13px!important;
+  right:0!important;
+  height:30px!important;
+  bottom:0!important;
+  border-radius:0 22px 22px 0!important;
+}
+/* Step 3: one continuous yellow outline around header + left spine + bottom jaw.
+   The internal cavity stays open; outline disappears when the next command is added. */
+.entry-program .repeat-block.entry-current{
+  outline:4px solid #ffd400!important;
+  outline-offset:2px!important;
+  box-shadow:0 0 0 2px rgba(255,212,0,.18)!important;
+}
+.entry-program .repeat-block.entry-current + .repeat-body.repeat-show{
+  border-left-color:#20b5dd!important;
+}
+.entry-program .repeat-block.entry-current + .repeat-body.repeat-show:after{
+  box-shadow:
+    -4px 0 0 #ffd400,
+    0 4px 0 #ffd400,
+    4px 0 0 #ffd400!important;
+}
+/* bridge the highlight down the outside of the left spine */
+.entry-program .repeat-block.entry-current + .repeat-body.repeat-show{
+  box-shadow:-4px 0 0 #ffd400!important;
+}
+/* hide the header's lower yellow edge where the C body continues, so it reads
+   as one selected C rather than two separately selected rectangles */
+.entry-program .repeat-block.entry-current:after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;bottom:-6px!important;
+  width:18px!important;height:10px!important;
+  background:#20b5dd!important;
+  z-index:5!important;
+}
