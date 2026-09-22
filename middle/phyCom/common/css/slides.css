@@ -2056,3 +2056,21 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-program .repeat-body .entry-block{
   margin-left:0!important;
 }
+
+/* Nested-current block highlight must sit above the repeat header/body.
+   Its yellow perimeter cannot be hidden by the '계속 반복하기' header. */
+.entry-program .repeat-body{z-index:4!important}
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{z-index:6!important}
+.entry-program .repeat-body .entry-block.entry-current{
+  position:relative!important;
+  z-index:20!important;
+  outline:5px solid #ffd400!important;
+  outline-offset:2px!important;
+}
+/* Preserve the yellow top edge even where the nested block tucks into the C opening. */
+.entry-program .repeat-body .entry-block.entry-current::after{
+  z-index:21!important;
+}
+.entry-program .repeat-block{z-index:5!important}
+.entry-program .repeat-block.entry-current{z-index:22!important}
