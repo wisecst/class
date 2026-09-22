@@ -591,3 +591,12 @@ body:has(.entry-slide.active) .entry-workspace{height:calc(100vh - 52px)!importa
 :fullscreen body:has(.entry-slide.active) .entry-slide.active{height:100vh!important;margin:0!important}
 :fullscreen body:has(.entry-slide.active) .entry-study-bar{height:5.2vh}
 :fullscreen body:has(.entry-slide.active) .entry-workspace{height:94.8vh!important}
+
+/* Entry object indicator above the code canvas. */
+.entry-object-info{position:absolute;top:10px;left:22px;z-index:9;display:flex;align-items:center;gap:10px;color:#596b77;font-size:20px}
+.entrybot-thumb{width:42px;height:42px;display:grid;place-items:center;background:#fff;border:1px solid #cfe0e9;border-radius:5px;font-size:28px;box-shadow:0 1px 3px #0001}
+.entry-object-info strong{font-weight:500}
+.entry-block-count{padding:6px 13px;background:#fff;border:1px solid #cfe0e9;border-radius:18px;font-size:17px}
+.entry-block-count b{font-weight:800}
+.entry-slide .entry-program{padding-top:70px!important}
+.entry-slide .entry-program:before{display:none!important}
