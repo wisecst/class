@@ -1559,3 +1559,76 @@ body.after-intro .non-entry-slide>h2.header-page-title{display:none!important}
 body.entry-page .wrap>header{display:none!important}
 body.entry-page .wrap>.slide.active{top:12px!important}
 body.after-intro:not(.entry-page) .wrap>.slide.active{top:112px!important}
+
+/* Fullscreen non-Entry pages: header and body share one 16:9 frame; no overlap/cropping. */
+:fullscreen body:not(.entry-page) .wrap{
+  display:grid!important;
+  grid-template-rows:auto minmax(0,1fr) 42px!important;
+  width:min(100vw,calc(100vh * 16 / 9))!important;
+  height:min(100vh,calc(100vw * 9 / 16))!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+:fullscreen body:not(.entry-page) .wrap>header{
+  position:relative!important;
+  grid-row:1!important;
+  height:auto!important;min-height:0!important;
+  margin:0!important;padding:12px 24px!important;
+  z-index:5!important;
+}
+:fullscreen body:not(.entry-page) .wrap>.slide.active{
+  position:relative!important;
+  grid-row:2!important;
+  inset:auto!important;
+  width:auto!important;height:auto!important;min-height:0!important;
+  margin:6px 18px 0!important;padding:10px 16px!important;
+  overflow:hidden!important;
+}
+:fullscreen body:not(.entry-page) .wrap>.slide-nav{grid-row:3!important}
+:fullscreen body:not(.entry-page) .wrap>#slides{bottom:12px!important}
+
+/* Page 1 keeps the full navy definition header exactly as its teaching content. */
+:fullscreen body:not(.after-intro) .wrap>header{
+  padding:14px 24px 16px!important;
+}
+:fullscreen body:not(.after-intro) .wrap>header .device-label,
+:fullscreen body:not(.after-intro) .wrap>header .title-desc,
+:fullscreen body:not(.after-intro) .wrap>header .diode-bubble{display:block!important}
+
+/* Pages 2/5 use the compact navy header; fit their complete body below it. */
+:fullscreen body.after-intro:not(.entry-page) .wrap>header{
+  padding:9px 22px!important;
+}
+:fullscreen body.after-intro:not(.entry-page) .wrap>header .title-row{margin-top:18px!important}
+:fullscreen body.after-intro:not(.entry-page) .wrap>.slide.active{top:auto!important}
+
+/* Circuit page scales the editor into the remaining grid row. */
+:fullscreen body.after-intro:not(.entry-page) #workspace.circuit-demo{
+  width:auto!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;
+  margin:0 auto!important;
+}
+
+/* PWM page: reserve explicit room for milestones + note; shrink only the central demo. */
+:fullscreen .pwm-slide.active{display:flex!important;flex-direction:column!important}
+:fullscreen .pwm-slide .pwm-intro{font-size:17px!important;margin:0 0 4px!important;padding:5px 11px!important}
+:fullscreen .pwm-slide .pwm-intro-lines{gap:3px!important;line-height:1.28!important}
+:fullscreen .pwm-slide .pwm-demo{
+  flex:1 1 0!important;height:auto!important;min-height:0!important;
+  margin:0!important;
+}
+:fullscreen .pwm-slide .pwm-visual{padding:5px 12px!important}
+:fullscreen .pwm-slide .pwm-graph{height:52%!important;min-height:105px!important}
+:fullscreen .pwm-slide .pwm-bulb-wrap{width:115px!important;height:115px!important}
+:fullscreen .pwm-slide .pwm-bulb{font-size:72px!important}
+:fullscreen .pwm-slide .pwm-controls{
+  display:flex!important;flex:0 0 auto!important;
+  margin:4px 0 2px!important;gap:5px!important
+}
+:fullscreen .pwm-slide .pwm-controls button[data-duty]{
+  min-width:112px!important;height:48px!important;padding:0 10px!important
+}
+:fullscreen .pwm-slide .pwm-controls button[data-duty] .entry-value-text,
+:fullscreen .pwm-slide .pwm-controls button[data-duty] .duty-value-text{font-size:18px!important}
+:fullscreen .pwm-slide .pwm-controls button[data-duty] i{font-size:17px!important}
+:fullscreen .pwm-slide .pwm-note{display:block!important;flex:0 0 auto!important;margin:2px 0 0!important;font-size:12px!important}
