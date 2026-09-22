@@ -1998,3 +1998,61 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   background:#20b5dd!important;
   z-index:5!important;
 }
+
+/* Repeat C outline + connector alignment refinements */
+.entry-program{
+  --repeat-thickness:30px;
+  --repeat-yellow:#ffd400;
+}
+/* left spine thickness exactly matches the bottom jaw thickness */
+.entry-program .repeat-body{
+  border-left-width:var(--repeat-thickness)!important;
+}
+.entry-program .repeat-body:after{
+  left:calc(-1 * var(--repeat-thickness))!important;
+  height:var(--repeat-thickness)!important;
+}
+/* nested commands start flush at the inside edge of the spine */
+.entry-program .repeat-body>.entry-basic-four,
+.entry-program .repeat-body>.entry-compare-four{
+  margin-left:0!important;
+  width:100%!important;
+}
+
+/* Selection follows only the OUTER coloured C perimeter.
+   No yellow seam is drawn where header joins the vertical spine. */
+.entry-program .repeat-block.entry-current{
+  outline:0!important;
+  box-shadow:
+    inset 0 4px 0 var(--repeat-yellow),
+    inset -4px 0 0 var(--repeat-yellow)!important;
+}
+.entry-program .repeat-block.entry-current:before{
+  filter:drop-shadow(0 -4px 0 var(--repeat-yellow))!important;
+}
+.entry-program .repeat-block.entry-current:after{
+  display:none!important;
+}
+.entry-program .repeat-block.entry-current + .repeat-body.repeat-show{
+  box-shadow:-4px 0 0 var(--repeat-yellow)!important;
+}
+.entry-program .repeat-block.entry-current + .repeat-body.repeat-show:after{
+  box-shadow:
+    -4px 0 0 var(--repeat-yellow),
+    0 4px 0 var(--repeat-yellow),
+    4px 0 0 var(--repeat-yellow)!important;
+}
+
+/* Blocks connected below Start align to the start block's connector axis.
+   Their top-left corner no longer protrudes left of the V connection. */
+.entry-program>.entry-block:not(.start-block),
+.entry-program>.repeat-block{
+  margin-left:22px!important;
+}
+/* The repeat cavity remains relative to its own C spine, not double-indented. */
+.entry-program .repeat-body{
+  margin-left:22px!important;
+}
+.entry-program .repeat-body .entry-block{
+  margin-left:0!important;
+}
