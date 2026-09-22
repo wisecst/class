@@ -1703,3 +1703,47 @@ body.after-intro:not(.entry-page) .wrap>.slide.active{top:112px!important}
   margin:0!important;
   line-height:1.15!important;
 }
+
+/* Non-Entry LED pages keep the same small device label above LED as page 1. */
+body.after-intro:not(.entry-page) .wrap>header .device-label{
+  display:block!important;
+  position:absolute!important;
+  left:24px!important;
+  top:12px!important;
+  margin:0!important;
+  color:#fff!important;
+  font-size:15px!important;
+  font-weight:800!important;
+  z-index:3!important;
+}
+body.after-intro:not(.entry-page) .wrap>header .title-row{
+  margin-top:26px!important;
+}
+
+/* PWM: give the two-line explanation more visual weight and trade graph height for it. */
+.pwm-slide .pwm-intro{
+  font-size:clamp(22px,1.65vw,29px)!important;
+  line-height:1.48!important;
+  padding:10px 16px!important;
+  margin:0 0 5px!important;
+}
+.pwm-slide .pwm-intro-lines{gap:7px!important;line-height:1.48!important}
+.pwm-slide .pwm-demo{flex:1 1 0!important;min-height:0!important}
+.pwm-slide .pwm-graph{
+  height:48%!important;
+  min-height:105px!important;
+  max-height:220px!important;
+}
+:fullscreen .pwm-slide .pwm-intro{
+  font-size:clamp(23px,1.7vw,30px)!important;
+  line-height:1.5!important;
+  padding:10px 16px!important;
+  margin:0 0 5px!important;
+}
+:fullscreen .pwm-slide .pwm-intro-lines{gap:7px!important;line-height:1.5!important}
+:fullscreen .pwm-slide .pwm-graph{
+  flex:0 1 44%!important;
+  height:44%!important;
+  min-height:95px!important;
+  max-height:190px!important;
+}
