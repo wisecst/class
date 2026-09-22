@@ -204,7 +204,7 @@
      const r=box.getBoundingClientRect();
      const x=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100));
      const y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
-     mark.style.left=x.toFixed(2)+'%';mark.style.top=y.toFixed(2)+'%';
+     mark.style.setProperty('left',x.toFixed(2)+'%','important');mark.style.setProperty('top',y.toFixed(2)+'%','important');
    });
    mark.addEventListener('pointerup',()=>{drag=null});
  });
