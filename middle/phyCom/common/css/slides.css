@@ -798,3 +798,32 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   min-width:0!important;
   z-index:7!important;
 }
+
+/* Keep the completed original four-block stack permanently visible beside
+   the replacement stack, with enough horizontal clearance for run buttons. */
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{
+  display:flex!important;
+  position:absolute!important;
+  left:calc(100% + 150px)!important;
+  right:auto!important;
+  top:0!important;
+  width:max-content!important;
+  min-width:max-content!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  visibility:visible!important;
+  opacity:1!important;
+  z-index:20!important;
+  pointer-events:auto!important;
+}
+#entryBasicFour.compare-right .entry-block,
+#entryBasicFour.entry-cleared .entry-block{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+#entryCompareFour.compare-left{
+  z-index:10!important;
+  overflow:visible!important;
+}
