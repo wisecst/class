@@ -2707,3 +2707,70 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-save-item:hover,.entry-save-item.save-click{background:#eef7f1!important}
 .entry-save-wrap.save-focus .entry-save-btn{box-shadow:0 0 0 4px #ffd800!important}
 .entry-save-item.save-click{box-shadow:inset 4px 0 0 #00b928!important}
+
+/* Entry top toolbar: actions begin 30px after the lesson title, not at far right. */
+.entry-code-toolbar .entry-top-actions{
+  margin-left:30px!important;
+  margin-right:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+
+/* Save button: recognizable white floppy-disk icon, matching Entry. */
+.entry-save-icon{
+  position:relative!important;
+  display:inline-block!important;
+  width:17px!important;
+  height:17px!important;
+  border:2px solid #fff!important;
+  border-radius:2px!important;
+  box-sizing:border-box!important;
+}
+.entry-save-icon::before{
+  content:""!important;
+  position:absolute!important;
+  left:3px!important;right:3px!important;top:1px!important;height:5px!important;
+  background:#fff!important;
+  border-radius:1px!important;
+}
+.entry-save-icon::after{
+  content:""!important;
+  position:absolute!important;
+  left:3px!important;right:3px!important;bottom:2px!important;height:5px!important;
+  border:2px solid #fff!important;
+  border-radius:1px!important;
+  box-sizing:border-box!important;
+}
+
+/* Save dropdown: white speech bubble, black text. */
+.entry-save-menu{
+  background:#fff!important;
+  color:#111!important;
+  border:1px solid #d8e0e4!important;
+}
+.entry-save-menu::before{
+  background:#fff!important;
+}
+.entry-save-item{
+  background:#fff!important;
+  color:#111!important;
+  font-weight:800!important;
+}
+
+/* Guided checkpoint: highlight ONLY “저장하기” like a marker stroke. */
+.entry-save-item:first-child.save-click{
+  background:
+    linear-gradient(transparent 28%,#fff29a 28%,#fff29a 86%,transparent 86%)!important;
+  box-shadow:none!important;
+  color:#111!important;
+}
+.entry-save-item:first-child.save-click::after{
+  content:""!important;
+  position:absolute!important;
+  left:13px!important;right:74px!important;bottom:8px!important;
+  height:5px!important;
+  border-radius:4px!important;
+  background:rgba(255,216,0,.45)!important;
+  z-index:-1!important;
+}
