@@ -1286,3 +1286,16 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 }
 .pwm-controls button[data-duty] b{font-size:18px!important;line-height:1!important}
 .pwm-controls button[data-duty] span{font-size:13px!important;font-weight:800!important;opacity:.78}
+
+/* Distinguish Entry value from PWM duty while keeping their mapping visually explicit. */
+.pwm-slide .entry-value-label,.pwm-slide .entry-value-text{color:#1769aa!important}
+.pwm-slide .duty-label,.pwm-slide .duty-value-text{color:#d56b00!important}
+.pwm-status .pwm-map-arrow{font-weight:1000;color:#61717b;margin:0 3px}
+.pwm-controls button[data-duty]{min-width:126px!important;gap:8px!important}
+.pwm-controls button[data-duty] .entry-value-text,
+.pwm-controls button[data-duty] .duty-value-text{
+  font-size:17px!important;font-weight:900!important;line-height:1!important;opacity:1!important;
+}
+.pwm-controls button[data-duty] i{
+  font-style:normal!important;font-size:17px!important;font-weight:900!important;color:#65747c!important;line-height:1!important;
+}
