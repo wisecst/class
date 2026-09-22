@@ -51,11 +51,12 @@ function showPin13(){
 }
 function next(){
  if(autoResult){
+   const done=autoResult;
    closeResults();
-   if(autoResult==='on4'){step=5;render();return}
-   if(autoResult==='off6'){step=7;render();return}
-   if(autoResult==='on8'){step=9;render();return}
-   if(autoResult==='off10'){step=11;render();return}
+   if(done==='on4'){step=5;render();return}
+   if(done==='off6'){step=7;render();return}
+   if(done==='on8'){step=9;render();return}
+   if(done==='off10'){step=11;render();return}
  }
  closeResults();
  if(step===2&&!pin13Done){showPin13();pin13Done=true;return}
