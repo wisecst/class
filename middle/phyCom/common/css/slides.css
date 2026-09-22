@@ -726,3 +726,25 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   cursor:pointer!important;
   box-shadow:0 3px 9px #0002!important;
 }
+
+/* After the first loop execution result, move only the original four blocks right.
+   Keep Start / D13 / Repeat on the left and build the replacement four inside Repeat. */
+#entryBasicFour.compare-right{
+  position:absolute!important;
+  left:61%!important;
+  top:0!important;
+  width:37%!important;
+}
+#entryCompareFour.compare-left{
+  display:flex!important;
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:57%!important;
+}
+#entryCompareFour.compare-left .entry-block:not(.entry-show){
+  display:none!important;
+}
+#entryCompareFour.compare-left .entry-block.entry-show{
+  display:flex!important;
+}
