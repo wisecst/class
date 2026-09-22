@@ -6,5 +6,5 @@ function render(){const d=duties[index],root=document.querySelector('.pwm-slide'
 function next(){index=Math.min(duties.length-1,index+1);render()}function prev(){index=Math.max(0,index-1);render()}
 function play(){if(timer){clearInterval(timer);timer=null;document.querySelector('#pwmPlay').textContent='▶ 자동 재생';return}document.querySelector('#pwmPlay').textContent='■ 멈추기';timer=setInterval(()=>{index=(index+1)%duties.length;render()},1400)}
 function init(){const grid=document.querySelector('.pwm-grid');if(!grid)return;for(let i=0;i<=4;i++){const x=60+i*160;grid.insertAdjacentHTML('beforeend','<line x1="'+x+'" y1="35" x2="'+x+'" y2="260"/>')}document.querySelectorAll('[data-duty]').forEach(b=>b.onclick=()=>{index=duties.indexOf(+b.dataset.duty);render()});document.querySelector('#pwmPlay').onclick=play;render()}
-window.pwmLesson={next,prev,canNext:()=>index<duties.length-1,canPrev:()=>index>0};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+window.pwmLesson={next,prev,play,canNext:()=>index<duties.length-1,canPrev:()=>index>0,isAtMax:()=>index===duties.length-1};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
