@@ -1632,3 +1632,74 @@ body.after-intro:not(.entry-page) .wrap>.slide.active{top:112px!important}
 :fullscreen .pwm-slide .pwm-controls button[data-duty] .duty-value-text{font-size:18px!important}
 :fullscreen .pwm-slide .pwm-controls button[data-duty] i{font-size:17px!important}
 :fullscreen .pwm-slide .pwm-note{display:block!important;flex:0 0 auto!important;margin:2px 0 0!important;font-size:12px!important}
+
+/* Fullscreen fine tuning */
+
+/* Page 1: keep the complete LED module image inside the left column. */
+:fullscreen body:not(.after-intro) .slide:first-of-type.active .concept-grid{
+  grid-template-columns:48% 52%!important;
+  gap:12px!important;
+  padding-left:8px!important;
+  box-sizing:border-box!important;
+}
+:fullscreen body:not(.after-intro) .slide:first-of-type.active .concept-image{
+  overflow:visible!important;
+  padding-left:6px!important;
+  box-sizing:border-box!important;
+}
+:fullscreen body:not(.after-intro) .slide:first-of-type.active .module-photo{
+  width:96%!important;height:100%!important;
+  max-width:100%!important;
+  object-fit:contain!important;object-position:center center!important;
+  transform:none!important;
+  margin:0 auto!important;
+}
+
+/* Page 5: explanation stays presentation-size. The second sentence should occupy
+   nearly the full available row rather than shrinking with viewport units. */
+:fullscreen .pwm-slide .pwm-intro{
+  font-size:clamp(20px,1.55vw,27px)!important;
+  line-height:1.38!important;
+  padding:7px 13px!important;
+  margin:0 0 4px!important;
+}
+:fullscreen .pwm-slide .pwm-intro-lines{gap:4px!important;line-height:1.38!important}
+:fullscreen .pwm-slide .pwm-intro-lines>div{white-space:nowrap!important}
+
+/* Remove excess vertical air in the demo. Keep the ratio text close to the graph,
+   and keep the milestone ovals immediately below the demo. */
+:fullscreen .pwm-slide .pwm-demo{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  max-height:none!important;
+}
+:fullscreen .pwm-slide .pwm-visual{
+  display:flex!important;
+  flex-direction:column!important;
+  padding:5px 12px 3px!important;
+}
+:fullscreen .pwm-slide .pwm-status{flex:0 0 auto!important}
+:fullscreen .pwm-slide .pwm-graph{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:100px!important;
+  max-height:none!important;
+  margin:0!important;
+}
+:fullscreen .pwm-slide .pwm-ratio{
+  flex:0 0 auto!important;
+  margin:-4px 0 0!important;
+  line-height:1.1!important;
+}
+:fullscreen .pwm-slide .pwm-lamp-panel{
+  justify-content:center!important;
+  gap:3px!important;
+  padding:3px 0!important;
+}
+:fullscreen .pwm-slide .pwm-controls{
+  margin:2px 0 1px!important;
+}
+:fullscreen .pwm-slide .pwm-note{
+  margin:0!important;
+  line-height:1.15!important;
+}
