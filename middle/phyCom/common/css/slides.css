@@ -2299,3 +2299,38 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
     max-width:none!important;
   }
 }
+
+/* Apply the same content-fit width rule to Start and Repeat headers. */
+.entry-slide .entry-program .start-block,
+.entry-slide .entry-program .repeat-block{
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  box-sizing:border-box!important;
+}
+/* Start has its play icon on the left; keep only the natural text-side padding. */
+.entry-slide .entry-program .start-block{
+  padding-right:20px!important;
+}
+/* Repeat includes its run button, so its right edge follows the same
+   text -> button -> minimal outer padding rule as command blocks. */
+.entry-slide .entry-program .repeat-block{
+  padding-right:10px!important;
+}
+.entry-slide .entry-program .repeat-block .entry-loop-run-btn{
+  margin-left:8px!important;
+  margin-right:0!important;
+  flex:0 0 26px!important;
+}
+/* Blocks without a run button get an equivalent right-side breathing space:
+   same 8px visual gap used between command text and a run button. */
+.entry-slide .entry-program .entry-block:not(:has(.entry-run-btn)):not(:has(.entry-block-run-btn)):not(:has(.entry-loop-run-btn)){
+  padding-right:8px!important;
+}
+/* Preserve a little extra room for the rounded end of wait blocks while keeping
+   the visible text-to-edge gap equivalent to the run-button gap. */
+.entry-slide .entry-program .wait-block:not(:has(.entry-block-run-btn)){
+  padding-right:16px!important;
+}
