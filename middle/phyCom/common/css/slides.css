@@ -547,3 +547,6 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 /* D13 execution popup: move blink back onto the square immediately left of 13. */
 .pin13-led-glow{left:44.0%!important}
 .pin13-led-dot{left:44.0%!important}
+
+/* Circuit slide: move OrangeBoard right by 5 background grid cells (5 × 20px). */
+#workspace .board-component{transform:translateX(calc(3.5% + 100px))!important}
