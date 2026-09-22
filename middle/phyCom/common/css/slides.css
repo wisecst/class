@@ -1543,3 +1543,19 @@ body.after-intro .pwm-demo{
   height:calc(100% - 48px)!important;
   max-height:calc(100% - 48px)!important;
 }
+
+/* Header contract: 1/2/5 use navy LED header; 3/4 Entry pages do not. */
+body.after-intro .wrap>header{display:block!important}
+body.after-intro .wrap>header .device-label,
+body.after-intro .wrap>header .title-desc,
+body.after-intro .wrap>header .diode-bubble{display:none!important}
+body.after-intro .wrap>header .title-row{display:flex!important;align-items:center!important;margin-top:24px!important}
+body.after-intro .wrap>header h1{display:block!important}
+body.after-intro .wrap>header .slide-subtitle{
+ display:block!important;margin-left:auto!important;text-align:right!important;
+ color:#fff!important;font-size:clamp(1.35rem,2.5vw,2rem)!important;font-weight:900!important
+}
+body.after-intro .non-entry-slide>h2.header-page-title{display:none!important}
+body.entry-page .wrap>header{display:none!important}
+body.entry-page .wrap>.slide.active{top:12px!important}
+body.after-intro:not(.entry-page) .wrap>.slide.active{top:112px!important}
