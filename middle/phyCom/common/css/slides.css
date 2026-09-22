@@ -2541,3 +2541,61 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   left:50px!important;
   top:-10px!important;
 }
+
+/* Slide 3 comparison layout — derive the parked stack position from the ACTUAL
+   rendered width of the longest new block, leaving exactly 10px between stacks.
+   CSS anchor positioning is avoided for compatibility; the shared row shrink-wraps
+   both content-sized stacks and uses a 10px column gap. */
+.entry-program:has(#entryCompareFour.compare-left) .basic-repeat-body{
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:flex-start!important;
+  gap:10px!important;
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  overflow:visible!important;
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+  position:relative!important;
+  flex:0 0 auto!important;
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  left:auto!important;
+  top:auto!important;
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+  position:relative!important;
+  flex:0 0 auto!important;
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  left:auto!important;
+  right:auto!important;
+  top:auto!important;
+  margin:0!important;
+}
+/* Never stretch individual blocks: their rendered content determines width. */
+.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour .entry-block,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour .entry-block{
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+/* Same geometry at narrower viewport sizes; scaling belongs to the lesson frame,
+   not to either code stack. */
+@media (max-width:1500px){
+  .entry-program:has(#entryCompareFour.compare-left) .basic-repeat-body{
+    gap:10px!important;
+    width:max-content!important;
+  }
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+    left:auto!important;
+    width:max-content!important;
+  }
+}
