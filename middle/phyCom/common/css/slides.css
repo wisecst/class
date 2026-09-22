@@ -2599,3 +2599,17 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
     width:max-content!important;
   }
 }
+
+/* Slide 4 LEFT dropdown: scrolling only.
+   IMPORTANT: do not touch the shared speech-bubble pointer geometry. */
+.entry-compare-slide .pin-compare-item:first-child .pin-dropdown.all-pins{
+  max-height:300px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+}
+/* Keep the already-finalized pointer coordinates unchanged while the list scrolls. */
+.entry-compare-slide .pin-compare-item:first-child .pin-dropdown.all-pins::before{
+  left:50px!important;
+  top:-10px!important;
+  transform:rotate(45deg)!important;
+}
