@@ -12,9 +12,26 @@ const steps=[
  {tab:'hardware',title:'디지털 3번 핀을 0으로 정하기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'}
 ];
-let step=0, phase='build', pin13Done=false, timer=null, activeButton=null, autoResult=null, savePending=null;
+let step=0, phase='build', pin13Done=false, timer=null, activeButton=null, autoResult=null, savePending=null, guidedResult=false;
 const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
-function closeResults(){
+function closeSaveMenu(){
+  const wrap=q('.slide.active .entry-save-wrap')||q('.entry-save-wrap');
+  const menu=wrap?.querySelector('.entry-save-menu');
+  menu?.classList.remove('show'); menu?.setAttribute('aria-hidden','true');
+  wrap?.classList.remove('save-focus');
+  menu?.querySelector('.entry-save-item')?.classList.remove('save-click');
+ }
+ function openSaveMenu(){
+  const wrap=q('.slide.active .entry-save-wrap')||q('.entry-save-wrap');
+  const menu=wrap?.querySelector('.entry-save-menu');
+  const item=menu?.querySelector('.entry-save-item');
+  if(!wrap||!menu||!item)return;
+  wrap.classList.add('save-focus'); menu.classList.add('show'); menu.setAttribute('aria-hidden','false');
+  item.classList.add('save-click');
+ }
+ function closeResults(){
+ closeSaveMenu();
+ guidedResult=false;
  q('.entry-program')?.classList.remove('result-running');
  autoResult=null;
  if(timer){clearInterval(timer);timer=null}
@@ -26,13 +43,13 @@ function closeResults(){
  if(activeButton&&activeButton.id==='runPin13')activeButton.textContent='▶';
  activeButton=null;
 }
-function ledResult(mode,button=null){
- closeResults(); activeButton=button;
+function ledResult(mode,button=null,guided=false){
+ closeResults(); guidedResult=guided; activeButton=button;
  const program=q('.entry-program'); if(program)program.classList.toggle('result-running',mode==='blink');
  if(button){button.classList.add('running');button.textContent='■'}
  const m=q('#entryLedTestModal'),t=q('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
  const paint=on=>{l?.classList.toggle('off',!on);if(t)t.textContent=on?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';m?.classList.add('show');m?.setAttribute('aria-hidden','false')};
- if(mode==='blink'){let on=true;paint(on);timer=setInterval(()=>{on=!on;paint(on)},200)}else paint(mode==='on');
+ if(mode==='blink'){let on=true;paint(on);timer=setInterval(()=>{on=!on;paint(on)},200)}else paint(mode==='on'); if(guided)openSaveMenu();
 }
 function render(){
  qa('[data-entry-step]').forEach(el=>{const n=+el.dataset.entryStep;el.classList.toggle('entry-show',n<=step);el.classList.toggle('entry-current',n===step&&step>0)});
@@ -75,22 +92,22 @@ function showSaveThen(action){
  if(autoResult){
    const done=autoResult;
    closeResults();
-   if(done==='on4'){showSaveThen(()=>{step=5;render()});return}
-   if(done==='off6'){showSaveThen(()=>{step=7;render()});return}
-   if(done==='on8'){showSaveThen(()=>{step=9;render()});return}
-   if(done==='off10'){showSaveThen(()=>{step=11;render()});return}
+   if(done==='on4'){step=5;render();return}
+   if(done==='off6'){step=7;render();return}
+   if(done==='on8'){step=9;render();return}
+   if(done==='off10'){step=11;render();return}
  }
  closeResults();
  if(step===2&&!pin13Done){showPin13();pin13Done=true;return}
- if(step===4){const b=q('[data-entry-step="4"] .entry-block-run-btn');ledResult('on',b);autoResult='on4';return}
- if(step===6){const b=q('[data-entry-step="6"] .entry-block-run-btn');ledResult('off',b);autoResult='off6';return}
- if(step===7&&phase==='build'){ledResult('blink',q('#runLoop'));phase='blinked';return}
- if(step===7&&phase==='blinked'){showSaveThen(()=>{phase='cleared';render()});return}
+ if(step===4){const b=q('[data-entry-step="4"] .entry-block-run-btn');ledResult('on',b,true);autoResult='on4';return}
+ if(step===6){const b=q('[data-entry-step="6"] .entry-block-run-btn');ledResult('off',b,true);autoResult='off6';return}
+ if(step===7&&phase==='build'){ledResult('blink',q('#runLoop'),true);phase='blinked';return}
+ if(step===7&&phase==='blinked'){closeResults();phase='cleared';render();return}
  if(step===7&&phase==='cleared'){phase='compare';step=8;render();return}
- if(step===8&&phase==='compare'){const b=q('[data-entry-step="8"] .entry-block-run-btn');ledResult('on',b);autoResult='on8';return}
- if(step===10&&phase==='compare'){const b=q('[data-entry-step="10"] .entry-block-run-btn');ledResult('off',b);autoResult='off10';return}
- if(step===11&&phase==='compare'){ledResult('blink',q('#runLoop'));phase='done';return}
- if(phase==='done'){showSaveThen(()=>{q('[data-entry-step="11"]')?.classList.remove('entry-current');phase='finished';render()});return}
+ if(step===8&&phase==='compare'){const b=q('[data-entry-step="8"] .entry-block-run-btn');ledResult('on',b,true);autoResult='on8';return}
+ if(step===10&&phase==='compare'){const b=q('[data-entry-step="10"] .entry-block-run-btn');ledResult('off',b,true);autoResult='off10';return}
+ if(step===11&&phase==='compare'){ledResult('blink',q('#runLoop'),true);phase='done';return}
+ if(phase==='done'){closeResults();q('[data-entry-step="11"]')?.classList.remove('entry-current');phase='finished';render();return}
  if(phase==='finished'){return}
  step=Math.min(steps.length,step+1);render();
 }
