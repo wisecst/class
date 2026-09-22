@@ -36,7 +36,7 @@ function ledResult(mode,button=null){
 }
 function render(){
  qa('[data-entry-step]').forEach(el=>{const n=+el.dataset.entryStep;el.classList.toggle('entry-show',n<=step);el.classList.toggle('entry-current',n===step&&step>0)});
- qa('[data-repeat-body]').forEach(el=>el.classList.toggle('repeat-show',step>=4));
+ qa('[data-repeat-body]').forEach(el=>el.classList.toggle('repeat-show',step>=3));
  const compare=phase==='compare'||phase==='done';
  const cleared=phase==='cleared';
  q('#entryBasicFour')?.classList.toggle('compare-right',compare);
