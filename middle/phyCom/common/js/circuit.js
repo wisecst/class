@@ -1,6 +1,6 @@
 (()=>{
 const POWER_COLOR="#e53935",GROUND_COLOR="#222222",SIGNAL_COLORS=["#1976d2","#43a047","#8e24aa","#ef6c00","#f2c200","#00897b","#6d4c41","#3949ab"];
-const SAFE_MARGIN=18,LANE_SPACING=24,BOARD_LANE_MARGIN=28,PIN_EXIT_BASE=72,PIN_EXIT_SPACING=20;
+const SAFE_MARGIN=18,LANE_SPACING=24,BOARD_LANE_MARGIN=28,PIN_EXIT_BASE=60,PIN_EXIT_SPACING=0;
 const boardDef={pins:[{name:"D3",x:.79468,y:.06550},{name:"5V",x:.55263,y:.91500},{name:"GND2",x:.62169,y:.91500}]};
 const moduleDef={pins:[{name:"IN",x:.77279,y:.39963},{name:"VCC",x:.77538,y:.51097},{name:"GND",x:.77675,y:.62098}]};
 const plannedConnections=[{from:"VCC",to:"5V"},{from:"GND",to:"GND2"},{from:"IN",to:"D3"}];
