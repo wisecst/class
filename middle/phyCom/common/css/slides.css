@@ -886,3 +886,51 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .entry-run-btn.running,.entry-loop-run-btn.running,.entry-block-run-btn.running{
   opacity:.55!important;
 }
+
+/* Slide 4 pin dropdowns: mimic Entry's opened select menu. */
+.entry-compare-slide .pin-compare-item{position:relative}
+.entry-compare-slide .compare-pin-field{
+  position:relative;
+  outline:3px solid #ffe500!important;
+  outline-offset:2px!important;
+  border-radius:16px!important;
+}
+.entry-compare-slide .pin-dropdown{
+  position:absolute!important;
+  left:0!important;
+  top:calc(100% + 8px)!important;
+  margin:0!important;
+  width:184px!important;
+  min-width:184px!important;
+  max-width:184px!important;
+  max-height:248px!important;
+  padding:0 22px 0 14px!important;
+  display:block!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+  border:1px solid #d9dee2!important;
+  border-radius:6px!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.20)!important;
+  z-index:30!important;
+}
+.entry-compare-slide .pin-dropdown span{
+  display:block!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  padding:11px 4px!important;
+  border-bottom:1px solid #edf0f2!important;
+  border-radius:0!important;
+  background:#fff!important;
+  color:#26333c!important;
+  text-align:left!important;
+  font-weight:800!important;
+  font-size:17px!important;
+}
+.entry-compare-slide .pin-dropdown span.selected{
+  background:#fff!important;
+  color:#26333c!important;
+}
+.entry-compare-slide .pin-dropdown::-webkit-scrollbar{width:8px}
+.entry-compare-slide .pin-dropdown::-webkit-scrollbar-track{background:transparent}
+.entry-compare-slide .pin-dropdown::-webkit-scrollbar-thumb{background:#9fc5d5;border-radius:8px}
