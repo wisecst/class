@@ -1859,3 +1859,43 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .entry-program .repeat-body:after{
   border-radius:0 0 22px 0!important;
 }
+
+/* Final Entry stack rule:
+   every non-Start block ends in a sharp downward V tongue.
+   Connected blocks overlap enough that no workspace background can show through the joint. */
+.entry-program .entry-block:not(.start-block):not(.repeat-block),
+.entry-program .repeat-body>.entry-block{
+  clip-path:polygon(
+    0 0,
+    8px 0,8px 7px,14px 12px,20px 7px,20px 0,
+    100% 0,
+    100% calc(100% - 12px),
+    20px calc(100% - 12px),
+    14px 100%,
+    8px calc(100% - 12px),
+    0 calc(100% - 12px)
+  )!important;
+  border-radius:0 22px 22px 0!important;
+  padding-bottom:22px!important;
+}
+/* Hide the seam: the receiving block rises behind the preceding V tongue. */
+.entry-program>.entry-block + .entry-block,
+.entry-program .start-block + .entry-block,
+.entry-program .repeat-body>.entry-block + .entry-block{
+  margin-top:-13px!important;
+}
+/* Repeat C-block's outer bottom also ends in the same sharp V tongue. */
+.entry-program .repeat-body:after{
+  height:22px!important;
+  clip-path:polygon(
+    0 0,100% 0,
+    100% calc(100% - 12px),
+    20px calc(100% - 12px),
+    14px 100%,
+    8px calc(100% - 12px),
+    0 calc(100% - 12px)
+  )!important;
+  border-radius:0 0 22px 0!important;
+}
+/* Slight overlap beneath the C-block foot prevents a visible background seam. */
+.entry-program .repeat-body + .entry-block{margin-top:-13px!important}
