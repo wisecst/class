@@ -2429,3 +2429,18 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   padding-right:34px!important;
   box-sizing:border-box!important;
 }
+
+/* Slide 4 left dropdown pointer: place it on the OUTSIDE top edge of the menu,
+   directly between the 3▼ selector and the first item (0). */
+.entry-compare-slide .pin-compare-item:first-child::after{
+  left:50px!important;
+  top:57px!important;
+  width:18px!important;
+  height:18px!important;
+  margin:0!important;
+  background:#fff!important;
+  border-left:1px solid #d9dee2!important;
+  border-top:1px solid #d9dee2!important;
+  transform:rotate(45deg)!important;
+  z-index:81!important;
+}
