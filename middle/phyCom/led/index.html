@@ -8,6 +8,10 @@
 </head>
 <body>
 <button id="fullscreenBtn" class="fullscreen-btn" type="button" aria-label="전체화면으로 보기" title="전체화면">⛶</button>
+<aside class="slide-sidebar" id="slideSidebar" aria-label="페이지 목록">
+  <div class="slide-sidebar-title">LED 수업자료</div>
+  <nav id="slideSidebarList"></nav>
+</aside>
 <main class="wrap">
 <header>
 <span class="course-label">중학교 피지컬 컴퓨팅</span>
@@ -198,6 +202,8 @@
  let drag=null;
  box.querySelectorAll('.pwm-tilde-mark').forEach(mark=>{
    mark.title='드래그해서 위치 조정';
+   const saved=JSON.parse(localStorage.getItem('led-pwm-pin-positions')||'{}')[mark.dataset.pwmPin];
+   if(saved){mark.style.setProperty('left',saved.x+'%','important');mark.style.setProperty('top',saved.y+'%','important');}
    mark.addEventListener('pointerdown',e=>{drag=mark;mark.setPointerCapture(e.pointerId);e.preventDefault()});
    mark.addEventListener('pointermove',e=>{
      if(drag!==mark)return;
@@ -206,7 +212,14 @@
      const y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
      mark.style.setProperty('left',x.toFixed(2)+'%','important');mark.style.setProperty('top',y.toFixed(2)+'%','important');
    });
-   mark.addEventListener('pointerup',()=>{drag=null});
+   mark.addEventListener('pointerup',()=>{
+     const all=JSON.parse(localStorage.getItem('led-pwm-pin-positions')||'{}');
+     const x=parseFloat(mark.style.left),y=parseFloat(mark.style.top);
+     all[mark.dataset.pwmPin]={x,y};
+     localStorage.setItem('led-pwm-pin-positions',JSON.stringify(all));
+     mark.title='~'+mark.dataset.pwmPin+'  x:'+x.toFixed(2)+'%  y:'+y.toFixed(2)+'%';
+     drag=null;
+   });
  });
 })();
 </script>
