@@ -1817,3 +1817,35 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 :fullscreen .pwm-slide .pwm-controls{
   margin:1px 0 0!important;
 }
+
+/* Slide 3 comparison transition:
+   the old four-block stack moves exactly one stack-width to the right.
+   The replacement stack occupies the vacated slot with no horizontal gap. */
+.entry-program:has(#entryBasicFour.compare-right) .basic-repeat-body,
+.entry-program:has(#entryBasicFour.entry-cleared) .basic-repeat-body{
+  --entry-stack-w:min(46%,520px);
+  display:grid!important;
+  grid-template-columns:var(--entry-stack-w) var(--entry-stack-w)!important;
+  column-gap:0!important;
+  justify-content:start!important;
+  padding-right:0!important;
+}
+#entryCompareFour.compare-left{
+  grid-column:1!important;
+  width:100%!important;
+  margin:0!important;
+}
+#entryBasicFour.compare-right,
+#entryBasicFour.entry-cleared{
+  grid-column:2!important;
+  width:100%!important;
+  margin:0!important;
+}
+#entryCompareFour.compare-left .entry-block,
+#entryBasicFour.compare-right .entry-block,
+#entryBasicFour.entry-cleared .entry-block{
+  width:100%!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  box-sizing:border-box!important;
+}
