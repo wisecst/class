@@ -1108,3 +1108,16 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   box-shadow:0 0 0 2px rgba(255,229,0,.35)!important;
 }
 .pwm-pin-board-image .pwm-tilde-mark:active{cursor:grabbing!important}
+
+/* Align the digital-13 execution result with the standard LED result panel. */
+#pin13Modal{
+  position:absolute!important;
+  left:auto!important;
+  right:2.5%!important;
+  top:20%!important;
+  bottom:auto!important;
+  width:34%!important;
+  transform:none!important;
+  margin:0!important;
+  z-index:45!important;
+}
