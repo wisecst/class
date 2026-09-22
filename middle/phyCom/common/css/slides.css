@@ -1256,3 +1256,24 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .pwm-pin-board-image .pwm-tilde-mark.m9{left:57.70%!important}
 .pwm-pin-board-image .pwm-tilde-mark.m10{left:54.09%!important}
 .pwm-pin-board-image .pwm-tilde-mark.m11{left:50.59%!important}
+
+/* Entry scene tabs: keep scene area out of the coding workspace; show only tabs normally. */
+.entry-workspace{position:relative!important;padding-top:44px!important}
+.entry-scene-tabs{
+ position:absolute;left:0;right:0;top:0;height:44px;display:flex;align-items:stretch;
+ background:#00b928;border-bottom:1px solid #009c23;z-index:25;padding-left:16px;gap:0;
+}
+.entry-scene-tab,.entry-scene-add{
+ border:0;margin:0;font-weight:900;cursor:default;font-size:14px;
+}
+.entry-scene-tab{
+ min-width:94px;padding:0 16px;background:#25cb3c;color:#fff;border-right:1px solid #0aa72b;
+}
+.entry-scene-tab.active{
+ background:#fff;color:#f29a00;border-top:2px solid #f29a00;border-left:1px solid #f29a00;border-right:1px solid #f29a00;
+}
+.entry-scene-add{
+ width:44px;background:#009f25;color:#fff;font-size:25px;line-height:1;
+}
+.scene-close{margin-left:14px;color:#f29a00;font-size:18px}
+.entry-study-bar .entry-scene-label{display:none!important}
