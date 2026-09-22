@@ -1493,3 +1493,14 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   )!important;
   padding-bottom:12px!important;
 }
+
+/* Force Entry chrome to one row; no separate study bar above the workspace. */
+.entry-slide>.entry-study-bar{display:none!important}
+.entry-code-toolbar{
+  flex-wrap:nowrap!important;white-space:nowrap!important;
+  display:flex!important;align-items:center!important;
+}
+.entry-code-toolbar .entry-brand{flex:0 0 auto!important}
+.entry-code-toolbar .entry-by{flex:0 0 auto!important;color:#fff!important;font-size:9px!important;margin:0 10px 0 -5px!important}
+.entry-code-toolbar .entry-lesson-title{flex:0 1 auto!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.entry-code-toolbar .entry-top-actions{flex:0 0 auto!important}
