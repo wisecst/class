@@ -2189,3 +2189,15 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-program:has([data-entry-step="8"].entry-show) #entryBasicFour.compare-right{
   left:calc(100% + 110px)!important;
 }
+
+/* During blinking execution-result popup, the last 0.2s wait block is no longer
+   being added, so remove its yellow 'current block' selection perimeter. */
+.entry-program.result-running .repeat-body .entry-block.entry-current{
+  outline:none!important;
+  box-shadow:none!important;
+}
+.entry-program.result-running .repeat-body .entry-block.entry-current::before,
+.entry-program.result-running .repeat-body .entry-block.entry-current::after{
+  filter:none!important;
+  box-shadow:none!important;
+}
