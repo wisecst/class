@@ -1326,3 +1326,31 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   }
 }
 :fullscreen body{padding-left:0!important}
+
+/* PWM explanation: two clear teaching lines with highlighter emphasis. */
+.pwm-intro-lines{display:flex!important;flex-direction:column!important;gap:9px!important;line-height:1.55!important}
+.pwm-intro-lines>div{display:block!important}
+.pwm-intro-lines mark{
+  color:inherit!important;background:linear-gradient(transparent 46%,#fff08a 46%,#fff08a 92%,transparent 92%)!important;
+  padding:0 3px!important;font-weight:900!important;
+}
+
+/* PWM milestones: larger paired values and high-contrast selected state. */
+.pwm-controls button[data-duty]{
+  min-width:138px!important;height:62px!important;padding:0 13px!important;gap:9px!important;
+  border:2px solid #c9d6dc!important;background:#fff!important;
+}
+.pwm-controls button[data-duty] .entry-value-text,
+.pwm-controls button[data-duty] .duty-value-text{
+  font-size:21px!important;font-weight:1000!important;line-height:1!important;opacity:1!important;
+}
+.pwm-controls button[data-duty] i{
+  font-size:20px!important;font-weight:1000!important;color:#596b75!important;
+}
+.pwm-controls button[data-duty].active{
+  background:#fff3c4!important;border-color:#e59b00!important;
+  box-shadow:0 0 0 3px rgba(229,155,0,.18)!important;
+}
+.pwm-controls button[data-duty].active .entry-value-text{color:#075a9c!important}
+.pwm-controls button[data-duty].active .duty-value-text{color:#a94b00!important}
+.pwm-controls button[data-duty].active i{color:#3d4d56!important}
