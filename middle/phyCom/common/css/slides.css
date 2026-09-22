@@ -748,3 +748,19 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 #entryCompareFour.compare-left .entry-block.entry-show{
   display:flex!important;
 }
+
+/* Individual ON/OFF block execution controls. */
+.entry-block-run-btn{
+  position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);
+  border:0;border-radius:22px;padding:9px 16px;background:#244b67;color:#fff;
+  font-weight:900;font-size:15px;white-space:nowrap;cursor:pointer;box-shadow:0 3px 9px #0002;
+}
+.entry-led-test-modal{display:none;position:absolute;right:2.5%;top:20%;width:34%;z-index:45}
+.entry-led-test-modal.show{display:block}
+.entry-led-test-card{background:#fff;border-radius:24px;padding:18px 20px;text-align:center;box-shadow:0 14px 40px #18364a35;border:2px solid #d7e8f2}
+.entry-led-test-card>strong{font-size:28px;color:#205f83}
+.entry-led-test-module{position:relative;margin:12px auto 6px;width:min(92%,420px)}
+.entry-led-test-module img{display:block;width:100%;height:auto}
+.entry-led-test-light{position:absolute;left:20.8%;top:48.5%;width:27%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:#fff8a8;box-shadow:0 0 28px 13px #fff06e,0 0 55px 20px #ffe84d88}
+.entry-led-test-light.off{background:#b9b9a5;box-shadow:none;opacity:.28}
+.entry-led-test-card p{margin:5px 0 0;font-size:21px;font-weight:800;color:#26384a}
