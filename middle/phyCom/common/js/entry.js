@@ -35,14 +35,23 @@ function showFinalResult(){
 function hideFinalResult(){const p=document.querySelector('#entryFinalResult'),m=document.querySelector('#entryLedTestModal');if(loopTimer){clearInterval(loopTimer);loopTimer=null;}p?.classList.remove('show');p?.setAttribute('aria-hidden','true');m?.classList.remove('show');m?.setAttribute('aria-hidden','true');finalResultShown=false}
 function next(){
  if(step===7&&!basicResultDone&&!basicResultShown){showFinalResult();basicResultShown=true;return;}
- if(step===7&&basicResultShown){hideFinalResult();basicResultShown=false;basicResultDone=true;return;}
+ if(step===7&&basicResultShown){hideFinalResult();basicResultShown=false;basicResultDone=true;render();return;}
  if(step===steps.length&&!finalResultShown){showFinalResult();return;}
  if(step===steps.length&&finalResultShown){hideFinalResult();return;}
  if(step===2&&!pin13ResultDone&&!pin13ResultShown){showPin13Result();return;}
  if(step===2&&pin13ResultShown){hidePin13Result();pin13ResultDone=true;return;}
  step=Math.min(steps.length,step+1);render();
 }
-function prev(){stopManualRuns();if(finalResultShown){hideFinalResult();basicResultShown=false;return;}if(pin13ResultShown)hidePin13Result();step=Math.max(0,step-1);if(step<2)pin13ResultDone=false;render()}
+function prev(){
+ stopManualRuns();
+ if(finalResultShown){hideFinalResult();return;}
+ if(basicResultDone&&step===8){basicResultDone=false;step=7;render();return;}
+ if(basicResultShown){hideFinalResult();basicResultShown=false;return;}
+ if(pin13ResultShown)hidePin13Result();
+ step=Math.max(0,step-1);
+ if(step<2)pin13ResultDone=false;
+ render();
+}
 window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,isResultOpen:()=>pin13ResultShown||finalResultShown,showPin13Result,hidePin13Result,showFinalResult,hideFinalResult};
 function setLoopRun(on){
  loopRunning=on;
