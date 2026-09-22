@@ -977,3 +977,47 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .pwm-tilde-mark.m3{left:79.7%;top:7.1%}.pwm-tilde-mark.m5{left:73.1%;top:7.1%}.pwm-tilde-mark.m6{left:69.8%;top:7.1%}
 .pwm-tilde-mark.m9{left:56.8%;top:7.1%}.pwm-tilde-mark.m10{left:53.5%;top:7.1%}.pwm-tilde-mark.m11{left:50.2%;top:7.1%}
 .pwm-pin-board-card p{margin:8px 0 0;font-size:22px;color:#30495a}
+
+/* Slide 4 dropdown final: Entry-like scroll menu with pointer tip centered in the 3▼ field. */
+.entry-compare-slide .pin-compare-item .pin-dropdown{
+  left:52px!important;
+  top:45px!important;
+  width:184px!important;
+  min-width:184px!important;
+  max-width:184px!important;
+  height:230px!important;
+  max-height:230px!important;
+  padding:8px 22px 8px 14px!important;
+  display:block!important;
+  overflow-y:scroll!important;
+  overflow-x:hidden!important;
+  background:#fff!important;
+  border:1px solid #d9dee2!important;
+  border-radius:6px!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.20)!important;
+}
+/* pointer: tip lands between the 3 glyph and its ▼ inside the teal field */
+.entry-compare-slide .pin-compare-item .pin-dropdown::before{
+  content:""!important;
+  position:absolute!important;
+  left:50px!important;
+  top:-9px!important;
+  width:16px!important;
+  height:16px!important;
+  background:#fff!important;
+  border-left:1px solid #d9dee2!important;
+  border-top:1px solid #d9dee2!important;
+  transform:rotate(45deg)!important;
+  z-index:31!important;
+}
+.entry-compare-slide .pin-compare-item .pin-dropdown::after{display:none!important}
+.entry-compare-slide .pin-dropdown span{
+  display:block!important;
+  padding:10px 4px!important;
+  border-bottom:1px solid #edf0f2!important;
+  background:#fff!important;
+  color:#26333c!important;
+  text-align:left!important;
+}
+.entry-compare-slide .pin-dropdown::-webkit-scrollbar{width:8px!important}
+.entry-compare-slide .pin-dropdown::-webkit-scrollbar-thumb{background:#9fc5d5!important;border-radius:8px!important}
