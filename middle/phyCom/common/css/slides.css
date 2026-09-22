@@ -2444,3 +2444,22 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   transform:rotate(45deg)!important;
   z-index:81!important;
 }
+
+/* Slide 3 comparison spacing:
+   after the old four-block set leaves the repeat C, keep only one repeat-wall
+   thickness (30px) between the new left stack and the parked old stack. */
+.entry-program:has(#entryCompareFour.compare-left){
+  --repeat-compare-gap:var(--repeat-thickness,30px);
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+  left:calc(100% + var(--repeat-compare-gap))!important;
+  width:max-content!important;
+  max-width:none!important;
+}
+@media (max-width:1500px){
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+    left:calc(100% + var(--repeat-compare-gap))!important;
+  }
+}
