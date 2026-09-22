@@ -2417,3 +2417,15 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   z-index:80!important;
   pointer-events:none!important;
 }
+
+/* Wait blocks have no run control: force the same reserved run-button slot.
+   Put this after all legacy wait-block rules so older min-width/padding cannot win. */
+.entry-slide .entry-program .wait-block,
+.entry-slide .entry-program #entryBasicFour .wait-block,
+.entry-slide .entry-program #entryCompareFour .wait-block{
+  width:max-content!important;
+  min-width:0!important;
+  max-width:none!important;
+  padding-right:34px!important;
+  box-sizing:border-box!important;
+}
