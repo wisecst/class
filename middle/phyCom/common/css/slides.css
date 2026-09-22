@@ -659,3 +659,16 @@ body:has(.entry-slide.active) .entry-workspace{height:calc(100vh - 52px)!importa
 .entry-basic-code.compare-right .entry-block,.entry-new-code.compare-left .entry-block{margin-top:-2px!important}
 .entry-program:has(.entry-basic-code.compare-right){padding-right:0!important}
 .entry-old-code{display:none!important}
+
+/* FINAL overrides: slide 1 diode callout + D13 popup alignment. */
+body:not(.after-intro) header .diode-bubble{
+  display:block!important;
+  background:#fff7d6!important;
+  border-color:#ffd86b!important;
+  color:#655b48!important;
+}
+body:not(.after-intro) header .diode-bubble::before{background:#ffd86b!important}
+body:not(.after-intro) header .diode-bubble::after{border-top-color:#ffd86b!important}
+body:not(.after-intro) header .diode-word{color:#ffd86b!important}
+.pin13-led-glow{left:38.0%!important}
+.pin13-led-dot{left:38.0%!important}
