@@ -934,3 +934,34 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .entry-compare-slide .pin-dropdown::-webkit-scrollbar{width:8px}
 .entry-compare-slide .pin-dropdown::-webkit-scrollbar-track{background:transparent}
 .entry-compare-slide .pin-dropdown::-webkit-scrollbar-thumb{background:#9fc5d5;border-radius:8px}
+
+/* Entry-style speech-bubble dropdown: attached to and pointing at the 3▼ selector. */
+.entry-compare-slide .pin-compare-item .pin-dropdown{
+  left:58px!important;
+  top:47px!important;
+  overflow:visible!important;
+}
+.entry-compare-slide .pin-compare-item .pin-dropdown::before{
+  content:"";
+  position:absolute;
+  left:24px;
+  top:-10px;
+  width:18px;
+  height:18px;
+  background:#fff;
+  border-left:1px solid #d9dee2;
+  border-top:1px solid #d9dee2;
+  transform:rotate(45deg);
+  z-index:31;
+}
+.entry-compare-slide .pin-compare-item .pin-dropdown::after{
+  content:"";
+  position:absolute;
+  left:15px;
+  right:15px;
+  top:0;
+  height:10px;
+  background:#fff;
+  z-index:32;
+}
+.entry-compare-slide .pin-dropdown span{position:relative;z-index:33}
