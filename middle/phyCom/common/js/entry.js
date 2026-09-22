@@ -7,92 +7,75 @@ const steps=[
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'},
  {tab:'hardware',title:'디지털 3번 핀 끄기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'},
- {tab:'hardware',title:'디지털 3번 핀을 255로 정하기',text:'기존 네 블록을 오른쪽으로 옮기고 같은 의미의 코드를 비교합니다.'},
+ {tab:'hardware',title:'디지털 3번 핀을 255로 정하기',text:'같은 동작을 PWM 값으로 바꾸어 봅니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'},
  {tab:'hardware',title:'디지털 3번 핀을 0으로 정하기',text:'하드웨어 탭에서 가져옵니다.'},
  {tab:'flow',title:'0.2초 기다리기',text:'흐름 탭에서 가져옵니다.'}
 ];
-let step=0,pin13ResultShown=false,pin13ResultDone=false,basicResultShown=false,basicResultDone=false,finalResultShown=false,loopRunning=false,loopTimer=null;
-function render(){document.querySelectorAll('[data-entry-step]').forEach(el=>{const n=+el.dataset.entryStep;el.classList.toggle('entry-show',n<=step);el.classList.toggle('entry-current',n===step&&step>0)});document.querySelectorAll('[data-repeat-body]').forEach(el=>el.classList.toggle('repeat-show',step>=4));const old4=document.querySelector('#entryBasicFour'),new4=document.querySelector('#entryCompareFour');const compare=step>=8;if(old4)old4.classList.toggle('compare-right',compare);if(new4)new4.classList.toggle('compare-left',compare);document.querySelectorAll('.entry-tab').forEach(el=>el.classList.remove('active-tab'));if(step){const info=steps[step-1];document.querySelector('.entry-tab[data-tab="'+info.tab+'"]').classList.add('active-tab');document.querySelector('#entryGuideTitle').textContent=info.title;document.querySelector('#entryGuideText').textContent=info.text;}else{document.querySelector('#entryGuideTitle').textContent='다음 블록을 눌러 시작하세요.';document.querySelector('#entryGuideText').textContent='블록이 추가될 때 왼쪽에서 해당 블록의 탭이 함께 강조됩니다.';}document.querySelector('#back').disabled=step===0;document.querySelector('#forward').disabled=step===steps.length;document.querySelector('#step').textContent=step+' / '+steps.length;const bc=document.querySelector('#entryBlockCount');if(bc)bc.textContent=step;}
-function showPin13Result(){const m=document.querySelector('#pin13Modal'),b=document.querySelector('#runPin13');if(!m)return;m.classList.add('show');m.setAttribute('aria-hidden','false');pin13ResultShown=true;if(b)b.textContent='■ 종료'}
-function hidePin13Result(){const m=document.querySelector('#pin13Modal'),b=document.querySelector('#runPin13');if(!m)return;m.classList.remove('show');m.setAttribute('aria-hidden','true');pin13ResultShown=false;if(b)b.textContent='▶ 실행'}
-function stopManualRuns(){
- setLoopRun(false);
- document.querySelectorAll('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶ 실행';});
- const lm=document.querySelector('#entryLedTestModal');lm?.classList.remove('show');lm?.setAttribute('aria-hidden','true');
- if(pin13ResultShown)hidePin13Result();
+let step=0, phase='build', pin13Done=false, timer=null, activeButton=null;
+const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+function closeResults(){
+ if(timer){clearInterval(timer);timer=null}
+ q('#pin13Modal')?.classList.remove('show'); q('#pin13Modal')?.setAttribute('aria-hidden','true');
+ q('#entryLedTestModal')?.classList.remove('show'); q('#entryLedTestModal')?.setAttribute('aria-hidden','true');
+ q('#entryFinalResult')?.classList.remove('show'); q('#entryFinalResult')?.setAttribute('aria-hidden','true');
+ qa('.entry-block-run-btn.running').forEach(b=>{b.classList.remove('running');b.textContent='▶ 실행'});
+ if(activeButton&&activeButton.id==='runLoop')activeButton.textContent='▶ 실행';
+ if(activeButton&&activeButton.id==='runPin13')activeButton.textContent='▶ 실행';
+ activeButton=null;
 }
-function showFinalResult(){
- stopManualRuns();
- const p=document.querySelector('#entryFinalResult'),m=document.querySelector('#entryLedTestModal'),t=document.querySelector('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
- if(!p)return;
- p.classList.remove('show');p.setAttribute('aria-hidden','true');
- finalResultShown=true;
- let lit=true;
- const paint=()=>{l?.classList.toggle('off',!lit);if(t)t.textContent=lit?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';m?.classList.add('show');m?.setAttribute('aria-hidden','false');lit=!lit;};
- paint();loopTimer=setInterval(paint,200);
+function ledResult(mode,button=null){
+ closeResults(); activeButton=button;
+ if(button){button.classList.add('running');button.textContent='■ 정지'}
+ const m=q('#entryLedTestModal'),t=q('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
+ const paint=on=>{l?.classList.toggle('off',!on);if(t)t.textContent=on?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';m?.classList.add('show');m?.setAttribute('aria-hidden','false')};
+ if(mode==='blink'){let on=true;paint(on);timer=setInterval(()=>{on=!on;paint(on)},200)}else paint(mode==='on');
 }
-function hideFinalResult(){const p=document.querySelector('#entryFinalResult'),m=document.querySelector('#entryLedTestModal');if(loopTimer){clearInterval(loopTimer);loopTimer=null;}p?.classList.remove('show');p?.setAttribute('aria-hidden','true');m?.classList.remove('show');m?.setAttribute('aria-hidden','true');finalResultShown=false}
+function render(){
+ qa('[data-entry-step]').forEach(el=>{const n=+el.dataset.entryStep;el.classList.toggle('entry-show',n<=step);el.classList.toggle('entry-current',n===step&&step>0)});
+ qa('[data-repeat-body]').forEach(el=>el.classList.toggle('repeat-show',step>=4));
+ const compare=phase==='compare';
+ q('#entryBasicFour')?.classList.toggle('compare-right',compare);
+ q('#entryCompareFour')?.classList.toggle('compare-left',compare);
+ qa('.entry-tab').forEach(el=>el.classList.remove('active-tab'));
+ if(step){const info=steps[step-1];q('.entry-tab[data-tab="'+info.tab+'"]')?.classList.add('active-tab');if(q('#entryGuideTitle'))q('#entryGuideTitle').textContent=info.title;if(q('#entryGuideText'))q('#entryGuideText').textContent=info.text}
+ else{if(q('#entryGuideTitle'))q('#entryGuideTitle').textContent='다음 블록을 눌러 시작하세요.';if(q('#entryGuideText'))q('#entryGuideText').textContent='블록이 추가될 때 왼쪽에서 해당 블록의 탭이 함께 강조됩니다.'}
+ if(q('#back'))q('#back').disabled=step===0&&phase==='build';
+ if(q('#forward'))q('#forward').disabled=false;
+ if(q('#step'))q('#step').textContent=step+' / '+steps.length;
+ if(q('#entryBlockCount'))q('#entryBlockCount').textContent=step;
+}
+function showPin13(){
+ closeResults();const m=q('#pin13Modal'),b=q('#runPin13');m?.classList.add('show');m?.setAttribute('aria-hidden','false');if(b)b.textContent='■ 정지';activeButton=b;
+}
 function next(){
- if(step===7&&!basicResultDone&&!basicResultShown){showFinalResult();basicResultShown=true;return;}
- if(step===7&&basicResultShown){hideFinalResult();basicResultShown=false;basicResultDone=true;step=8;render();return;}
- if(step===steps.length&&!finalResultShown){showFinalResult();return;}
- if(step===steps.length&&finalResultShown){hideFinalResult();return;}
- if(step===2&&!pin13ResultDone&&!pin13ResultShown){showPin13Result();return;}
- if(step===2&&pin13ResultShown){hidePin13Result();pin13ResultDone=true;return;}
+ closeResults();
+ if(step===2&&!pin13Done){showPin13();pin13Done=true;return}
+ if(step===4){ledResult('on');return}
+ if(step===6){ledResult('off');return}
+ if(step===7&&phase==='build'){ledResult('blink');phase='blinked';return}
+ if(step===7&&phase==='blinked'){phase='compare';step=8;render();return}
+ if(step===8&&phase==='compare'){ledResult('on');return}
+ if(step===10&&phase==='compare'){ledResult('off');return}
+ if(step===11&&phase==='compare'){ledResult('blink');phase='done';return}
+ if(phase==='done'){closeResults();return}
  step=Math.min(steps.length,step+1);render();
 }
 function prev(){
- stopManualRuns();
- if(finalResultShown){hideFinalResult();return;}
- if(step===8){basicResultDone=false;step=7;render();return;}
- if(basicResultShown){hideFinalResult();basicResultShown=false;return;}
- if(pin13ResultShown)hidePin13Result();
- step=Math.max(0,step-1);
- if(step<2)pin13ResultDone=false;
+ closeResults();
+ if(phase==='done'){phase='compare';return}
+ if(phase==='blinked'){phase='build';return}
+ if(phase==='compare'&&step===8){phase='build';step=7;render();return}
+ step=Math.max(0,step-1);if(step<2)pin13Done=false;render();
+}
+function init(){
  render();
+ q('#runPin13')?.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===e.currentTarget;if(was)closeResults();else showPin13()});
+ q('#runLoop')?.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===e.currentTarget;if(was)closeResults();else{activeButton=e.currentTarget;e.currentTarget.textContent='■ 정지';ledResult('blink',e.currentTarget)}});
+ qa('.entry-block-run-btn').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();const was=activeButton===b;if(was){closeResults();return}ledResult(b.dataset.ledState==='on'?'on':'off',b)}));
+ q('#pin13Close')?.addEventListener('click',closeResults);
+ q('#pin13Modal')?.addEventListener('click',e=>{if(e.target===q('#pin13Modal'))closeResults()});
 }
-window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,isResultOpen:()=>pin13ResultShown||finalResultShown,showPin13Result,hidePin13Result,showFinalResult,hideFinalResult};
-function setLoopRun(on){
- loopRunning=on;
- const b=document.querySelector('#runLoop'),m=document.querySelector('#entryLedTestModal'),t=document.querySelector('#entryLedTestText'),l=m?.querySelector('.entry-led-test-light');
- if(b)b.textContent=on?'■ 정지':'▶ 실행';
- if(loopTimer){clearInterval(loopTimer);loopTimer=null;}
- if(!on){
-   m?.classList.remove('show');m?.setAttribute('aria-hidden','true');
-   return;
- }
- let lit=true;
- const paint=()=>{
-   l?.classList.toggle('off',!lit);
-   if(t)t.textContent=lit?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';
-   m?.classList.add('show');m?.setAttribute('aria-hidden','false');
-   lit=!lit;
- };
- paint();
- loopTimer=setInterval(paint,200);
-}
-function initRunResult(){
- const run=document.querySelector('#runPin13'),loop=document.querySelector('#runLoop'),modal=document.querySelector('#pin13Modal'),close=document.querySelector('#pin13Close');
- const ledModal=document.querySelector('#entryLedTestModal'),ledText=document.querySelector('#entryLedTestText'),ledLight=ledModal?.querySelector('.entry-led-test-light');
- document.querySelectorAll('.entry-block-run-btn').forEach(btn=>btn.addEventListener('click',e=>{
-   e.stopPropagation();
-   const active=btn.classList.contains('running');
-   stopManualRuns();
-   if(active){ledModal?.classList.remove('show');ledModal?.setAttribute('aria-hidden','true');return;}
-   const on=btn.dataset.ledState==='on';
-   btn.classList.add('running');btn.textContent='■ 정지';
-   ledLight?.classList.toggle('off',!on);
-   if(ledText)ledText.textContent=on?'LED가 켜졌습니다.':'LED가 꺼졌습니다.';
-   ledModal?.classList.add('show');ledModal?.setAttribute('aria-hidden','false');
- }));
- if(!run||!modal)return;
- run.addEventListener('click',e=>{e.stopPropagation();const was=pin13ResultShown;stopManualRuns();if(!was)showPin13Result();});
- loop?.addEventListener('click',e=>{e.stopPropagation();const was=loopRunning;stopManualRuns();if(!was)setLoopRun(true);});
- const hide=()=>hidePin13Result();
- close?.addEventListener('click',hide);
- modal.addEventListener('click',e=>{if(e.target===modal)hide();});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('show'))hide();});
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{render();initRunResult()});else{render();initRunResult()}
+window.entryLesson={next,prev,getStep:()=>step,max:steps.length,render,closeResults};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
