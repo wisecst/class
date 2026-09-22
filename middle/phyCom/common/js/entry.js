@@ -62,11 +62,11 @@ function next(){
  if(step===2&&!pin13Done){showPin13();pin13Done=true;return}
  if(step===4){const b=q('[data-entry-step="4"] .entry-block-run-btn');ledResult('on',b);autoResult='on4';return}
  if(step===6){const b=q('[data-entry-step="6"] .entry-block-run-btn');ledResult('off',b);autoResult='off6';return}
- if(step===7&&phase==='build'){ledResult('blink');phase='blinked';return}
+ if(step===7&&phase==='build'){ledResult('blink',q('#runLoop'));phase='blinked';return}
  if(step===7&&phase==='blinked'){phase='compare';step=8;render();return}
  if(step===8&&phase==='compare'){const b=q('[data-entry-step="8"] .entry-block-run-btn');ledResult('on',b);autoResult='on8';return}
  if(step===10&&phase==='compare'){const b=q('[data-entry-step="10"] .entry-block-run-btn');ledResult('off',b);autoResult='off10';return}
- if(step===11&&phase==='compare'){ledResult('blink');phase='done';return}
+ if(step===11&&phase==='compare'){ledResult('blink',q('#runLoop'));phase='done';return}
  if(phase==='done'){closeResults();return}
  step=Math.min(steps.length,step+1);render();
 }
