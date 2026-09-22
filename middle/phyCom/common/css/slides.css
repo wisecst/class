@@ -2222,3 +2222,50 @@ body:not(:fullscreen) .wrap>.slide.active{overflow:hidden!important}
 #entryBasicFour.compare-right .repeat-block,
 #entryBasicFour.entry-cleared .repeat-block,
 #entryCompareFour.compare-left .repeat-block{display:none!important}
+
+/* 16:9 FIT correction: never crop lesson content.
+   Keep the full slide flow (header/top + center + bottom controls) and reduce vertical
+   whitespace/padding so the whole composition fits inside the 16:9 canvas. */
+body:not(:fullscreen) .wrap>header,
+body:not(:fullscreen) .wrap>.slide.active,
+:fullscreen .wrap>header,
+:fullscreen .wrap>.slide.active{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+}
+.wrap{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+}
+.wrap>header{
+  flex:0 0 auto!important;
+  margin:0!important;
+  padding:12px 22px!important;
+  border-radius:0 0 14px 14px!important;
+}
+.wrap>.slide.active{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  margin-top:8px!important;
+  padding:14px 20px!important;
+  overflow:visible!important;
+}
+.wrap>.slide.active h2{margin:0 0 8px!important}
+.entry-slide .entry-study-bar{margin-top:0!important}
+.entry-slide .entry-workspace{margin-top:4px!important}
+.entry-slide .entry-stage{min-height:0!important;margin-top:4px!important;margin-bottom:4px!important}
+.controls,.slide-controls,.nav-controls{margin-top:6px!important;margin-bottom:4px!important}
+
+/* Fit rather than clip: reduce common vertical gaps inside all lesson pages. */
+.slide.active> :first-child{margin-top:0!important}
+.slide.active> :last-child{margin-bottom:0!important}
+.slide.active p{margin-top:6px;margin-bottom:6px}
+.slide.active .lead{margin-top:6px!important;margin-bottom:8px!important;padding-top:10px!important;padding-bottom:10px!important}
+
+/* The 16:9 frame itself stays clipped only at its outer boundary; its contents are
+   sized to fit, not positioned beyond the frame. */
+body:not(:fullscreen) .wrap,
+:fullscreen .wrap{overflow:hidden!important}
