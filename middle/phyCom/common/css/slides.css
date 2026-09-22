@@ -1038,3 +1038,36 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .pwm-pin-board-image .pwm-tilde-mark.m9{left:59.4%!important}
 .pwm-pin-board-image .pwm-tilde-mark.m10{left:56.1%!important}
 .pwm-pin-board-image .pwm-tilde-mark.m11{left:52.8%!important}
+
+/* Slide 4 comparison layout refinements. */
+.entry-compare-slide .pin-block-compare{
+  top:20%!important;
+}
+.entry-compare-slide .pin-compare-item .pin-dropdown{
+  top:54px!important;
+  height:auto!important;
+  max-height:320px!important;
+  min-height:0!important;
+  overflow-y:auto!important;
+  overflow-x:visible!important;
+  padding-top:10px!important;
+}
+.entry-compare-slide .pin-dropdown.pwm-pins{
+  height:auto!important;
+  max-height:none!important;
+  overflow-y:visible!important;
+}
+.entry-compare-slide .pin-dropdown span{
+  font-size:21px!important;
+  line-height:1.15!important;
+  padding:10px 6px!important;
+}
+.entry-compare-slide .pin-compare-item .pin-dropdown::before{
+  display:block!important;
+  left:50px!important;
+  top:-10px!important;
+  width:18px!important;
+  height:18px!important;
+  z-index:40!important;
+}
+.entry-compare-slide .pin-dropdown span{z-index:41!important}
