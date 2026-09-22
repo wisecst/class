@@ -866,3 +866,23 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .pin-dropdown span{padding:7px 9px;border-radius:5px;text-align:center;font-weight:800;color:#344b5d;background:#f4f7f9}
 .pin-dropdown span.selected{background:#159ec4;color:#fff}
 .pwm-pins{grid-template-columns:repeat(3,minmax(52px,1fr))}
+
+/* Keep execution controls available for teaching, but visually subordinate to Entry blocks. */
+.entry-run-btn,.entry-loop-run-btn,.entry-block-run-btn{
+  width:26px!important;
+  min-width:26px!important;
+  height:26px!important;
+  font-size:11px!important;
+  opacity:.38!important;
+  background:#607783!important;
+  box-shadow:none!important;
+  border-radius:50%!important;
+  transition:opacity .15s ease,transform .15s ease!important;
+}
+.entry-run-btn:hover,.entry-loop-run-btn:hover,.entry-block-run-btn:hover,
+.entry-run-btn:focus-visible,.entry-loop-run-btn:focus-visible,.entry-block-run-btn:focus-visible{
+  opacity:.75!important;
+}
+.entry-run-btn.running,.entry-loop-run-btn.running,.entry-block-run-btn.running{
+  opacity:.55!important;
+}
