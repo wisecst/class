@@ -672,3 +672,30 @@ body:not(.after-intro) header .diode-bubble::after{border-top-color:#ffd86b!impo
 body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .pin13-led-glow{left:38.0%!important}
 .pin13-led-dot{left:38.0%!important}
+
+/* Final Entry comparison geometry: blocks never shift while being built.
+   At comparison step only the original four inner blocks move right;
+   their top edge stays aligned with the new four blocks on the left. */
+#entryBasicFour{position:relative;display:flex;flex-direction:column;align-items:flex-start}
+#entryCompareFour{display:none}
+#entryBasicFour.compare-right{
+  position:absolute!important;
+  left:58%!important;
+  right:auto!important;
+  top:0!important;
+  width:40%!important;
+  z-index:7;
+}
+#entryCompareFour.compare-left{
+  display:flex!important;
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:55%!important;
+  flex-direction:column;
+  align-items:flex-start;
+  z-index:8;
+}
+.basic-repeat-body{position:relative!important}
+#entryBasicFour.compare-right .entry-block,
+#entryCompareFour.compare-left .entry-block{margin-top:-2px!important}
