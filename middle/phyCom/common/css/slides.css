@@ -2613,3 +2613,51 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   top:-10px!important;
   transform:rotate(45deg)!important;
 }
+
+/* FIX Slide 3 comparison ownership:
+   NEW PWM blocks stay inside the LEFT repeat C.
+   Only the OLD four-block stack is parked to the right.
+   Keep 10px between the longest new PWM block and the old stack. */
+.entry-program:has(#entryCompareFour.compare-left) .basic-repeat-body{
+  display:block!important;
+  position:relative!important;
+  width:max-content!important;
+  overflow:visible!important;
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+  display:flex!important;
+  position:relative!important;
+  left:0!important;
+  right:auto!important;
+  top:0!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  width:max-content!important;
+  max-width:none!important;
+  margin:0!important;
+}
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+.entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+  display:flex!important;
+  position:absolute!important;
+  left:calc(100% + 10px)!important;
+  right:auto!important;
+  top:0!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  width:max-content!important;
+  max-width:none!important;
+  margin:0!important;
+}
+/* No viewport-specific relocation: the lesson frame scales the whole composition. */
+@media (max-width:1500px){
+  .entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
+    left:0!important;
+    width:max-content!important;
+  }
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
+  .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
+    left:calc(100% + 10px)!important;
+    width:max-content!important;
+  }
+}
