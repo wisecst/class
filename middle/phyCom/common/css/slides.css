@@ -1354,3 +1354,13 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .pwm-controls button[data-duty].active .entry-value-text{color:#075a9c!important}
 .pwm-controls button[data-duty].active .duty-value-text{color:#a94b00!important}
 .pwm-controls button[data-duty].active i{color:#3d4d56!important}
+
+/* PWM explanation: same body color, different highlighter colors for digital vs analog-like effect. */
+.pwm-intro-lines>div{color:#263b47!important}
+.pwm-intro-lines>div:first-child mark{
+  background:linear-gradient(transparent 46%,#bfe8ff 46%,#bfe8ff 92%,transparent 92%)!important;
+}
+.pwm-intro-lines>div:nth-child(2) mark{
+  background:linear-gradient(transparent 46%,#ffe39a 46%,#ffe39a 92%,transparent 92%)!important;
+}
+.pwm-intro-lines .pwm-bullet{color:#56717f!important}
