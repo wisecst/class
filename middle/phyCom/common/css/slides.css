@@ -1146,3 +1146,21 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
   margin:0!important;
   width:unset!important;
 }
+
+/* Fine alignment of draggable PWM labels: common top edge; preserve spacing within groups. */
+.pwm-pin-board-image .pwm-tilde-mark.m3,
+.pwm-pin-board-image .pwm-tilde-mark.m5,
+.pwm-pin-board-image .pwm-tilde-mark.m6,
+.pwm-pin-board-image .pwm-tilde-mark.m9,
+.pwm-pin-board-image .pwm-tilde-mark.m10,
+.pwm-pin-board-image .pwm-tilde-mark.m11{top:13.8%!important}
+
+/* 3/5/6 group: shift right together, spacing unchanged. */
+.pwm-pin-board-image .pwm-tilde-mark.m3{left:81.0%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m5{left:74.5%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m6{left:71.2%!important}
+
+/* 9/10/11 group: shift left together, spacing unchanged. */
+.pwm-pin-board-image .pwm-tilde-mark.m9{left:57.4%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m10{left:54.1%!important}
+.pwm-pin-board-image .pwm-tilde-mark.m11{left:50.8%!important}
