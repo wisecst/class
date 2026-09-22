@@ -1409,3 +1409,32 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 .repeat-body .entry-block + .entry-block{
  margin-top:-2px!important;
 }
+
+/* Entry-style interlocking V connector: each stack block has a bottom tongue,
+   and the following block receives it in a matching top notch. */
+.entry-program .entry-block:not(.start-block),
+.repeat-body .entry-block{
+  overflow:visible!important;
+  clip-path:polygon(
+    0 0, 25px 0, 32px 7px, 39px 0, 100% 0,
+    100% calc(100% - 8px), calc(100% - 14px) 100%,
+    39px 100%, 32px calc(100% - 7px), 25px 100%,
+    10px 100%, 0 calc(100% - 10px)
+  )!important;
+  padding-bottom:10px!important;
+}
+.entry-program .entry-block:not(.start-block) + .entry-block,
+.repeat-body .entry-block + .entry-block{
+  margin-top:-7px!important;
+}
+/* Start block has the same lower V tongue so the first command locks underneath it. */
+.entry-program .start-block{
+  overflow:visible!important;
+  clip-path:polygon(
+    18px 0, calc(100% - 18px) 0, 100% 18px,
+    100% calc(100% - 8px), calc(100% - 14px) 100%,
+    39px 100%, 32px calc(100% - 7px), 25px 100%,
+    14px 100%, 0 calc(100% - 14px), 0 18px
+  )!important;
+  padding-bottom:10px!important;
+}
