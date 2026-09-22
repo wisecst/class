@@ -1206,3 +1206,37 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 :fullscreen .slide-sidebar{display:none!important}
 :fullscreen .wrap{margin-left:auto!important;width:100%!important}
 @media(max-width:900px){.slide-sidebar{width:150px}.slide-sidebar-item{font-size:12px}body:not(:fullscreen) .wrap{margin-left:150px;width:calc(100% - 150px)}}
+
+/* Pin 13 teaching popup — large enough to cover the four comparison blocks. */
+#pin13Modal.entry-result-modal{
+  position:absolute!important;
+  left:43%!important;
+  right:2%!important;
+  top:12%!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:none!important;
+  max-height:none!important;
+  transform:none!important;
+  margin:0!important;
+  padding:0!important;
+  z-index:70!important;
+}
+#pin13Modal .entry-result-card{
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  padding:20px 24px!important;
+}
+#pin13Modal .pin13-board-view{
+  width:100%!important;
+  max-width:none!important;
+  margin:8px auto!important;
+}
+#pin13Modal .pin13-board-view img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+}
