@@ -18,6 +18,21 @@ syncFullscreenButton();
 const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
+const sidebarList=document.querySelector('#slideSidebarList');
+if(sidebarList){
+ const names=['1. LED 알아보기','2. 회로 연결','3. LED 코드 만들기','4. 디지털 출력 블록 비교','5. PWM'];
+ ss.forEach((slide,i)=>{
+   const b=document.createElement('button');
+   b.type='button';b.className='slide-sidebar-item';
+   b.innerHTML='<span class="sidebar-page-no">'+(i+1)+'</span><span>'+(names[i]||slide.querySelector('h2')?.textContent||('페이지 '+(i+1)))+'</span>';
+   b.addEventListener('click',()=>{
+     document.querySelector('#pwmPinBoardPopup')?.classList.remove('show');
+     comparePopupShown=false;
+     show(i);
+   });
+   sidebarList.appendChild(b);
+ });
+}
 let circuitStep=0;
 let comparePopupShown=false;
 function show(n){const from=si;si=Math.max(0,Math.min(ss.length-1,n));
@@ -26,6 +41,7 @@ pv.disabled=si===0;
 nx.disabled=si===ss.length-1;
 document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 document.body.classList.toggle('after-intro',si>0);
+document.querySelectorAll('.slide-sidebar-item').forEach((b,i)=>b.classList.toggle('active',i===si));
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
 if(si===2&&from!==2&&window.entryLesson?.isFinished?.()){
