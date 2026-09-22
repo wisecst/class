@@ -1565,3 +1565,59 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
   )!important;
 }
 .entry-program .repeat-body>.entry-block + .entry-block{margin-top:-9px!important}
+
+/* Final Entry toolbar proportions. */
+.entry-code-toolbar{
+  height:52px!important;
+  min-height:52px!important;
+  padding:0 12px 0 0!important;
+  background:#00b928!important;
+  border-radius:0!important;
+}
+.entry-slide .entry-workspace{padding-top:52px!important}
+.entry-code-toolbar .entry-scene-tab{
+  align-self:stretch!important;
+  height:52px!important;
+  min-width:0!important;
+  width:auto!important;
+  padding:0 16px!important;
+  margin:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-size:17px!important;
+  font-weight:1000!important;
+  border-radius:12px 12px 0 0!important;
+}
+.entry-code-toolbar .entry-scene-add{
+  align-self:stretch!important;
+  width:42px!important;height:52px!important;
+}
+.entry-code-toolbar .entry-brand{
+  position:relative!important;
+  height:29px!important;
+  margin-left:14px!important;margin-right:10px!important;
+  padding:0 9px!important;
+  display:inline-flex!important;align-items:center!important;
+  color:#fff!important;background:transparent!important;
+  border:2px solid rgba(255,255,255,.96)!important;
+  border-radius:8px!important;
+  font-size:18px!important;font-weight:1000!important;letter-spacing:2px!important;
+  line-height:1!important;
+}
+/* little speech-bubble connector keeps the playful Entry logo feel */
+.entry-code-toolbar .entry-brand:before{
+  content:""!important;
+  position:absolute!important;
+  left:13px!important;bottom:-7px!important;top:auto!important;
+  width:10px!important;height:10px!important;
+  background:#00b928!important;
+  border-left:2px solid #fff!important;border-bottom:2px solid #fff!important;
+  transform:rotate(-45deg)!important;
+}
+.entry-code-toolbar .entry-brand:after{display:none!important}
+.entry-code-toolbar .entry-lesson-title{
+  color:#fff!important;
+  font-size:16px!important;font-weight:900!important;
+  margin-right:14px!important;
+}
