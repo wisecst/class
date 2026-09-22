@@ -1164,3 +1164,23 @@ body:not(.after-intro) header .diode-word{color:#ffd86b!important}
 .pwm-pin-board-image .pwm-tilde-mark.m9{left:57.4%!important}
 .pwm-pin-board-image .pwm-tilde-mark.m10{left:54.1%!important}
 .pwm-pin-board-image .pwm-tilde-mark.m11{left:50.8%!important}
+
+/* Pin 13 result: large teaching view, positioned immediately beside its run button area. */
+#pin13Modal{
+  position:absolute!important;
+  left:48%!important;
+  right:auto!important;
+  top:18%!important;
+  bottom:auto!important;
+  width:48%!important;
+  max-width:none!important;
+  height:auto!important;
+  transform:none!important;
+  margin:0!important;
+  z-index:45!important;
+}
+#pin13Modal .pin13-card{
+  width:100%!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+}
