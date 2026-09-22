@@ -42,7 +42,7 @@ document.addEventListener('keydown', async (e)=>{
     e.preventDefault();
     if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}
-    else if(si===4&&window.pwmLesson&&window.pwmLesson.canNext()){window.pwmLesson.next();}
+    else if(si===3&&window.pwmLesson&&window.pwmLesson.canNext()){window.pwmLesson.next();}
     else show(si+1);
     return;
   }
@@ -50,7 +50,7 @@ document.addEventListener('keydown', async (e)=>{
     e.preventDefault();
     if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
-    else if(si===4&&window.pwmLesson&&window.pwmLesson.canPrev()){window.pwmLesson.prev();}
+    else if(si===3&&window.pwmLesson&&window.pwmLesson.canPrev()){window.pwmLesson.prev();}
     else show(si-1);
     return;
   }
