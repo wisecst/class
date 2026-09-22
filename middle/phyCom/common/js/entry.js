@@ -39,6 +39,7 @@ function render(){
  const cleared=phase==='cleared';
  q('#entryBasicFour')?.classList.toggle('compare-right',compare);
  q('#entryBasicFour')?.classList.toggle('entry-cleared',cleared);
+ q('#entryBasicFour')?.classList.toggle('group-selected',cleared);
  q('#entryCompareFour')?.classList.toggle('compare-left',compare);
  qa('.entry-tab').forEach(el=>el.classList.remove('active-tab'));
  if(step){const info=steps[step-1];q('.entry-tab[data-tab="'+info.tab+'"]')?.classList.add('active-tab');if(q('#entryGuideTitle'))q('#entryGuideTitle').textContent=info.title;if(q('#entryGuideText'))q('#entryGuideText').textContent=info.text}
