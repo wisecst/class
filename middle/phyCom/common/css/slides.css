@@ -651,3 +651,11 @@ body:has(.entry-slide.active) .entry-workspace{height:calc(100vh - 52px)!importa
 .entry-program{padding-right:41%!important}
 .entry-program .pwm-set-block{min-width:max-content}
 .entry-program .pwm-set-block .number-field{margin:0 5px}
+
+/* Entry comparison sequence: after the basic ON/OFF result, place both code sets on the same Y baseline. */
+.entry-basic-code,.entry-new-code{position:relative;display:flex;flex-direction:column;align-items:flex-start}
+.entry-basic-code.compare-right{position:absolute;right:2.5%;top:168px;width:40%;z-index:5}
+.entry-new-code.compare-left{position:absolute;left:22px;top:168px;width:53%;z-index:6}
+.entry-basic-code.compare-right .entry-block,.entry-new-code.compare-left .entry-block{margin-top:-2px!important}
+.entry-program:has(.entry-basic-code.compare-right){padding-right:0!important}
+.entry-old-code{display:none!important}
