@@ -2393,3 +2393,27 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-compare-slide .pin-block-compare .entry-block:not(:has(.entry-run-btn)):not(:has(.entry-block-run-btn)){
   padding-right:34px!important;
 }
+
+/* Slide 4 left dropdown pointer: keep it outside the scrolling box so it cannot
+   be clipped by overflow-y:auto. */
+.entry-compare-slide .pin-compare-item:first-child{
+  position:relative!important;
+}
+.entry-compare-slide .pin-dropdown.all-pins::before{
+  display:none!important;
+}
+.entry-compare-slide .pin-compare-item:first-child::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  left:calc(50% - 102px)!important;
+  top:110px!important;
+  width:18px!important;
+  height:18px!important;
+  background:#fff!important;
+  border-left:1px solid #d9dee2!important;
+  border-top:1px solid #d9dee2!important;
+  transform:rotate(45deg)!important;
+  z-index:80!important;
+  pointer-events:none!important;
+}
