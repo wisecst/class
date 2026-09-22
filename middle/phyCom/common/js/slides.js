@@ -19,6 +19,7 @@ const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
 let circuitStep=0;
+let comparePopupShown=false;
 function show(n){const from=si;si=Math.max(0,Math.min(ss.length-1,n));
 ss.forEach((s,i)=>s.classList.toggle('active',i===si));
 pv.disabled=si===0;
@@ -39,7 +40,10 @@ if(si===1&&window.lessonCircuit){
 }pv.onclick=()=>{if(si===1){show(0);}else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}else show(si-1)};
-nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson){if(window.entryLesson.isFinished?.())show(si+1);else window.entryLesson.next();}else show(si+1)};
+nx.onclick=()=>{
+ if(si===3&&!comparePopupShown){const p=document.querySelector('#pwmPinBoardPopup');p?.classList.add('show');p?.setAttribute('aria-hidden','false');comparePopupShown=true;return;}
+ if(si===3&&comparePopupShown){document.querySelector('#pwmPinBoardPopup')?.classList.remove('show');show(4);return;}
+ if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson){if(window.entryLesson.isFinished?.())show(si+1);else window.entryLesson.next();}else show(si+1)};
 
 // 키보드/프리젠터 조작
 // 일반적인 프리젠터는 PageUp/PageDown 또는 좌/우 방향키 신호를 보내므로 함께 지원합니다.
@@ -50,10 +54,12 @@ document.addEventListener('keydown', async (e)=>{
   if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;
   if(['ArrowRight','PageDown',' '].includes(e.key)){
     e.preventDefault();
+    if(si===3&&!comparePopupShown){const p=document.querySelector('#pwmPinBoardPopup');p?.classList.add('show');p?.setAttribute('aria-hidden','false');comparePopupShown=true;return;}
+    if(si===3&&comparePopupShown){document.querySelector('#pwmPinBoardPopup')?.classList.remove('show');show(4);return;}
     if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}
     else if(si===2&&window.entryLesson){if(window.entryLesson.isFinished?.())show(si+1);else window.entryLesson.next();}
-    else if(si===3&&window.pwmLesson&&window.pwmLesson.canNext()){window.pwmLesson.next();}
-    else if(si===3&&window.pwmLesson&&window.pwmLesson.isAtMax()){window.pwmLesson.play();}
+    else if(si===4&&window.pwmLesson&&window.pwmLesson.canNext()){window.pwmLesson.next();}
+    else if(si===4&&window.pwmLesson&&window.pwmLesson.isAtMax()){window.pwmLesson.play();}
     else show(si+1);
     return;
   }
@@ -63,7 +69,7 @@ document.addEventListener('keydown', async (e)=>{
     else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}
-    else if(si===3&&window.pwmLesson&&window.pwmLesson.canPrev()){window.pwmLesson.prev();}
+    else if(si===4&&window.pwmLesson&&window.pwmLesson.canPrev()){window.pwmLesson.prev();}
     else show(si-1);
     return;
   }
