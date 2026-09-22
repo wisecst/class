@@ -62,19 +62,19 @@
     <div class="entry-program">
       <div class="entry-block start-block" data-entry-step="1"><span class="play-dot">▶</span><b>시작하기 버튼을 클릭했을 때</b></div>
       <div class="entry-block hardware-block indent-0" data-entry-step="2"><b>디지털</b><span class="field">13⌄</span><b>번 핀</b><span class="field">켜기⌄</span><button type="button" class="entry-run-btn" id="runPin13">▶ 실행</button></div>
-      <div class="entry-basic-code" id="entryBasicCode">
-        <div class="entry-block hardware-block" data-entry-step="3"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
-        <div class="entry-block wait-block" data-entry-step="4"><span class="number-field">0.2</span><b>초 기다리기</b></div>
-        <div class="entry-block hardware-block" data-entry-step="5"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">끄기⌄</span></div>
-        <div class="entry-block wait-block" data-entry-step="6"><span class="number-field">0.2</span><b>초 기다리기</b></div>
-      </div>
-      <div class="entry-new-code">
-        <div class="entry-block repeat-block" data-entry-step="7"><b>계속 반복하기</b></div>
-        <div class="repeat-body" data-repeat-body>
-          <div class="entry-block hardware-block indent-1 pwm-set-block" data-entry-step="8"><b>디지털</b><span class="field">3⌄</span><b>번 핀을</b><span class="number-field">255</span><b>(으)로 정하기</b></div>
-          <div class="entry-block wait-block indent-1" data-entry-step="9"><span class="number-field">0.2</span><b>초 기다리기</b></div>
-          <div class="entry-block hardware-block indent-1 pwm-set-block" data-entry-step="10"><b>디지털</b><span class="field">3⌄</span><b>번 핀을</b><span class="number-field">0</span><b>(으)로 정하기</b></div>
-          <div class="entry-block wait-block indent-1" data-entry-step="11"><span class="number-field">0.2</span><b>초 기다리기</b></div>
+      <div class="entry-block repeat-block" data-entry-step="3"><b>계속 반복하기</b></div>
+      <div class="repeat-body basic-repeat-body" data-repeat-body>
+        <div class="entry-basic-four" id="entryBasicFour">
+          <div class="entry-block hardware-block indent-1" data-entry-step="4"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
+          <div class="entry-block wait-block indent-1" data-entry-step="5"><span class="number-field">0.2</span><b>초 기다리기</b></div>
+          <div class="entry-block hardware-block indent-1" data-entry-step="6"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">끄기⌄</span></div>
+          <div class="entry-block wait-block indent-1" data-entry-step="7"><span class="number-field">0.2</span><b>초 기다리기</b></div>
+        </div>
+        <div class="entry-compare-four" id="entryCompareFour">
+          <div class="entry-block hardware-block pwm-set-block" data-entry-step="8"><b>디지털</b><span class="field">3⌄</span><b>번 핀을</b><span class="number-field">255</span><b>(으)로 정하기</b></div>
+          <div class="entry-block wait-block" data-entry-step="9"><span class="number-field">0.2</span><b>초 기다리기</b></div>
+          <div class="entry-block hardware-block pwm-set-block" data-entry-step="10"><b>디지털</b><span class="field">3⌄</span><b>번 핀을</b><span class="number-field">0</span><b>(으)로 정하기</b></div>
+          <div class="entry-block wait-block" data-entry-step="11"><span class="number-field">0.2</span><b>초 기다리기</b></div>
         </div>
       </div>
     </div>
