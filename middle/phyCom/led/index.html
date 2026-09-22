@@ -65,9 +65,9 @@
       <div class="entry-block repeat-block" data-entry-step="3"><b>계속 반복하기</b><button type="button" class="entry-loop-run-btn" id="runLoop">▶ 실행</button></div>
       <div class="repeat-body basic-repeat-body" data-repeat-body>
         <div class="entry-basic-four" id="entryBasicFour">
-          <div class="entry-block hardware-block indent-1" data-entry-step="4"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">켜기⌄</span></div>
+          <div class="entry-block hardware-block indent-1" data-entry-step="4"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">켜기⌄</span><button type="button" class="entry-block-run-btn" data-led-state="on">▶ 실행</button></div>
           <div class="entry-block wait-block indent-1" data-entry-step="5"><span class="number-field">0.2</span><b>초 기다리기</b></div>
-          <div class="entry-block hardware-block indent-1" data-entry-step="6"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">끄기⌄</span></div>
+          <div class="entry-block hardware-block indent-1" data-entry-step="6"><b>디지털</b><span class="field">3⌄</span><b>번 핀</b><span class="field">끄기⌄</span><button type="button" class="entry-block-run-btn" data-led-state="off">▶ 실행</button></div>
           <div class="entry-block wait-block indent-1" data-entry-step="7"><span class="number-field">0.2</span><b>초 기다리기</b></div>
         </div>
         <div class="entry-compare-four" id="entryCompareFour">
@@ -107,6 +107,16 @@
       <span class="pin13-led-dot" aria-hidden="true"></span>
     </div>
     <p>오렌지보드의 <b>13번 핀</b>이 켜졌습니다.</p>
+  </div>
+</div>
+<div class="entry-led-test-modal" id="entryLedTestModal" aria-hidden="true">
+  <div class="entry-led-test-card" role="dialog" aria-modal="true" aria-label="LED 실행 결과">
+    <strong>실행 결과</strong>
+    <div class="entry-led-test-module">
+      <img src="../assets/LED_white.png" alt="LED 모듈">
+      <span class="entry-led-test-light" aria-hidden="true"></span>
+    </div>
+    <p id="entryLedTestText">LED가 켜졌습니다.</p>
   </div>
 </div>
 </section>
