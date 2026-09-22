@@ -27,7 +27,12 @@ document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 document.body.classList.toggle('after-intro',si>0);
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
-if(si===1&&window.lessonCircuit){if(from===2)window.lessonCircuit.setStep(3);requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));}
+if(si===1&&window.lessonCircuit){
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   window.lessonCircuit.refresh();
+   if(from===2)window.lessonCircuit.setStep(3);
+ }));
+}
 }pv.onclick=()=>{if(si===1){show(0);}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}else show(si-1)};
 nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson){window.entryLesson.next();}else show(si+1)};
