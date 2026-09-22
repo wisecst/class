@@ -603,3 +603,7 @@ body:has(.entry-slide.active) .entry-workspace{height:calc(100vh - 52px)!importa
 
 .entrybot-thumb{overflow:hidden;padding:0!important}
 .entrybot-thumb img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* D13 popup: align the blink with the small square LED just left of the printed 13. */
+.pin13-led-glow{left:41.0%!important}
+.pin13-led-dot{left:41.0%!important}
