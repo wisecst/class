@@ -30,7 +30,7 @@ if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si==
 if(si===1&&window.lessonCircuit){if(from===2)window.lessonCircuit.setStep(3);requestAnimationFrame(()=>requestAnimationFrame(()=>window.lessonCircuit.refresh()));}
 }pv.onclick=()=>{if(si===1){show(0);}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}else show(si-1)};
-nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}else show(si+1)};
+nx.onclick=()=>{if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson){window.entryLesson.next();}else show(si+1)};
 
 // 키보드/프리젠터 조작
 // 일반적인 프리젠터는 PageUp/PageDown 또는 좌/우 방향키 신호를 보내므로 함께 지원합니다.
@@ -42,7 +42,7 @@ document.addEventListener('keydown', async (e)=>{
   if(['ArrowRight','PageDown',' '].includes(e.key)){
     e.preventDefault();
     if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}
-    else if(si===2&&window.entryLesson&&window.entryLesson.getStep()<window.entryLesson.max){window.entryLesson.next();}
+    else if(si===2&&window.entryLesson){window.entryLesson.next();}
     else if(si===3&&window.pwmLesson&&window.pwmLesson.canNext()){window.pwmLesson.next();}
     else if(si===3&&window.pwmLesson&&window.pwmLesson.isAtMax()){window.pwmLesson.play();}
     else show(si+1);
@@ -50,7 +50,8 @@ document.addEventListener('keydown', async (e)=>{
   }
   if(['ArrowLeft','PageUp'].includes(e.key)){
     e.preventDefault();
-    if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()>0){window.lessonCircuit.prev();}
+    if(si===1){show(0);}
+    else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}
     else if(si===3&&window.pwmLesson&&window.pwmLesson.canPrev()){window.pwmLesson.prev();}
     else show(si-1);
