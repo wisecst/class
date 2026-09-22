@@ -641,3 +641,5 @@ body:has(.entry-slide.active) .entry-workspace{height:calc(100vh - 52px)!importa
 }
 :fullscreen .entry-slide .entry-tab{font-size:2.35vw!important;min-height:10.2vh!important}
 :fullscreen .entry-slide .entry-tab span{font-size:1.15vw!important}
+
+.entry-slide .entry-tab{min-height:92px!important;padding:8px 3px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;font-size:34px!important;line-height:1!important;font-weight:900!important}.entry-slide .entry-tab span{display:block!important;margin:0!important;font-size:17px!important;line-height:1.05!important;font-weight:900!important;letter-spacing:-.04em!important}:fullscreen .entry-slide .entry-tab{font-size:2.35vw!important;min-height:10.2vh!important}:fullscreen .entry-slide .entry-tab span{font-size:1.15vw!important}
