@@ -1277,3 +1277,12 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
 }
 .scene-close{margin-left:14px;color:#f29a00;font-size:18px}
 .entry-study-bar .entry-scene-label{display:none!important}
+
+/* PWM milestone controls: pair Entry 0–255 value and duty cycle in one oval. */
+.pwm-controls button[data-duty]{
+  min-width:92px!important;height:54px!important;border-radius:999px!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  gap:7px!important;padding:0 14px!important;
+}
+.pwm-controls button[data-duty] b{font-size:18px!important;line-height:1!important}
+.pwm-controls button[data-duty] span{font-size:13px!important;font-weight:800!important;opacity:.78}
