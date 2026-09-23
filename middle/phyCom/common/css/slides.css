@@ -462,7 +462,7 @@ body.after-intro .slide.active{transform:translateY(-48px);height:calc(min(70vh,
 .entry-result-modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(14,31,43,.38);align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 
 .entry-result-card{position:relative;width:min(680px,78vw);padding:22px 26px 24px;border-radius:18px;background:#fff;box-shadow:0 18px 55px #0005;text-align:center}
-.entry-result-card>strong{display:block;font-size:26px;color:#1d5d85;margin-bottom:8px}
+.entry-result-card>strong{display:block;color:#1d5d85}
 .entry-result-close{position:absolute;right:13px;top:9px;border:0;background:transparent;font-size:32px;color:#5c6b73;cursor:pointer}
 .pin13-board-view{position:relative;width:min(560px,68vw);margin:0 auto}
 .pin13-board-view img{display:block;width:100%;height:auto}
