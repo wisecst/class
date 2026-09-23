@@ -500,7 +500,7 @@ body.after-intro .slide.active{transform:none!important;margin-top:10px!importan
 /* D13 built-in L LED: corrected square immediately to the right of the 13 marking. */
 .pin13-led-glow{left:40.8%!important;top:29.35%!important;width:4.2%!important}
 .pin13-led-dot{left:40.8%!important;top:29.35%!important;width:1.8%!important}
-.entry-slide{position:relative}
+
 :fullscreen .entry-result-card{width:min(36%,500px)!important}
 
 /* D13 built-in LED: yellow square immediately left of the printed 13. */
