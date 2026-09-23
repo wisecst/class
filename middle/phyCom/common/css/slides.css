@@ -2808,15 +2808,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   background:#fff!important;
   border-radius:0 0 1px 1px!important;
 }
-.entry-save-icon::after{
-  left:3px!important;
-  right:3px!important;
-  bottom:2px!important;
-  height:6px!important;
-  background:transparent!important;
-  border:2px solid #fff!important;
-  border-radius:1px!important;
-}
 
 /* Entry save icon — redraw to match the reference floppy:
    open/rounded top label recess, thick white body, lower rounded inset with slot. */
