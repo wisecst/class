@@ -2804,12 +2804,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 
 /* Floppy icon proportions based on the Entry reference: white disk outline,
    solid top label/notch and lower inset panel. */
-.entry-save-icon{
-  width:18px!important;
-  height:18px!important;
-  border:2px solid #fff!important;
-  border-radius:2px!important;
-}
 .entry-save-icon::before{
   left:3px!important;
   right:3px!important;
