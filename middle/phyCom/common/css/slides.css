@@ -2825,14 +2825,11 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 /* Entry save icon — redraw to match the reference floppy:
    open/rounded top label recess, thick white body, lower rounded inset with slot. */
 .entry-save-icon{
-  position:relative!important;
-  display:inline-block!important;
   width:22px!important;
   height:24px!important;
   border:0!important;
   border-radius:4px!important;
   background:#fff!important;
-  box-sizing:border-box!important;
 }
 .entry-save-icon::before{
   content:""!important;
