@@ -2278,10 +2278,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   width:max-content!important;
   max-width:none!important;
 }
-.entry-program:has(#entryCompareFour.compare-left) #entryCompareFour.compare-left{
-  width:max-content!important;
-  max-width:none!important;
-}
+
 @media (max-width:1500px){
   .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.compare-right,
   .entry-program:has(#entryCompareFour.compare-left) #entryBasicFour.entry-cleared{
