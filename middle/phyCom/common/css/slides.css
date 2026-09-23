@@ -2683,7 +2683,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-save-caret{line-height:1!important}
 .entry-save-menu{
   display:none;position:absolute!important;top:calc(100% + 8px)!important;right:-18px!important;
-  padding:8px 0!important;background:#fff!important;border:1px solid #d8e0e4!important;
+  padding:8px 0!important;border:1px solid #d8e0e4!important;
   border-radius:8px!important;box-shadow:0 4px 14px rgba(25,44,55,.22)!important;z-index:120!important;
 }
 .entry-save-menu::before{
