@@ -2712,7 +2712,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-save-icon{
   position:relative!important;
   display:inline-block!important;
-  box-sizing:border-box!important;
 }
 
 
