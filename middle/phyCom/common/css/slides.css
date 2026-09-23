@@ -2714,13 +2714,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   display:inline-block!important;
   box-sizing:border-box!important;
 }
-.entry-save-icon::before{
-  content:""!important;
-  position:absolute!important;
-  left:3px!important;top:1px!important;height:5px!important;
-  background:#fff!important;
-  border-radius:1px!important;
-}
+
 
 
 /* Save dropdown: white speech bubble, black text. */
