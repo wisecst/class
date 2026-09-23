@@ -2737,7 +2737,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 /* Save dropdown: white speech bubble, black text. */
 .entry-save-menu{
   background:#fff!important;
-  color:#111!important;
   border:1px solid #d8e0e4!important;
 }
 .entry-save-menu::before{
