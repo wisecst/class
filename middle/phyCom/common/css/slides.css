@@ -1290,7 +1290,6 @@ body:not(:fullscreen) .wrap{margin-left:190px;width:calc(100% - 190px)}
    Single source of truth for sidebar, 16:9 canvas and Entry UI.
    ========================================================= */
 html,body{width:100%;height:100%;margin:0;overflow:hidden}
-body{background:#eef5f9}
 
 /* Sidebar is outside the lesson canvas. */
 .slide-sidebar{width:190px}
