@@ -2748,15 +2748,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   box-shadow:none!important;
   color:#111!important;
 }
-.entry-save-item:first-child.save-click::after{
-  content:""!important;
-  position:absolute!important;
-  left:13px!important;right:74px!important;bottom:8px!important;
-  height:5px!important;
-  border-radius:4px!important;
-  background:rgba(255,216,0,.45)!important;
-  z-index:-1!important;
-}
+
 
 /* Entry save dropdown — match reference hierarchy.
    Two stacked rows stay in one white speech bubble. */
