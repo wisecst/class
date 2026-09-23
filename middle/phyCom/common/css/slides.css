@@ -2777,15 +2777,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   content:none!important;
 }
 
-/* Floppy icon proportions based on the Entry reference: white disk outline,
-   solid top label/notch and lower inset panel. */
-.entry-save-icon::before{
-  left:3px!important;
-  top:1px!important;
-  height:5px!important;
-  background:#fff!important;
-  border-radius:0 0 1px 1px!important;
-}
+
 
 /* Entry save icon — redraw to match the reference floppy:
    open/rounded top label recess, thick white body, lower rounded inset with slot. */
