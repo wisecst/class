@@ -2741,13 +2741,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   font-weight:800!important;
 }
 
-/* Guided checkpoint: highlight ONLY “저장하기” like a marker stroke. */
-.entry-save-item:first-child.save-click{
-  background:
-    linear-gradient(transparent 28%,#fff29a 28%,#fff29a 86%,transparent 86%)!important;
-  box-shadow:none!important;
-  color:#111!important;
-}
+
 
 
 /* Entry save dropdown — match reference hierarchy.
