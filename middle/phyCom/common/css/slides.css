@@ -2701,11 +2701,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-save-menu::before{
   background:#fff!important;
 }
-.entry-save-item{
-  background:#fff!important;
-  color:#111!important;
-  font-weight:800!important;
-}
+
 
 
 
