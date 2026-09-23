@@ -2717,7 +2717,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-save-icon::before{
   content:""!important;
   position:absolute!important;
-  left:3px!important;right:3px!important;top:1px!important;height:5px!important;
+  left:3px!important;top:1px!important;height:5px!important;
   background:#fff!important;
   border-radius:1px!important;
 }
