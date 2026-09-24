@@ -2651,7 +2651,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 
 /* Entry save control — mirrors the reference toolbar: compact circular save
    control with a white dropdown anchored directly beneath it. */
-.entry-code-toolbar .entry-top-actions{display:flex!important;align-items:center!important;gap:10px!important}
 .entry-save-wrap{position:relative!important;display:flex!important;align-items:center!important;height:100%!important}
 .entry-save-btn{
   display:inline-flex!important;align-items:center!important;justify-content:center!important;
