@@ -1356,7 +1356,7 @@ body.after-intro .wrap>.slide.active{top:12px}
 }
 .entry-code-toolbar .entry-brand:after{display:none}
 .entry-code-toolbar .entry-lesson-title{font-size:19px;font-weight:1000;color:#fff;margin-right:14px}
-.entry-code-toolbar .entry-top-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+
 .entry-code-toolbar .entry-top-actions button{
   height:32px;padding:0 14px;border:0;border-radius:999px;color:#fff;font-size:13px;font-weight:900
 }
