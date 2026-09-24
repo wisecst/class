@@ -1952,12 +1952,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-program .repeat-block.entry-current + .repeat-body.repeat-show{
   border-left-color:#20b5dd!important;
 }
-.entry-program .repeat-block.entry-current + .repeat-body.repeat-show:after{
-  box-shadow:
-    -4px 0 0 #ffd400,
-    0 4px 0 #ffd400,
-    4px 0 0 #ffd400!important;
-}
 /* bridge the highlight down the outside of the left spine */
 .entry-program .repeat-block.entry-current + .repeat-body.repeat-show{
   box-shadow:-4px 0 0 #ffd400!important;
