@@ -2669,8 +2669,8 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 }
 .entry-save-menu.show{display:block!important}
 .entry-save-item{
-  position:relative;z-index:1;width:100%;height:48px;padding:0 16px;border:0;background:#fff;
-  text-align:left;font-size:14px;font-weight:800;color:#26343c;
+  position:relative;z-index:1;border:0;
+  font-size:14px;font-weight:800;
 }
 .entry-save-item:hover,.entry-save-item.save-click{background:#eef7f1!important}
 .entry-save-wrap.save-focus .entry-save-btn{box-shadow:0 0 0 4px #ffd800!important}
