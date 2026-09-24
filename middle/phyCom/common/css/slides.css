@@ -2295,11 +2295,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   margin-right:0!important;
   flex:0 0 26px!important;
 }
-/* Blocks without a run button get an equivalent right-side breathing space:
-   same 8px visual gap used between command text and a run button. */
-.entry-slide .entry-program .entry-block:not(:has(.entry-run-btn)):not(:has(.entry-block-run-btn)):not(:has(.entry-loop-run-btn)){
-  padding-right:8px!important;
-}
 /* Preserve a little extra room for the rounded end of wait blocks while keeping
    the visible text-to-edge gap equivalent to the run-button gap. */
 .entry-slide .entry-program .wait-block:not(:has(.entry-block-run-btn)){
