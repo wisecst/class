@@ -2337,11 +2337,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   transform:rotate(45deg)!important;
   z-index:60!important;
 }
-/* Ensure the left menu does not lose its pointer through clipping/scrolling. */
-.entry-compare-slide .pin-dropdown.all-pins{
-  overflow-y:auto!important;
-  overflow-x:visible!important;
-}
 .entry-compare-slide .pin-dropdown.all-pins::before{
   position:sticky!important;
   float:left!important;
