@@ -2322,10 +2322,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   margin-right:0!important;
   flex:0 0 26px!important;
 }
-/* Move both pin menus slightly lower. */
-.entry-compare-slide .pin-compare-item .pin-dropdown{
-  top:66px!important;
-}
 /* Give BOTH dropdowns the same speech-bubble pointer, aligned under the 3 selector. */
 .entry-compare-slide .pin-compare-item .pin-dropdown::before{
   display:block!important;
