@@ -2667,7 +2667,7 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   border-radius:8px!important;box-shadow:0 4px 14px rgba(25,44,55,.22)!important;z-index:120!important;
 }
 .entry-save-menu::before{
-  content:"";position:absolute;right:54px;top:-9px;width:16px;height:16px;background:#fff;
+  content:"";position:absolute;right:54px;top:-9px;width:16px;height:16px;
   border-left:1px solid #d8e0e4;border-top:1px solid #d8e0e4;transform:rotate(45deg);
 }
 .entry-save-menu.show{display:block!important}
