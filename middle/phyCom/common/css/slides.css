@@ -2654,10 +2654,8 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
 .entry-code-toolbar .entry-top-actions{display:flex!important;align-items:center!important;gap:10px!important}
 .entry-save-wrap{position:relative!important;display:flex!important;align-items:center!important;height:100%!important}
 .entry-save-btn{
-  min-width:52px!important;padding:0 8px!important;
-  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;
-  border:1px solid rgba(255,255,255,.48)!important;border-radius:18px!important;
-  background:rgba(255,255,255,.10)!important;color:#fff!important;font-weight:900!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  color:#fff!important;font-weight:900!important;
 }
 .entry-save-icon{font-size:17px!important;line-height:1!important}
 .entry-save-caret{line-height:1!important}
