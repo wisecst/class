@@ -1953,9 +1953,6 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   border-left-color:#20b5dd!important;
 }
 /* bridge the highlight down the outside of the left spine */
-.entry-program .repeat-block.entry-current + .repeat-body.repeat-show{
-  box-shadow:-4px 0 0 #ffd400!important;
-}
 /* hide the header's lower yellow edge where the C body continues, so it reads
    as one selected C rather than two separately selected rectangles */
 .entry-program .repeat-block.entry-current:after{
