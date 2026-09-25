@@ -2916,7 +2916,7 @@ button.diode-word{
   outline:3px solid #1c79c5;outline-offset:3px;
 }
 .pin-open-hint{
-  position:absolute;right:18px;bottom:14px;z-index:2;
+  position:absolute;right:18px;bottom:2px;z-index:2;
   padding:9px 14px;border-radius:20px;background:#153f58;
   color:#fff;font-size:18px;font-weight:800;
 }
