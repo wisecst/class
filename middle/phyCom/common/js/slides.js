@@ -65,6 +65,13 @@ syncFullscreenButton();
 const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
+const mobilePrev=document.querySelector('#mobilePrev'),mobileNext=document.querySelector('#mobileNext');
+mobilePrev?.addEventListener('click',()=>pv.click());
+mobileNext?.addEventListener('click',()=>nx.click());
+function syncMobileNav(){
+ if(mobilePrev)mobilePrev.disabled=pv.disabled;
+ if(mobileNext){mobileNext.disabled=nx.disabled;mobileNext.setAttribute('aria-label',nx.getAttribute('aria-label'));}
+}
 const sidebarList=document.querySelector('#slideSidebarList');
 if(sidebarList){
  const names=['1. LED 알아보기','2. 회로 연결','3. LED 코드 만들기','4. 디지털 출력 블록 비교','5. PWM'];
@@ -114,6 +121,7 @@ if(si===1&&window.lessonCircuit){
    if(from===2)window.lessonCircuit.setStep(3);
  }));
 }
+ syncMobileNav();
 }pv.onclick=()=>{if(si===1){show(0);}else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}else show(si-1)};
