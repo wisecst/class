@@ -2962,3 +2962,14 @@ button.diode-word{
   .lesson-dialog-text p{margin-bottom:8px}
   .lesson-dialog-text small{font-size:13px}
 }
+
+/* Keep the PWM explanation proportional to the fixed mobile lesson canvas. */
+@media(max-width:900px){
+  html{ -webkit-text-size-adjust:100%;text-size-adjust:100% }
+  body.mobile-layout .pwm-slide .pwm-intro{
+    font-size:22px!important;line-height:1.42!important;
+  }
+  body.mobile-layout .pwm-slide .pwm-intro-lines>div{
+    white-space:normal!important;
+  }
+}
