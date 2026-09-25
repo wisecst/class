@@ -1,5 +1,8 @@
 const fullscreenBtn=document.querySelector('#fullscreenBtn');
-let mobilePresentation=false;
+let mobilePresentation=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
+const iosInstallTip=document.querySelector('#iosInstallTip');
+const isIphone=()=>/iPhone|iPod/.test(navigator.userAgent);
+document.querySelector('#iosInstallTipClose')?.addEventListener('click',()=>{iosInstallTip.hidden=true;});
 const mobileHint=document.querySelector('#mobileOrientationHint');
 function isMobileLayout(){return window.innerWidth<=900;}
 function fitMobileLesson(){
@@ -34,6 +37,7 @@ function syncFullscreenButton(){
 fullscreenBtn.addEventListener('click',async()=>{
   if(mobilePresentation){
     mobilePresentation=false;
+    iosInstallTip.hidden=true;
     syncFullscreenButton();
     return;
   }
@@ -50,6 +54,9 @@ fullscreenBtn.addEventListener('click',async()=>{
     if(isMobileLayout()){
       mobilePresentation=true;
       syncFullscreenButton();
+      if(isIphone()&&!navigator.standalone&&!window.matchMedia('(display-mode: standalone)').matches){
+        iosInstallTip.hidden=false;
+      }
     }
   }
 });
