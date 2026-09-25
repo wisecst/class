@@ -3142,3 +3142,6 @@ button.diode-word{
 .entry-selected-list .entry-led-icon{width:55px;height:66px;display:block;margin:auto;color:#ffdc00}
 .entry-selected-list .red .entry-led-icon{color:#fa3338}.entry-selected-list .green .entry-led-icon{color:#22bb35}.entry-selected-list .blue .entry-led-icon{color:#00aeef}
 .entry-setup-slide [hidden]{display:none!important}
+
+.entry-object-window{width:100%;box-sizing:border-box}
+.entry-led-property{top:107px}
