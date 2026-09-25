@@ -90,7 +90,7 @@ function syncMobileNav(){
 }
 const sidebarList=document.querySelector('#slideSidebarList');
 if(sidebarList){
- const names=['1. LED 알아보기','2. 회로 연결','3. LED 코드 만들기','4. 디지털 출력 블록 비교','5. PWM'];
+ const names=['1. LED 알아보기','2. 회로 연결','3. LED 코드 만들기','4. 디지털 출력 블록 비교','5. PWM','6. PWM 코드 만들기'];
  ss.forEach((slide,i)=>{
    const b=document.createElement('button');
    b.type='button';b.className='slide-sidebar-item';
@@ -105,6 +105,18 @@ if(sidebarList){
 }
 let circuitStep=0;
 let comparePopupShown=false;
+let sceneStep=0;
+function updateScene(){
+ const slide=document.querySelector('.entry-scene-slide');if(!slide)return;
+ const plus=slide.querySelector('#sceneAdd');
+ let second=slide.querySelector('[data-scene="2"]');
+ if(sceneStep===2&&!second){second=document.createElement('button');second.type='button';second.className='entry-scene-tab active';second.dataset.scene='2';second.textContent='장면 2';plus.before(second);}
+ if(second){second.hidden=sceneStep<2;second.classList.toggle('active',sceneStep===2);}
+ slide.querySelector('[data-scene="1"]').classList.toggle('active',sceneStep<2);
+ plus.classList.toggle('scene-add-focus',sceneStep===1);
+ slide.querySelector('#sceneGuide').textContent=sceneStep===0?'장면 1 옆의 + 버튼을 살펴보세요.':sceneStep===1?'장면 추가(+) 버튼을 클릭합니다.':'장면 2가 추가되었습니다.';
+}
+document.querySelector('#sceneAdd')?.addEventListener('click',()=>{sceneStep=2;updateScene();});
 function show(n){const from=si;const target=Math.max(0,Math.min(ss.length-1,n));
  lessonDialogs.forEach(dialog=>{if(dialog.open)dialog.close();});
 const pwmPopup=document.querySelector('#pwmPinBoardPopup');
@@ -119,7 +131,7 @@ nx.disabled=false;
 nx.setAttribute('aria-label',si===ss.length-1?'PWM 다음 단계':'다음 슬라이드');
 document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 document.body.classList.toggle('after-intro',si>0);
-  document.body.classList.toggle('entry-page',si===2||si===3);
+  document.body.classList.toggle('entry-page',si===2||si===3||si===5);
 document.querySelectorAll('.slide-sidebar-item').forEach((b,i)=>b.classList.toggle('active',i===si));
 const subtitle=document.querySelector('#slideSubtitle');
 if(subtitle){let t=si>0?(ss[si].querySelector('h2')?.textContent||''):'';if(si===1)t='2. 회로 연결';subtitle.textContent=t;}
@@ -129,6 +141,7 @@ if(returnToCompare){
 }else if(si===3){
  comparePopupShown=false;
 }
+if(si===5){sceneStep=0;updateScene();}
 if(si===2&&from!==2&&window.entryLesson?.isFinished?.()){
  requestAnimationFrame(()=>window.entryLesson.showCompleted());
 }
@@ -139,13 +152,14 @@ if(si===1&&window.lessonCircuit){
  }));
 }
  syncMobileNav();
-}pv.onclick=()=>{if(si===1){show(0);}else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
+}pv.onclick=()=>{if(si===5&&sceneStep>0){sceneStep--;updateScene();}else if(si===1){show(0);}else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}else show(si-1)};
 nx.onclick=()=>{
+ if(si===5){sceneStep=Math.min(2,sceneStep+1);updateScene();return;}
  if(si===4&&window.pwmLesson){
    if(window.pwmLesson.canNext())window.pwmLesson.next();
-   else if(window.pwmLesson.isAtMax())window.pwmLesson.play();
+   else if(window.pwmLesson.isAtMax())show(5);
    return;
  }
  if(si===3&&!comparePopupShown){const p=document.querySelector('#pwmPinBoardPopup');p?.classList.add('show');p?.setAttribute('aria-hidden','false');comparePopupShown=true;return;}
@@ -167,13 +181,14 @@ document.addEventListener('keydown', async (e)=>{
     if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}
     else if(si===2&&window.entryLesson){if(window.entryLesson.isFinished?.())show(si+1);else window.entryLesson.next();}
     else if(si===4&&window.pwmLesson&&window.pwmLesson.canNext()){window.pwmLesson.next();}
-    else if(si===4&&window.pwmLesson&&window.pwmLesson.isAtMax()){window.pwmLesson.play();}
+    else if(si===4&&window.pwmLesson&&window.pwmLesson.isAtMax()){show(5);}
     else show(si+1);
     return;
   }
   if(['ArrowLeft','PageUp'].includes(e.key)){
     e.preventDefault();
-    if(si===1){show(0);}
+    if(si===5&&sceneStep>0){sceneStep--;updateScene();}
+    else if(si===1){show(0);}
     else if(si===2&&window.entryLesson?.isFinished?.()){show(1);}
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}
