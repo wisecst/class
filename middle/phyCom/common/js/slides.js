@@ -19,7 +19,7 @@ function fitMobileLesson(){
   const height=viewport?.height||window.innerHeight;
   const edge=mobilePresentation||document.fullscreenElement?0:12;
   const landscape=width>height;
-  const full=mobilePresentation||!!document.fullscreenElement;
+  const full=mobilePresentation||!!document.fullscreenElement||navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
   const sidebarWidth=landscape&&!full?Math.min(148,Math.max(112,Math.round(width*.17))):0;
   document.body.classList.toggle('mobile-landscape',landscape);
   document.body.classList.toggle('mobile-fullscreen',full);
