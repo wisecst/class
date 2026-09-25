@@ -2973,3 +2973,7 @@ button.diode-word{
     white-space:normal!important;
   }
 }
+
+/* Sixth slide: one scene action per presentation step. */
+.entry-scene-slide .entry-scene-tab[hidden]{display:none!important}
+.entry-scene-slide .scene-add-focus{outline:4px solid #f6c443;outline-offset:3px;box-shadow:0 0 0 7px #f6c44355}
