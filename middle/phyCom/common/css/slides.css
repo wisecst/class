@@ -3074,4 +3074,4 @@ button.diode-word{
 .entry-code-led-thumb{width:55px;height:52px;background-size:240px 251px;background-position:-180px -176px}
 
 /* Keep the previous arrow beside the desktop page list. */
-@media(min-width:1025px){html:not(:fullscreen) body:not(.mobile-layout) .slide-nav #prev{left:202px}}
+@media(min-width:1025px){html:not(:fullscreen) body:not(.mobile-layout) .slide-nav #prev{left:202px!important}}
