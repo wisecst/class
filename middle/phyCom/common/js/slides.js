@@ -60,6 +60,10 @@ document.addEventListener('fullscreenchange',syncFullscreenButton);
 window.addEventListener('resize',fitMobileLesson);
 window.visualViewport?.addEventListener('resize',fitMobileLesson);
 window.visualViewport?.addEventListener('scroll',fitMobileLesson);
+window.addEventListener('orientationchange',()=>{
+  requestAnimationFrame(()=>requestAnimationFrame(fitMobileLesson));
+  setTimeout(fitMobileLesson,350);
+});
 syncFullscreenButton();
 
 const lessonDialogs=[...document.querySelectorAll('.lesson-dialog')];
