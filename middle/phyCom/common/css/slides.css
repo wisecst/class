@@ -2774,3 +2774,197 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   font-weight:1000!important;
   line-height:1!important;
 }
+
+/* Mobile lesson viewport: keep the existing 1280×720 teaching canvas intact.
+   Scale the whole canvas so circuit labels, Entry blocks, dialogs and navigation
+   remain in the same coordinate system on narrow screens. */
+@media (max-width:900px){
+  html,body{width:100%;height:100%;overflow:hidden!important}
+  body.mobile-layout{padding:0!important;background:#eef5f9}
+  body.mobile-layout .slide-sidebar{display:none!important}
+  body.mobile-layout .wrap,
+  body.mobile-layout:not(:fullscreen) .wrap,
+  :fullscreen body.mobile-layout .wrap{
+    position:fixed!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
+    width:1280px!important;
+    height:720px!important;
+    min-height:0!important;
+    max-height:720px!important;
+    margin:0!important;
+    padding:12px 16px 42px!important;
+    zoom:var(--lesson-scale,1);
+    overflow:hidden!important;
+  }
+  body.mobile-layout .wrap>.slide.active,
+  body.mobile-layout.after-intro .wrap>.slide.active{
+    top:12px!important;
+    bottom:42px!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    transform:none!important;
+  }
+  body.mobile-layout:not(.after-intro) .wrap>.slide.active{top:112px!important}
+  body.mobile-layout:has(.entry-slide.active) main.wrap,
+  body.mobile-layout:has(.entry-slide.active) .entry-slide.active{
+    height:720px!important;max-height:720px!important;
+  }
+  body.mobile-layout:has(.entry-slide.active) .entry-workspace{
+    height:calc(720px - 52px)!important;
+  }
+  body.mobile-layout .fullscreen-btn{
+    z-index:250;top:calc(env(safe-area-inset-top) + 8px);
+    right:calc(env(safe-area-inset-right) + 8px);
+    width:44px;height:44px;opacity:1;
+    background:#244b67;box-shadow:0 2px 8px #0005;
+  }
+  body.mobile-layout.mobile-presentation .fullscreen-btn{background:#112d42}
+}
+#mobileOrientationHint[hidden]{display:none!important}
+#mobileOrientationHint{
+  display:none;position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 8px);
+  transform:translateX(-50%);z-index:240;
+  padding:6px 12px;border-radius:18px;background:#153f58;color:#fff;
+  font:600 12px/1.3 sans-serif;white-space:nowrap;pointer-events:none;
+}
+@media(max-width:900px) and (orientation:portrait){
+  body.mobile-layout #mobileOrientationHint{display:block}
+}
+
+/* The native fullscreen grid has higher specificity; preserve the same
+   mobile canvas geometry when a browser does support document fullscreen. */
+@media(max-width:900px){
+  html:fullscreen body.mobile-layout:not(.entry-page) .wrap{
+    display:block!important;grid-template-rows:none!important;
+    width:1280px!important;height:720px!important;
+    padding:12px 16px 42px!important;
+    overflow:hidden!important;
+  }
+  html:fullscreen body.mobile-layout:not(.entry-page) .wrap>header{
+    position:relative!important;height:auto!important;
+    padding:12px 22px!important;
+  }
+  html:fullscreen body.mobile-layout:not(.entry-page) .wrap>.slide.active{
+    position:absolute!important;inset:112px 16px 42px!important;
+    width:auto!important;height:auto!important;margin:0!important;
+    padding:14px 20px!important;
+  }
+  html:fullscreen body.mobile-layout.after-intro:not(.entry-page) .wrap>.slide.active{
+    top:112px!important;
+  }
+}
+
+/* iPhone guidance appears only when the browser denies native fullscreen. */
+.ios-install-tip[hidden]{display:none!important}
+.ios-install-tip{
+  position:fixed;left:max(12px,env(safe-area-inset-left));
+  right:max(12px,env(safe-area-inset-right));
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:300;display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:12px;background:#153f58;color:#fff;
+  font:600 14px/1.5 sans-serif;box-shadow:0 5px 20px #0005;
+}
+.ios-install-tip button{
+  flex:none;width:32px;height:32px;border:0;border-radius:8px;
+  background:#fff2;color:#fff;font-size:24px;cursor:pointer;
+}
+
+/* Mobile navigation stays outside the scaled lesson canvas for a full-size touch target. */
+@media(max-width:900px){
+  body.mobile-layout .wrap .slide-nav{visibility:hidden!important}
+  body.mobile-layout .mobile-nav{
+    position:fixed;inset:0;z-index:230;display:flex;
+    align-items:center;justify-content:space-between;
+    padding-left:max(4px,env(safe-area-inset-left));
+    padding-right:max(4px,env(safe-area-inset-right));
+    pointer-events:none;
+  }
+  body.mobile-layout .mobile-nav button{
+    width:58px;height:100px;border:0;border-radius:16px;
+    background:rgba(255,255,255,.86);color:#1b4964;
+    box-shadow:0 2px 14px #153f5833;
+    font:400 46px/1 Arial,sans-serif;
+    pointer-events:auto;touch-action:manipulation;
+  }
+  body.mobile-layout .mobile-nav button:disabled{opacity:.22;pointer-events:none}
+}
+.mobile-nav{display:none}
+
+/* Slide 1: photographed LED uses and two optional teaching popups. */
+button.diode-word{
+  border:0;background:transparent;padding:0;margin:0;
+  font:inherit;cursor:pointer;text-decoration:underline dotted;
+  text-underline-offset:4px;
+}
+.concept-image-button{
+  position:relative;display:block;width:100%;height:100%;
+  padding:0;border:0;background:transparent;cursor:pointer;
+}
+.concept-image-button:focus-visible,button.diode-word:focus-visible{
+  outline:3px solid #1c79c5;outline-offset:3px;
+}
+.pin-open-hint{
+  position:absolute;right:18px;bottom:2px;z-index:2;
+  padding:9px 14px;border-radius:20px;background:#153f58;
+  color:#fff;font-size:18px;font-weight:800;
+}
+.slide:first-of-type.active .usage-item .usage-photo{
+  display:block;flex:1 1 auto;width:100%;height:calc(100% - 2.35rem);
+  min-height:0;margin:0;border-radius:8px;
+  background-image:url("../../assets/led-usage-photos.webp");
+  background-size:200% 200%;background-repeat:no-repeat;
+}
+.usage-photo--traffic{background-position:0 0}
+.usage-photo--brake{background-position:100% 0}
+.usage-photo--power{background-position:0 100%}
+.usage-photo--display{background-position:100% 100%}
+.lesson-dialog{
+  width:min(870px,calc(100vw - 28px));max-height:calc(100dvh - 28px);
+  margin:auto;padding:0;border:0;border-radius:20px;
+  background:#fff;color:#263b49;box-shadow:0 18px 55px #071e3799;
+}
+.lesson-dialog::backdrop{background:rgba(12,28,43,.72)}
+.lesson-dialog-card{padding:24px 28px 30px;overflow:auto;max-height:calc(100dvh - 28px)}
+.lesson-dialog-card h2{margin:0 48px 18px 0;font-size:30px;color:#153f58}
+.lesson-dialog-close{
+  float:right;width:46px;height:46px;border:0;border-radius:50%;
+  background:#e8f1f7;color:#1a455e;font-size:32px;cursor:pointer;
+}
+.lesson-dialog-content{display:grid;grid-template-columns:48% minmax(0,1fr);gap:24px;align-items:center}
+.lesson-dialog-content img{
+  display:block;width:100%;height:330px;object-fit:contain;
+  border-radius:12px;background:#f2f5f7;
+}
+.lesson-dialog-text{font-size:21px;line-height:1.55}
+.lesson-dialog-text p{margin:0 0 15px}
+.lesson-dialog-text strong{color:#175f89}
+.lesson-dialog-text small{display:block;margin-top:16px;font-size:16px;color:#526471}
+.pin-role-list p{padding:12px 14px;border-radius:10px;background:#f3f8fb}
+.pin-role-list strong,.pin-role-list span{display:block}
+@media(max-width:650px){
+  .lesson-dialog-card{padding:18px}
+  .lesson-dialog-card h2{font-size:22px}
+  .lesson-dialog-content{grid-template-columns:1fr;gap:12px}
+  .lesson-dialog-content img{height:min(33dvh,220px)}
+  .lesson-dialog-text{font-size:16px;line-height:1.45}
+  .lesson-dialog-text p{margin-bottom:8px}
+  .lesson-dialog-text small{font-size:13px}
+}
+
+/* Keep the PWM explanation proportional to the fixed mobile lesson canvas. */
+@media(max-width:900px){
+  html{ -webkit-text-size-adjust:100%;text-size-adjust:100% }
+  body.mobile-layout .pwm-slide .pwm-intro{
+    font-size:22px!important;line-height:1.42!important;
+  }
+  body.mobile-layout .pwm-slide .pwm-intro-lines>div{
+    white-space:normal!important;
+  }
+}
+
+/* Sixth slide: one scene action per presentation step. */
+.entry-scene-slide .entry-scene-tab[hidden]{display:none!important}
+.entry-scene-slide .scene-add-focus{outline:4px solid #f6c443;outline-offset:3px;box-shadow:0 0 0 7px #f6c44355}
