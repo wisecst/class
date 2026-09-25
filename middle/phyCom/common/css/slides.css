@@ -3145,3 +3145,53 @@ button.diode-word{
 
 .entry-object-window{width:100%;box-sizing:border-box}
 .entry-led-property{top:107px}
+
+/* Flow C block: a slim continuous spine with a visible open socket for nested blocks. */
+.entry-slide:not(.entry-compare-slide) .entry-program{--repeat-thickness:14px!important}
+.entry-slide:not(.entry-compare-slide) .entry-program .repeat-body{
+ border-left-width:14px!important;
+ padding-left:0!important;
+ margin-top:-2px!important;
+}
+.entry-slide:not(.entry-compare-slide) .entry-program .repeat-body:after{
+ left:-14px!important;
+ height:14px!important;
+ width:230px!important;
+ right:auto!important;
+ border-radius:0 0 14px 0!important;
+}
+.entry-slide:not(.entry-compare-slide) .entry-program .repeat-block{
+ padding-right:16px!important;
+}
+.entry-slide:not(.entry-compare-slide) .entry-program .repeat-body .entry-block{
+ border-radius:0 28px 28px 0;
+ margin-top:-2px!important;
+}
+.entry-slide:not(.entry-compare-slide) .entry-program .repeat-body .entry-block:before{
+ left:10px!important;
+}
+.entry-slide:not(.entry-compare-slide) .entry-program .repeat-body .entry-block:after{
+ left:10px!important;
+}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="0"]) #sceneAdd{
+ position:relative;
+ z-index:3;
+ cursor:pointer;
+ color:#fff;
+ isolation:isolate;
+}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="0"]) #sceneAdd:before{
+ content:'';
+ position:absolute;
+ inset:2px;
+ z-index:-1;
+ border:3px solid #fff135;
+ border-radius:50%;
+ background:#f8de0080;
+ box-shadow:0 0 0 4px #fff44e77,0 0 15px 5px #ffe321;
+ animation:sceneAddCue 1.25s ease-in-out infinite;
+ pointer-events:none;
+}
+@keyframes sceneAddCue{
+ 50%{transform:scale(1.18);box-shadow:0 0 0 8px #fff44e55,0 0 21px 8px #ffe321}
+}
