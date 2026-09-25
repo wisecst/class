@@ -198,6 +198,8 @@ function previousSetup(){
 document.querySelector('#sceneAdd')?.addEventListener('click',()=>{sceneStep=1;manualSetupDialog=null;selectedLed=null;updateScene();});
 document.querySelector('[data-scene="2"]')?.addEventListener('click',()=>{sceneStep=1;manualSetupDialog=null;selectedLed=null;updateScene();});
 document.querySelector('#addedLedLabel')?.addEventListener('input',event=>{document.querySelector('#propertyLedName').textContent=event.target.value;});
+document.querySelector('#variablePropertyName')?.addEventListener('input',event=>{document.querySelector('#stageVariableName').textContent=event.target.value;document.querySelector('#variableName').value=event.target.value;});
+document.querySelector('#variableDefault')?.addEventListener('input',event=>{document.querySelector('#stageVariableValue').textContent=event.target.value;});
 document.querySelector('#openObjectChooser')?.addEventListener('click',()=>{manualSetupDialog='object';selectedLed=null;document.querySelector('#objectSearch').value='';updateScene();});
 document.querySelector('#selectVariableTab')?.addEventListener('click',()=>{sceneStep=Math.max(6,sceneStep);updateScene();});
 document.querySelector('#openVariableChooser')?.addEventListener('click',()=>{sceneStep=Math.max(7,sceneStep);manualSetupDialog='variable';updateScene();});
