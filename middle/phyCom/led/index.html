@@ -23,7 +23,7 @@
 <header>
 <span class="course-label">중학교 피지컬 컴퓨팅</span>
 <span class="device-label">출력 장치</span>
-<div class="title-row"><h1>LED</h1><span class="slide-subtitle" id="slideSubtitle"></span><div class="title-desc">(Light Emitting Diode, 발광 <span class="diode-anchor"><span class="diode-bubble">전류를 한쪽 방향으로만 흐르게 하는 반도체 소자</span><button type="button" class="diode-word" data-open-dialog="diodeDialog" aria-haspopup="dialog" aria-label="다이오드 확대 설명 열기">다이오드</button></span>)는 전류가 흐르면 빛을 내는 반도체 소자.</div></div>
+<div class="title-row"><h1>LED</h1><span class="slide-subtitle" id="slideSubtitle"></span><div class="title-desc">(Light Emitting Diode, 발광 <span class="diode-anchor"><span class="diode-bubble">다이오드는 전류를 한쪽 방향으로만 흐르게 하는 부품이에요.<br><br><b>발광다이오드(LED)는</b> 전류가 흐를 때 반도체 안에서 에너지가 빛으로 바뀌어 밝게 빛납니다. 그래서 전원과 방향을 맞춰 연결해야 해요.</span><button type="button" class="diode-word" data-open-dialog="diodeDialog" aria-haspopup="dialog" aria-label="다이오드 확대 설명 열기">다이오드</button></span>)는 전류가 흐르면 빛을 내는 반도체 소자.</div></div>
 </header>
 <section class="slide active">
 <div class="concept-grid">
@@ -275,9 +275,9 @@
     <div class="lesson-dialog-content">
       <img class="pin-module-image" src="../assets/LED_white.png" alt="IN, VCC, GND가 표시된 수업용 LED 모듈 사진">
       <div class="lesson-dialog-text pin-role-list">
-        <p><strong>IN → D3</strong><span>오렌지보드에서 나오는 켜기·끄기 신호를 받습니다.</span></p>
-        <p><strong>VCC → 5V</strong><span>모듈에 필요한 전원을 공급받습니다.</span></p>
-        <p><strong>GND → GND</strong><span>오렌지보드의 GND에 연결해 회로를 완성합니다.</span></p>
+        <p><strong>IN → D0~D13 중 하나</strong><span>디지털 신호를 받는 입력 핀입니다. 이번 수업에서는 여러 디지털 핀 중 <b>D3</b>에 연결해 켜기·끄기를 제어합니다.</span></p>
+        <p><strong>VCC → 5V</strong><span>전원을 공급받는 +극 핀입니다. 보드의 <b>5V</b> 또는 <b>3.3V</b>에 연결할 수 있으며, 이번 수업에서는 <b>5V</b>에 연결합니다.</span></p>
+        <p><strong>GND → GND</strong><span>전원의 −극(기준 전압) 핀입니다. 보드의 <b>GND</b>에 연결해 전류가 돌아가는 길을 만듭니다.</span></p>
       </div>
     </div>
   </div>
