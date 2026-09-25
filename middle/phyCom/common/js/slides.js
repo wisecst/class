@@ -115,37 +115,53 @@ let circuitStep=0;
 let comparePopupShown=false;
 let sceneStep=0;
 let manualSetupDialog=null;
-let chosenLed=1;
+let chosenLed=4;
+let selectedLed=null;
+const ledNames={1:'파란LED',2:'초록LED',3:'빨간LED',4:'노란LED'};
+const ledColors={1:'blue',2:'green',3:'red',4:'yellow'};
 function updateScene(){
  const slide=document.querySelector('.entry-setup-slide');if(!slide)return;
- const second=slide.querySelector('[data-scene="2"]');
- const step=sceneStep;
+ const step=sceneStep, second=slide.querySelector('[data-scene="2"]');
  second.hidden=step<1;
  second.classList.toggle('active',step>=1);
  slide.querySelector('[data-scene="1"]').classList.toggle('active',step<1);
  slide.querySelector('.entry-setup-layout').dataset.setupStep=String(step);
  const objectDialog=slide.querySelector('#objectChooser');
  const variableDialog=slide.querySelector('#variableChooser');
- objectDialog.hidden=!(manualSetupDialog==='object'||(!manualSetupDialog&&step>=2&&step<=4));
+ const objectOpen=manualSetupDialog==='object'||(!manualSetupDialog&&step>=2&&step<=4);
+ objectDialog.hidden=!objectOpen;
  variableDialog.hidden=!(manualSetupDialog==='variable'||(!manualSetupDialog&&step===6));
  const search=slide.querySelector('#objectSearch');
  if(!manualSetupDialog)search.value=step>=3?'LED':'';
+ const hasResults=search.value.trim().toUpperCase().includes('LED');
+ slide.querySelector('#ledOptions').hidden=!hasResults;
  slide.querySelectorAll('[data-led-option]').forEach(button=>{
-   button.classList.toggle('selected',Number(button.dataset.ledOption)===chosenLed&&step>=4);
-   button.hidden=!search.value.trim().toUpperCase().includes('LED');
+   button.classList.toggle('selected',Number(button.dataset.ledOption)===selectedLed);
  });
+ const preview=slide.querySelector('#objectSelectedPreview');
+ preview.hidden=!selectedLed;
+ preview.className=selectedLed?ledColors[selectedLed]:'';
+ slide.querySelector('#objectSelectedCount').textContent=selectedLed?'1':'0';
+ slide.querySelector('#objectSelectedName').textContent=ledNames[selectedLed||4];
+ slide.querySelector('#confirmObject').disabled=!selectedLed;
+ const led=slide.querySelector('.entry-setup-led');
+ led.className='entry-setup-led '+ledColors[chosenLed];
+ led.setAttribute('aria-label','추가한 '+ledNames[chosenLed]+' 오브젝트');
+ slide.querySelector('.added-led').className='entry-setup-object added-led '+ledColors[chosenLed];
+ slide.querySelector('#addedLedLabel').textContent=ledNames[chosenLed];
+ slide.querySelector('#propertyLedName').textContent=ledNames[chosenLed];
+ slide.querySelector('#ledProperty').hidden=step<5;
  slide.querySelector('#setupVariable').hidden=step<7;
- slide.querySelector('.entry-setup-led').dataset.led=String(chosenLed);
  const variableName=slide.querySelector('#variableName').value.trim()||'밝기';
  slide.querySelector('#setupVariable b').textContent=variableName;
  document.querySelector('#codeVariableName').textContent=variableName;
  const captions=[
    '장면 1 옆의 +를 눌러 새 장면을 만듭니다.',
-   '장면 2가 추가되었습니다. 오브젝트를 추가해 봅시다.',
-   '오브젝트 추가하기 화면을 엽니다.',
-   '검색창에 LED를 입력해 네 가지 오브젝트를 찾습니다.',
-   'LED 오브젝트 하나를 선택합니다.',
-   '추가하기를 눌러 LED 오브젝트를 장면 2에 넣었습니다.',
+   '장면 2가 추가되었습니다. 오브젝트 추가하기를 누릅니다.',
+   '오브젝트 추가하기 창이 열렸습니다.',
+   '검색창에 LED를 입력하면 네 가지 LED가 검색됩니다.',
+   '노란LED를 선택하면 전체(1)에 선택한 오브젝트가 표시됩니다.',
+   '추가하기를 누르면 장면 2에 노란LED가 나타나고 위치와 크기를 설정할 수 있습니다.',
    '속성에서 새 변수를 만듭니다.',
    '변수가 추가되었습니다. 다음 페이지에서 코드를 작성합니다.'
  ];
@@ -153,26 +169,33 @@ function updateScene(){
 }
 function advanceSetup(){
  if(manualSetupDialog)manualSetupDialog=null;
- if(sceneStep<7){sceneStep++;updateScene();}
+ if(sceneStep<7){sceneStep++;if(sceneStep===4)selectedLed=4;if(sceneStep===5)chosenLed=selectedLed||4;updateScene();}
  else show(6);
 }
 function previousSetup(){
  if(manualSetupDialog){manualSetupDialog=null;updateScene();return;}
- if(sceneStep>0){sceneStep--;updateScene();}
+ if(sceneStep>0){sceneStep--;selectedLed=sceneStep>=4?chosenLed:null;updateScene();}
  else show(4);
 }
-document.querySelector('#sceneAdd')?.addEventListener('click',()=>{sceneStep=Math.max(1,sceneStep);manualSetupDialog=null;updateScene();});
-document.querySelector('#openObjectChooser')?.addEventListener('click',()=>{manualSetupDialog='object';updateScene();});
+document.querySelector('#sceneAdd')?.addEventListener('click',()=>{sceneStep=1;manualSetupDialog=null;selectedLed=null;updateScene();});
+document.querySelector('[data-scene="2"]')?.addEventListener('click',()=>{sceneStep=1;manualSetupDialog=null;selectedLed=null;updateScene();});
+document.querySelector('#openObjectChooser')?.addEventListener('click',()=>{manualSetupDialog='object';selectedLed=null;document.querySelector('#objectSearch').value='';updateScene();});
 document.querySelector('#openVariableChooser')?.addEventListener('click',()=>{manualSetupDialog='variable';updateScene();});
 document.querySelectorAll('.entry-setup-slide [data-setup-close]').forEach(button=>button.addEventListener('click',()=>{manualSetupDialog=null;updateScene();}));
 document.querySelector('#objectSearch')?.addEventListener('input',event=>{
- document.querySelectorAll('[data-led-option]').forEach(button=>button.hidden=!event.target.value.trim().toUpperCase().includes('LED'));
+ const found=event.target.value.trim().toUpperCase().includes('LED');
+ document.querySelector('#ledOptions').hidden=!found;
+ if(!found){selectedLed=null;updateScene();}
 });
 document.querySelectorAll('[data-led-option]').forEach(button=>button.addEventListener('click',()=>{
- chosenLed=Number(button.dataset.ledOption);
- sceneStep=Math.max(4,sceneStep);updateScene();
+ selectedLed=Number(button.dataset.ledOption);
+ sceneStep=Math.max(4,sceneStep);
+ updateScene();
 }));
-document.querySelector('#confirmObject')?.addEventListener('click',()=>{sceneStep=Math.max(5,sceneStep);manualSetupDialog=null;updateScene();});
+document.querySelector('#confirmObject')?.addEventListener('click',()=>{
+ if(!selectedLed)return;
+ chosenLed=selectedLed;sceneStep=Math.max(5,sceneStep);manualSetupDialog=null;updateScene();
+});
 document.querySelector('#confirmVariable')?.addEventListener('click',()=>{sceneStep=7;manualSetupDialog=null;updateScene();});
 function show(n){const from=si;const target=Math.max(0,Math.min(ss.length-1,n));
  lessonDialogs.forEach(dialog=>{if(dialog.open)dialog.close();});
@@ -198,7 +221,7 @@ if(returnToCompare){
 }else if(si===3){
  comparePopupShown=false;
 }
-if(si===5){sceneStep=from===6?7:0;manualSetupDialog=null;updateScene();}
+if(si===5){sceneStep=from===6?7:0;manualSetupDialog=null;selectedLed=null;updateScene();}
 if(si===2&&from!==2&&window.entryLesson?.isFinished?.()){
  requestAnimationFrame(()=>window.entryLesson.showCompleted());
 }
