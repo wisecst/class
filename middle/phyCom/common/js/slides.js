@@ -14,10 +14,11 @@ function fitMobileLesson(){
   const viewport=window.visualViewport;
   const width=viewport?.width||window.innerWidth;
   const height=viewport?.height||window.innerHeight;
-  const scale=Math.min(width/1280,height/720);
+  const edge=mobilePresentation||document.fullscreenElement?0:12;
+  const scale=Math.min((width-edge*2)/1280,(height-edge*2)/720);
   document.documentElement.style.setProperty('--lesson-scale',String(scale));
-  document.documentElement.style.setProperty('--lesson-left','0px');
-  document.documentElement.style.setProperty('--lesson-top','0px');
+  document.documentElement.style.setProperty('--lesson-left',edge+'px');
+  document.documentElement.style.setProperty('--lesson-top',edge+'px');
   mobileHint.hidden=width>=height;
   window.lessonCircuit?.refresh?.();
 }
