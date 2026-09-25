@@ -2864,3 +2864,18 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
     top:112px!important;
   }
 }
+
+/* iPhone guidance appears only when the browser denies native fullscreen. */
+.ios-install-tip[hidden]{display:none!important}
+.ios-install-tip{
+  position:fixed;left:max(12px,env(safe-area-inset-left));
+  right:max(12px,env(safe-area-inset-right));
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:300;display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:12px;background:#153f58;color:#fff;
+  font:600 14px/1.5 sans-serif;box-shadow:0 5px 20px #0005;
+}
+.ios-install-tip button{
+  flex:none;width:32px;height:32px;border:0;border-radius:8px;
+  background:#fff2;color:#fff;font-size:24px;cursor:pointer;
+}
