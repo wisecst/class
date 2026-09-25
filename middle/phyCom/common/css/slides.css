@@ -3392,16 +3392,16 @@ button.diode-word{
 /* Guided variable setup sequence on page 6. */
 .entry-setup-slide .setup-guide-arrow{display:none;position:absolute;z-index:60;color:#ffb400;font-weight:900;font-size:24px;filter:drop-shadow(0 1px 1px #fff);pointer-events:none}
 .entry-setup-slide .setup-guide-arrow:after{content:'';display:block;position:absolute;width:42px;height:2px;background:#ffb400;top:50%;left:22px;transform-origin:left center}
-.entry-setup-layout[data-setup-step="6"]~.guide-properties{display:block;right:43%;top:82px}
-.entry-setup-layout[data-setup-step="6"]~.guide-variable{display:block;right:28%;top:117px}
-.entry-setup-layout[data-setup-step="6"]~.guide-add-variable{display:block;right:25%;top:188px}
-.entry-setup-layout[data-setup-step="7"]~.guide-name{display:block;right:20%;top:260px}
-.entry-setup-layout[data-setup-step="7"]~.guide-name:after{width:56px;transform:rotate(18deg)}
-.entry-setup-layout[data-setup-step="8"]~.guide-properties,
-.entry-setup-layout[data-setup-step="8"]~.guide-variable,
-.entry-setup-layout[data-setup-step="8"]~.guide-add-variable{display:none}
-.entry-setup-layout[data-setup-step="9"]~.guide-slider{display:block;right:22%;top:300px}
-.entry-setup-layout[data-setup-step="10"]~.guide-slider{display:block;right:18%;top:352px}
+.entry-setup-layout[data-setup-step="6"] .guide-properties{display:block;right:43%;top:82px}
+.entry-setup-layout[data-setup-step="6"] .guide-variable{display:block;right:28%;top:117px}
+.entry-setup-layout[data-setup-step="6"] .guide-add-variable{display:block;right:25%;top:188px}
+.entry-setup-layout[data-setup-step="7"] .guide-name{display:block;right:20%;top:260px}
+.entry-setup-layout[data-setup-step="7"] .guide-name:after{width:56px;transform:rotate(18deg)}
+.entry-setup-layout[data-setup-step="8"] .guide-properties,
+.entry-setup-layout[data-setup-step="8"] .guide-variable,
+.entry-setup-layout[data-setup-step="8"] .guide-add-variable{display:none}
+.entry-setup-layout[data-setup-step="9"] .guide-slider{display:block;right:22%;top:300px}
+.entry-setup-layout[data-setup-step="10"] .guide-slider{display:block;right:18%;top:352px}
 .entry-setup-layout[data-setup-step="6"] .entry-setup-tabs .active,
 .entry-setup-layout[data-setup-step="6"] #selectVariableTab,
 .entry-setup-layout[data-setup-step="6"] #openVariableChooser,
