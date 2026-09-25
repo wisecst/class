@@ -2795,8 +2795,9 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   body.mobile-layout:not(:fullscreen) .wrap,
   :fullscreen body.mobile-layout .wrap{
     position:fixed!important;
-    left:var(--lesson-left,0px)!important;
-    top:var(--lesson-top,0px)!important;
+    left:50%!important;
+    top:50%!important;
+    transform:translate(-50%,-50%)!important;
     width:1280px!important;
     height:720px!important;
     min-height:0!important;
