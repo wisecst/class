@@ -3506,3 +3506,16 @@ button.diode-word{
 /* Keep the object-selection instructions visibly numbered and emphasized when the chooser is open. */
 .entry-setup-slide .entry-setup-dialog#objectChooser:not([hidden]) [data-led-option="4"]{outline:4px solid #ffbd18!important;box-shadow:0 0 0 8px #ffdc4588,0 0 18px #ffd400!important;animation:setupFocus 1.1s ease-in-out infinite!important}
 .entry-setup-slide .entry-setup-dialog#objectChooser:not([hidden]) #confirmObject{animation:setupFocus 1.1s ease-in-out infinite!important}
+
+/* Object chooser step badges: show cumulatively and keep the search field unobstructed. */
+.entry-setup-slide .setup-object-number{color:#111!important;background:#ffbd18!important;font-weight:900!important}
+.entry-setup-slide .entry-object-window{position:relative!important}
+.entry-setup-slide .entry-setup-layout[data-setup-step="3"] .object-n1,
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n1,
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n2,
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n3{display:block!important}
+.entry-setup-slide .entry-setup-layout[data-setup-step="3"] .object-n1{left:-48px!important;right:auto!important;top:48px!important}
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n1{left:-48px!important;right:auto!important;top:48px!important}
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n2{left:23%!important;top:190px!important}
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n3{right:3%!important;top:8px!important}
+.entry-setup-slide .entry-setup-dialog#objectChooser:not([hidden]) .object-n1{left:-48px!important;right:auto!important;top:48px!important}
