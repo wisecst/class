@@ -1,18 +1,61 @@
-
 const fullscreenBtn=document.querySelector('#fullscreenBtn');
+let mobilePresentation=false;
+const mobileHint=document.querySelector('#mobileOrientationHint');
+function isMobileLayout(){return window.innerWidth<=900;}
+function fitMobileLesson(){
+  const mobile=isMobileLayout();
+  document.body.classList.toggle('mobile-layout',mobile);
+  if(!mobile){
+    document.documentElement.style.removeProperty('--lesson-scale');
+    document.documentElement.style.removeProperty('--lesson-left');
+    document.documentElement.style.removeProperty('--lesson-top');
+    return;
+  }
+  const viewport=window.visualViewport;
+  const width=viewport?.width||window.innerWidth;
+  const height=viewport?.height||window.innerHeight;
+  const scale=Math.min(width/1280,height/720);
+  document.documentElement.style.setProperty('--lesson-scale',String(scale));
+  document.documentElement.style.setProperty('--lesson-left','0px');
+  document.documentElement.style.setProperty('--lesson-top','0px');
+  mobileHint.hidden=width>=height;
+  window.lessonCircuit?.refresh?.();
+}
 function syncFullscreenButton(){
-  const on=!!document.fullscreenElement;
+  const on=!!document.fullscreenElement||mobilePresentation;
   fullscreenBtn.textContent=on?'×':'⛶';
   fullscreenBtn.setAttribute('aria-label',on?'전체화면 종료':'전체화면으로 보기');
-  fullscreenBtn.title=on?'전체화면 종료 (Esc)':'전체화면';
+  fullscreenBtn.title=on?'전체화면 종료':'전체화면';
+  fullscreenBtn.setAttribute('aria-pressed',String(on));
+  document.body.classList.toggle('mobile-presentation',mobilePresentation);
+  fitMobileLesson();
 }
 fullscreenBtn.addEventListener('click',async()=>{
+  if(mobilePresentation){
+    mobilePresentation=false;
+    syncFullscreenButton();
+    return;
+  }
+  if(document.fullscreenElement){
+    await document.exitFullscreen();
+    return;
+  }
   try{
-    if(!document.fullscreenElement){await document.documentElement.requestFullscreen();}
-    else{await document.exitFullscreen();}
-  }catch(e){alert('이 브라우저에서는 전체화면 전환을 사용할 수 없습니다.');}
+    if(!document.documentElement.requestFullscreen)throw new Error('unsupported');
+    await document.documentElement.requestFullscreen();
+  }catch(e){
+    // Safari on iPhone does not expose document fullscreen for normal pages.
+    // Keep the slide edge-to-edge without claiming browser chrome disappears.
+    if(isMobileLayout()){
+      mobilePresentation=true;
+      syncFullscreenButton();
+    }
+  }
 });
 document.addEventListener('fullscreenchange',syncFullscreenButton);
+window.addEventListener('resize',fitMobileLesson);
+window.visualViewport?.addEventListener('resize',fitMobileLesson);
+window.visualViewport?.addEventListener('scroll',fitMobileLesson);
 syncFullscreenButton();
 
 const ss=[...document.querySelectorAll('.slide')];
