@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="LED 수업">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#153f58">
-<link rel="stylesheet" href="../common/css/slides.css?v=13">
+<link rel="stylesheet" href="../common/css/slides.css?v=14">
 </head>
 <body>
 <div id="iosInstallTip" class="ios-install-tip" role="status" hidden><span>아이폰에서 주소창 없이 보려면 Safari의 공유 메뉴에서 <b>홈 화면에 추가</b>를 선택한 뒤, 홈 화면의 LED 수업 아이콘으로 여세요.</span><button type="button" id="iosInstallTipClose" aria-label="안내 닫기">×</button></div>
@@ -197,19 +197,20 @@
 <div class="entry-workspace">
 <div class="entry-scene-tabs entry-code-toolbar">
 <button type="button" class="entry-scene-tab active" data-scene="1">장면 1</button>
-
-<button type="button" class="entry-scene-tab" data-scene="2" hidden>장면 2</button>
+<button type="button" class="entry-scene-tab" data-scene="2" hidden>장면 2 <span aria-hidden="true">×</span></button>
 <button type="button" class="entry-scene-add" id="sceneAdd" aria-label="장면 추가">＋</button>
 <span class="entry-brand">entry</span><b class="entry-lesson-title">[피컴09] 출력장치-LED1</b>
 <div class="entry-top-actions"><button type="button" class="entry-goal-btn">목표 작품</button><button type="button" class="entry-complete-btn">학습 완료</button></div></div>
 <div class="entry-setup-layout">
   <div class="entry-setup-left">
     <div class="entry-setup-stage">
-      <div class="entry-setup-stage-bar">◷ <span>X: 238.6, Y: 25.5</span><span>▦　⛶</span></div>
-      <div class="entry-setup-canvas"><img class="entry-setup-bot" src="../assets/entrybot.png" alt="엔트리봇"><span class="entry-setup-led" aria-label="추가한 LED 오브젝트"><small>LED</small></span></div>
+      <div class="entry-setup-stage-bar">◷ <span>X: -68.6, Y: -4.2</span><span>▦　⛶</span></div>
+      <div class="entry-setup-canvas"><img class="entry-setup-bot" src="../assets/entrybot.png" alt="엔트리봇"><div class="entry-setup-led yellow" aria-label="추가한 노란LED 오브젝트"><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span class="entry-selection-handles" aria-hidden="true"></span></div></div>
     </div>
     <div class="entry-setup-actions"><button type="button" id="openObjectChooser">＋ 오브젝트 추가하기</button><button type="button" class="entry-setup-run">▶ 시작하기</button></div>
-    <div class="entry-setup-objects"><span>오브젝트</span><div class="entry-setup-object"><img src="../assets/entrybot.png" alt="">엔트리봇</div><div class="entry-setup-object added-led"><span class="entry-led-sprite"></span>LED</div></div>
+    <div class="entry-setup-objects"><span>오브젝트</span><div class="entry-setup-object entry-setup-bot-object"><img src="../assets/entrybot.png" alt="">엔트리봇</div><div class="entry-setup-object added-led yellow"><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span id="addedLedLabel">노란LED</span></div>
+      <div class="entry-led-property" id="ledProperty" hidden><div class="entry-property-head"><b id="propertyLedName">노란LED</b><span>⌃　×</span></div><div class="entry-property-grid"><label><input aria-label="X 위치" value="0.0"> X</label><label><input aria-label="Y 위치" value="0.0"> Y</label><label><input aria-label="크기" value="100.0"> % 크기</label><label><input aria-label="방향" value="90.0"> ° 방향</label></div></div>
+    </div>
   </div>
   <div class="entry-setup-right">
     <div class="entry-setup-tabs"><span>블록</span><span>모양</span><span>소리</span><span class="active">속성</span></div>
@@ -221,10 +222,11 @@
 </div>
 <div class="entry-setup-caption" id="sceneGuide">장면 1 옆의 +를 눌러 새 장면을 만듭니다.</div>
 <div class="entry-setup-dialog" id="objectChooser" role="dialog" aria-label="오브젝트 추가하기" hidden>
-  <div class="entry-setup-dialog-card"><div class="entry-setup-dialog-head"><b>오브젝트 추가하기</b><button type="button" data-setup-close aria-label="닫기">×</button></div>
-  <label class="entry-setup-search">오브젝트 검색 <input id="objectSearch" type="search" placeholder="검색어 입력" autocomplete="off"></label>
-  <div class="entry-led-options" id="ledOptions"><button type="button" data-led-option="1"><i>●</i>파란 LED</button><button type="button" data-led-option="2"><i>●</i>초록 LED</button><button type="button" data-led-option="3"><i>●</i>빨간 LED</button><button type="button" data-led-option="4"><i>●</i>노란 LED</button></div>
-  <button type="button" class="entry-setup-confirm" id="confirmObject">추가하기</button></div>
+  <div class="entry-object-window"><div class="entry-object-head"><button type="button" data-setup-close aria-label="닫기">×</button><b>오브젝트 추가하기</b><button type="button" id="confirmObject">추가하기</button></div>
+  <div class="entry-object-toolbar"><span class="active">오브젝트 선택</span><span>파일 올리기</span><span>새로 그리기</span><span>글상자</span><label><input id="objectSearch" type="search" placeholder="오브젝트 검색" aria-label="오브젝트 검색" autocomplete="off"><span>⌕</span></label></div>
+  <div class="entry-object-content"><nav class="entry-object-categories"><b>엔트리봇</b><span>유엔보</span><span>사람</span><span>동물</span></nav>
+  <div class="entry-object-results"><div class="entry-result-tabs">전체　 레벨　 이모티콘　 예전</div><div class="entry-led-options" id="ledOptions"><button type="button" class="entry-result yellow" data-led-option="4"><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span>노란LED</span></button><button type="button" class="entry-result red" data-led-option="3"><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span>빨간LED</span></button><button type="button" class="entry-result green" data-led-option="2"><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span>초록LED</span></button><button type="button" class="entry-result blue" data-led-option="1"><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span>파란LED</span></button></div></div>
+  <aside class="entry-selected-list"><b>전체(<span id="objectSelectedCount">0</span>)</b><div id="objectSelectedPreview" hidden><svg class="entry-led-icon" viewBox="0 0 86 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M43 4v8M15 17l7 7M71 17l-7 7M5 47h8M73 47h8M12 28l7 4M74 28l-7 4"/></g><path d="M26 71V43a17 17 0 0 1 34 0v28Z" fill="currentColor" opacity=".84"/><path d="M31 66V43a12 12 0 0 1 21-8" fill="none" stroke="#fff" stroke-width="4" opacity=".78"/><path d="M24 70Q43 80 62 70v10Q43 90 24 80Z" fill="currentColor"/><path d="M23 79Q43 89 63 79v7Q43 96 23 86Z" fill="currentColor" opacity=".72"/></svg><span id="objectSelectedName">노란LED</span></div></aside></div></div>
 </div>
 <div class="entry-setup-dialog" id="variableChooser" role="dialog" aria-label="변수 추가하기" hidden>
   <div class="entry-setup-dialog-card entry-variable-card"><div class="entry-setup-dialog-head"><b>변수 만들기</b><button type="button" data-setup-close aria-label="닫기">×</button></div>
@@ -281,6 +283,6 @@
 <script src="../common/js/circuit.js?v=4"></script>
 <script src="../common/js/entry.js"></script>
 <script src="../common/js/pwm.js?v=2"></script>
-<script src="../common/js/slides.js?v=12"></script>
+<script src="../common/js/slides.js?v=13"></script>
 </body>
 </html>
