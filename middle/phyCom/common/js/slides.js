@@ -10,8 +10,6 @@ function fitMobileLesson(){
   document.body.classList.toggle('mobile-layout',mobile);
   if(!mobile){
     document.documentElement.style.removeProperty('--lesson-scale');
-    document.documentElement.style.removeProperty('--lesson-left');
-    document.documentElement.style.removeProperty('--lesson-top');
     return;
   }
   const viewport=window.visualViewport;
@@ -20,8 +18,6 @@ function fitMobileLesson(){
   const edge=mobilePresentation||document.fullscreenElement?0:12;
   const scale=Math.min((width-edge*2)/1280,(height-edge*2)/720);
   document.documentElement.style.setProperty('--lesson-scale',String(scale));
-  document.documentElement.style.setProperty('--lesson-left',edge+'px');
-  document.documentElement.style.setProperty('--lesson-top',edge+'px');
   mobileHint.hidden=width>=height;
   window.lessonCircuit?.refresh?.();
 }
@@ -95,7 +91,8 @@ if(!returnToCompare){pwmPopup?.classList.remove('show');pwmPopup?.setAttribute('
 si=target;
 ss.forEach((s,i)=>s.classList.toggle('active',i===si));
 pv.disabled=si===0;
-nx.disabled=si===ss.length-1;
+nx.disabled=false;
+nx.setAttribute('aria-label',si===ss.length-1?'PWM 다음 단계':'다음 슬라이드');
 document.querySelector('#slides').textContent=(si+1)+' / '+ss.length;
 document.body.classList.toggle('after-intro',si>0);
   document.body.classList.toggle('entry-page',si===2||si===3);
@@ -121,6 +118,11 @@ if(si===1&&window.lessonCircuit){
     else if(si===2&&window.entryLesson&&window.entryLesson.getStep()>0){window.entryLesson.prev();}
     else if(si===2){show(1);}else show(si-1)};
 nx.onclick=()=>{
+ if(si===4&&window.pwmLesson){
+   if(window.pwmLesson.canNext())window.pwmLesson.next();
+   else if(window.pwmLesson.isAtMax())window.pwmLesson.play();
+   return;
+ }
  if(si===3&&!comparePopupShown){const p=document.querySelector('#pwmPinBoardPopup');p?.classList.add('show');p?.setAttribute('aria-hidden','false');comparePopupShown=true;return;}
  if(si===3&&comparePopupShown){document.querySelector('#pwmPinBoardPopup')?.classList.remove('show');show(4);return;}
  if(si===1&&window.lessonCircuit&&window.lessonCircuit.getStep()<3){window.lessonCircuit.next();}else if(si===2&&window.entryLesson){if(window.entryLesson.isFinished?.())show(si+1);else window.entryLesson.next();}else show(si+1)};
