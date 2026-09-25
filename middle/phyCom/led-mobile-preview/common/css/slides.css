@@ -2901,3 +2901,64 @@ body.after-intro:not(.entry-page) .wrap>header .title-row{
   body.mobile-layout .mobile-nav button:disabled{opacity:.22;pointer-events:none}
 }
 .mobile-nav{display:none}
+
+/* Slide 1: photographed LED uses and two optional teaching popups. */
+button.diode-word{
+  border:0;background:transparent;padding:0;margin:0;
+  font:inherit;cursor:pointer;text-decoration:underline dotted;
+  text-underline-offset:4px;
+}
+.concept-image-button{
+  position:relative;display:block;width:100%;height:100%;
+  padding:0;border:0;background:transparent;cursor:pointer;
+}
+.concept-image-button:focus-visible,button.diode-word:focus-visible{
+  outline:3px solid #1c79c5;outline-offset:3px;
+}
+.pin-open-hint{
+  position:absolute;right:18px;bottom:14px;z-index:2;
+  padding:9px 14px;border-radius:20px;background:#153f58;
+  color:#fff;font-size:18px;font-weight:800;
+}
+.slide:first-of-type.active .usage-item .usage-photo{
+  display:block;flex:1 1 auto;width:100%;height:calc(100% - 2.35rem);
+  min-height:0;margin:0;border-radius:8px;
+  background-image:url("../../assets/led-usage-photos.webp");
+  background-size:200% 200%;background-repeat:no-repeat;
+}
+.usage-photo--traffic{background-position:0 0}
+.usage-photo--brake{background-position:100% 0}
+.usage-photo--power{background-position:0 100%}
+.usage-photo--display{background-position:100% 100%}
+.lesson-dialog{
+  width:min(870px,calc(100vw - 28px));max-height:calc(100dvh - 28px);
+  margin:auto;padding:0;border:0;border-radius:20px;
+  background:#fff;color:#263b49;box-shadow:0 18px 55px #071e3799;
+}
+.lesson-dialog::backdrop{background:rgba(12,28,43,.72)}
+.lesson-dialog-card{padding:24px 28px 30px;overflow:auto;max-height:calc(100dvh - 28px)}
+.lesson-dialog-card h2{margin:0 48px 18px 0;font-size:30px;color:#153f58}
+.lesson-dialog-close{
+  float:right;width:46px;height:46px;border:0;border-radius:50%;
+  background:#e8f1f7;color:#1a455e;font-size:32px;cursor:pointer;
+}
+.lesson-dialog-content{display:grid;grid-template-columns:48% minmax(0,1fr);gap:24px;align-items:center}
+.lesson-dialog-content img{
+  display:block;width:100%;height:330px;object-fit:contain;
+  border-radius:12px;background:#f2f5f7;
+}
+.lesson-dialog-text{font-size:21px;line-height:1.55}
+.lesson-dialog-text p{margin:0 0 15px}
+.lesson-dialog-text strong{color:#175f89}
+.lesson-dialog-text small{display:block;margin-top:16px;font-size:16px;color:#526471}
+.pin-role-list p{padding:12px 14px;border-radius:10px;background:#f3f8fb}
+.pin-role-list strong,.pin-role-list span{display:block}
+@media(max-width:650px){
+  .lesson-dialog-card{padding:18px}
+  .lesson-dialog-card h2{font-size:22px}
+  .lesson-dialog-content{grid-template-columns:1fr;gap:12px}
+  .lesson-dialog-content img{height:min(33dvh,220px)}
+  .lesson-dialog-text{font-size:16px;line-height:1.45}
+  .lesson-dialog-text p{margin-bottom:8px}
+  .lesson-dialog-text small{font-size:13px}
+}
