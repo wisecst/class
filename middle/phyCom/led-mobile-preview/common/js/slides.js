@@ -62,6 +62,18 @@ window.visualViewport?.addEventListener('resize',fitMobileLesson);
 window.visualViewport?.addEventListener('scroll',fitMobileLesson);
 syncFullscreenButton();
 
+const lessonDialogs=[...document.querySelectorAll('.lesson-dialog')];
+document.querySelectorAll('[data-open-dialog]').forEach(trigger=>{
+  trigger.addEventListener('click',()=>{
+    const dialog=document.getElementById(trigger.dataset.openDialog);
+    if(dialog&&!dialog.open)dialog.showModal();
+  });
+});
+lessonDialogs.forEach(dialog=>{
+  dialog.querySelector('[data-close-dialog]')?.addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
+});
+
 const ss=[...document.querySelectorAll('.slide')];
 let si=0;
 const pv=document.querySelector('#prev'),nx=document.querySelector('#next');
@@ -90,6 +102,7 @@ if(sidebarList){
 let circuitStep=0;
 let comparePopupShown=false;
 function show(n){const from=si;const target=Math.max(0,Math.min(ss.length-1,n));
+ lessonDialogs.forEach(dialog=>{if(dialog.open)dialog.close();});
 const pwmPopup=document.querySelector('#pwmPinBoardPopup');
 /* Returning from PWM (5) to comparison (4): show the board popup again.
    It is transient; the next backward signal closes it and reveals page 4. */
@@ -140,6 +153,7 @@ nx.onclick=()=>{
 // F5는 브라우저 기본 새로고침 키라 웹페이지가 직접 가로챌 수 없습니다.
 // 대신 F 키로 전체화면을 전환하고, 브라우저 자체 F11 전체화면도 사용할 수 있습니다.
 document.addEventListener('keydown', async (e)=>{
+  if(lessonDialogs.some(dialog=>dialog.open))return;
   const tag=(e.target.tagName||'').toLowerCase();
   if(tag==='input'||tag==='textarea'||e.target.isContentEditable) return;
   if(['ArrowRight','PageDown',' '].includes(e.key)){
