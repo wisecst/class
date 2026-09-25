@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="LED 수업">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#153f58">
-<link rel="stylesheet" href="./common/css/slides.css">
+<link rel="stylesheet" href="./common/css/slides.css?v=5">
 </head>
 <body>
 <div id="iosInstallTip" class="ios-install-tip" role="status" hidden><span>아이폰에서 주소창 없이 보려면 Safari의 공유 메뉴에서 <b>홈 화면에 추가</b>를 선택한 뒤, 홈 화면의 LED 수업 아이콘으로 여세요.</span><button type="button" id="iosInstallTipClose" aria-label="안내 닫기">×</button></div>
@@ -199,9 +199,13 @@
 </div>
 <div class="count" id="slides">1 / 5</div>
 </main>
+<nav class="mobile-nav" aria-label="모바일 페이지 이동">
+<button id="mobilePrev" type="button" disabled aria-label="이전 슬라이드">‹</button>
+<button id="mobileNext" type="button" aria-label="다음 슬라이드">›</button>
+</nav>
 <script src="./common/js/circuit.js?v=4"></script>
 <script src="./common/js/entry.js"></script>
 <script src="./common/js/pwm.js"></script>
-<script src="./common/js/slides.js"></script>
+<script src="./common/js/slides.js?v=5"></script>
 </body>
 </html>
