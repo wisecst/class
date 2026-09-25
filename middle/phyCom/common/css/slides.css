@@ -2996,3 +2996,79 @@ button.diode-word{
  }
  body.mobile-layout .mobile-nav button:focus-visible{outline:2px solid #1b4964;border-radius:12px}
 }
+
+/* Scene preparation uses the Entry stage/object/property arrangement. */
+.entry-setup-slide .entry-workspace{display:block;position:relative}
+.entry-setup-layout{position:absolute;inset:44px 0 35px;display:grid;grid-template-columns:54% 46%;background:#fff;font-size:16px}
+.entry-setup-left{min-width:0;display:flex;flex-direction:column;padding:10px 12px;border-right:5px solid #d7e7ed}
+.entry-setup-stage{height:61%;border:1px solid #cce2f2;border-radius:8px;overflow:hidden;background:#fff}
+.entry-setup-stage-bar{height:34px;border-bottom:1px solid #d5e5ef;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:#687884;font-weight:700}
+.entry-setup-stage-bar span:first-of-type{color:#00ba64;font-size:13px}
+.entry-setup-canvas{height:calc(100% - 34px);position:relative}
+.entry-setup-bot{position:absolute;left:48%;top:42%;width:65px;opacity:.7}
+.entry-setup-led{display:none;position:absolute;left:62%;top:34%;color:#ffda46;font-size:65px;text-shadow:0 0 9px #ffc400}
+.entry-setup-led small{display:block;font:700 14px sans-serif;color:#2f4651;text-align:center;text-shadow:none}
+.entry-setup-actions{display:flex;gap:8px;padding:10px 0}
+.entry-setup-actions button{flex:1;height:42px;border:1px solid #02b51c;border-radius:7px;background:#fff;color:#00a71d;font-weight:800;font-size:15px;cursor:pointer}
+.entry-setup-actions .entry-setup-run{background:#00af25;color:#fff}
+.entry-setup-objects{flex:1;border:1px solid #cce2f2;border-radius:8px;padding:10px;display:flex;align-items:flex-start;gap:12px;color:#475d69}
+.entry-setup-objects>span{font-weight:800;margin-right:10px}
+.entry-setup-object{display:flex;align-items:center;gap:5px;background:#f2fafc;border:1px solid #cbdde7;padding:6px 9px;border-radius:7px;font-size:13px}
+.entry-setup-object img{width:24px;height:24px;object-fit:contain}
+.entry-setup-object.added-led{display:none}
+.entry-setup-object.added-led span,.entry-code-led-thumb{color:#ffcf36;font-size:25px}
+.entry-setup-right{min-width:0;background:#eef8ff}
+.entry-setup-tabs{height:40px;display:flex;gap:2px;background:#fff;padding:0 4px}
+.entry-setup-tabs span{flex:1;text-align:center;background:#ddecf7;padding:9px;border-radius:8px 8px 0 0;color:#8d9ba5;font-weight:800}
+.entry-setup-tabs .active{background:#4d7bf0;color:#fff}
+.entry-setup-property{padding:12px}
+.entry-setup-categories{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border:1px solid #cadfe9;border-radius:8px;overflow:hidden}
+.entry-setup-categories span{min-height:38px;display:grid;place-items:center;border:1px solid #d6e6f0;font-size:13px}
+.entry-setup-categories span:first-child{color:#3476e3}
+#openVariableChooser{margin-top:14px;padding:8px 12px;background:#fff;border:1px solid #6ba7ea;border-radius:6px;color:#2475d5;font-weight:800;cursor:pointer}
+.entry-setup-variable{display:flex;justify-content:space-between;background:#fff;padding:9px 12px;margin-top:8px;border:1px solid #cadfea;border-radius:5px}
+.entry-setup-caption{position:absolute;left:0;right:0;bottom:0;min-height:35px;display:grid;place-items:center;background:#e4f3fb;color:#28485a;font-weight:800}
+.entry-setup-slide [hidden]{display:none!important}
+.entry-setup-layout[data-setup-step="5"] .entry-setup-led,
+.entry-setup-layout[data-setup-step="5"] .added-led,
+.entry-setup-layout[data-setup-step="6"] .entry-setup-led,
+.entry-setup-layout[data-setup-step="6"] .added-led,
+.entry-setup-layout[data-setup-step="7"] .entry-setup-led,
+.entry-setup-layout[data-setup-step="7"] .added-led{display:flex}
+.entry-setup-dialog{position:absolute;inset:44px 0 35px;z-index:40;display:grid;place-items:center;background:#132c4b94}
+.entry-setup-dialog-card{width:min(570px,88%);padding:17px 22px;border-radius:10px;background:#fff;box-shadow:0 8px 25px #162c4970;color:#29475c}
+.entry-setup-dialog-head{display:flex;justify-content:space-between;align-items:center;font-size:22px;border-bottom:1px solid #d6e4ee;padding-bottom:8px}
+.entry-setup-dialog-head button{border:0;background:none;font-size:28px;cursor:pointer}
+.entry-setup-search{display:flex;gap:12px;align-items:center;margin:18px 0;font-weight:800}
+.entry-setup-search input{flex:1;padding:10px;border:1px solid #aecad9;border-radius:6px;font-size:18px}
+.entry-led-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.entry-led-options button{min-height:91px;border:1px solid #c2dce8;border-radius:8px;background:#f5fbff;font-weight:800;cursor:pointer}
+.entry-led-options i{display:block;font-style:normal;font-size:42px;color:#ffd755;text-shadow:0 0 6px #fca}
+.entry-led-options button:nth-child(2) i{color:#70beff}.entry-led-options button:nth-child(3) i{color:#7add78}.entry-led-options button:nth-child(4) i{color:#fff;text-shadow:0 0 5px #666}
+.entry-led-options button.selected{outline:3px solid #ffbe24;background:#fff7e6}
+.entry-setup-confirm{display:block;margin:12px 0 0 auto;background:#00af25;color:#fff;border:0;border-radius:6px;padding:10px 22px;font-weight:800;cursor:pointer}
+.entry-variable-card{width:min(440px,84%)}
+.entry-code-slide .entry-code-led-thumb{font-size:32px}
+.entry-code-slide .entry-program{min-height:180px}
+@media(max-width:1024px){
+ body.mobile-layout.mobile-landscape.mobile-fullscreen .slide-sidebar{display:none!important}
+ body.mobile-layout.mobile-landscape.mobile-fullscreen .wrap,
+ html:fullscreen body.mobile-layout.mobile-landscape .wrap{left:50%!important}
+ body.mobile-layout.mobile-landscape.mobile-fullscreen .mobile-nav{padding-left:max(4px,env(safe-area-inset-left))}
+}
+
+/* Reuse the lesson's four photographed LED modules in the chooser. */
+.entry-led-options i,.entry-led-sprite,.entry-code-led-thumb,.entry-setup-led{
+ background-image:url("../assets/LED_WBGY.png");background-repeat:no-repeat;
+ background-size:480px 501px;
+}
+.entry-led-options i{width:105px;height:79px;margin:0 auto;font-size:0;text-shadow:none;background-position:-16px -349px}
+.entry-led-options button:nth-child(2) i{background-position:-132px -349px}
+.entry-led-options button:nth-child(3) i{background-position:-247px -349px}
+.entry-led-options button:nth-child(4) i{background-position:-357px -349px}
+.entry-setup-led{width:105px;height:80px;background-position:-357px -349px;font-size:0;text-shadow:none}
+.entry-setup-led[data-led="1"]{background-position:-16px -349px}
+.entry-setup-led[data-led="2"]{background-position:-132px -349px}
+.entry-setup-led[data-led="3"]{background-position:-247px -349px}
+.entry-led-sprite,.entry-code-led-thumb{display:inline-block;width:36px;height:34px;background-size:165px 172px;background-position:-7px -120px}
+.entry-code-led-thumb{width:55px;height:52px;background-size:240px 251px;background-position:-180px -176px}
