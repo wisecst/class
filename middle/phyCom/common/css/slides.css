@@ -3544,3 +3544,19 @@ button.diode-word{
 .entry-setup-slide .entry-setup-layout[data-setup-step="1"] [data-scene="2"]:after{content:"1";position:absolute;left:-7px;top:-28px;background:#ffbd18;color:#111;border:3px solid #fff;border-radius:6px;padding:1px 8px;font:900 22px/1 Arial;box-shadow:0 0 0 3px #ffbd18;z-index:100}
 .entry-setup-slide .entry-setup-layout[data-setup-step="1"] #sceneAdd:after{display:none}
 .entry-setup-slide .entry-setup-layout[data-setup-step="1"] #openObjectChooser:after{content:"2"}
+
+/* Bind cues to the setup step even when tabs/dialogs sit outside the layout container. */
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="1"]) [data-scene="2"]{display:block!important;visibility:visible!important;outline:4px solid #ffbd18!important;box-shadow:0 0 0 8px #ffdc4588,0 0 20px #ffd400!important;animation:setupFocus 1.1s ease-in-out infinite!important;position:relative;z-index:90;font-size:20px!important;font-weight:900!important}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="1"]) [data-scene="2"]:after{content:"1";position:absolute;left:-7px;top:-28px;background:#ffbd18;color:#111;border:3px solid #fff;border-radius:6px;padding:1px 8px;font:900 22px/1 Arial;box-shadow:0 0 0 3px #ffbd18;z-index:100}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="1"]) #openObjectChooser{outline:4px solid #ffbd18!important;box-shadow:0 0 0 8px #ffdc4588,0 0 20px #ffd400!important;animation:setupFocus 1.1s ease-in-out infinite!important;font-size:20px!important;font-weight:900!important;position:relative;z-index:90}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="1"]) #openObjectChooser:after{content:"2";position:absolute;left:-7px;top:-28px;background:#ffbd18;color:#111;border:3px solid #fff;border-radius:6px;padding:1px 8px;font:900 22px/1 Arial;box-shadow:0 0 0 3px #ffbd18;z-index:100}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="2"]) #objectChooser:not([hidden]) .setup-object-number{display:none!important}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="2"]) #objectChooser:not([hidden]) .object-n1,
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="3"]) #objectChooser:not([hidden]) .object-n1,
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="4"]) #objectChooser:not([hidden]) .object-n1,
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="4"]) #objectChooser:not([hidden]) .object-n2,
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="4"]) #objectChooser:not([hidden]) .object-n3{display:block!important;color:#111!important;font-size:24px!important;font-weight:900!important}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="2"]) #objectChooser:not([hidden]) #objectSearch,.entry-setup-slide:has(.entry-setup-layout[data-setup-step="3"]) #objectChooser:not([hidden]) #objectSearch{outline:4px solid #ffbd18!important;box-shadow:0 0 0 8px #ffdc4588,0 0 18px #ffd400!important;font-size:24px!important;font-weight:900!important;color:#111!important;animation:setupFocus 1.1s ease-in-out infinite!important}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="4"]) #objectChooser:not([hidden]) [data-led-option="4"]{outline:4px solid #ffbd18!important;box-shadow:0 0 0 8px #ffdc4588,0 0 18px #ffd400!important;animation:setupFocus 1.1s ease-in-out infinite!important}
+.entry-setup-slide:has(.entry-setup-layout[data-setup-step="4"]) #objectChooser:not([hidden]) #confirmObject{display:block!important;visibility:visible!important;outline:4px solid #ffbd18!important;box-shadow:0 0 0 8px #ffdc4588,0 0 18px #ffd400!important;font-size:22px!important;font-weight:900!important;animation:setupFocus 1.1s ease-in-out infinite!important;opacity:1!important}
+.entry-setup-slide #objectChooser:not([hidden]) .led-search-callout{font-size:22px!important;font-weight:900!important;padding:10px 16px!important}
