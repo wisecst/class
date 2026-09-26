@@ -130,7 +130,7 @@ function updateScene(){
  const objectOpen=manualSetupDialog==='object'||(!manualSetupDialog&&step>=2&&step<=4);
  objectDialog.hidden=!objectOpen;
  const search=slide.querySelector('#objectSearch');
- if(!manualSetupDialog)search.value=step>=3?'LED':'';
+ if(!manualSetupDialog)search.value=step>=2?'LED':'';
  slide.querySelector('#ledOptions').hidden=!search.value.trim().toUpperCase().includes('LED');
  slide.querySelectorAll('[data-led-option]').forEach(button=>button.classList.toggle('selected',Number(button.dataset.ledOption)===selectedLed));
  const preview=slide.querySelector('#objectSelectedPreview');
@@ -200,7 +200,7 @@ document.querySelector('[data-scene="2"]')?.addEventListener('click',()=>{sceneS
 document.querySelector('#addedLedLabel')?.addEventListener('input',event=>{document.querySelector('#propertyLedName').textContent=event.target.value;});
 document.querySelector('#variablePropertyName')?.addEventListener('input',event=>{document.querySelector('#stageVariableName').textContent=event.target.value;document.querySelector('#variableName').value=event.target.value;});
 document.querySelector('#variableDefault')?.addEventListener('input',event=>{document.querySelector('#stageVariableValue').textContent=event.target.value;});
-document.querySelector('#openObjectChooser')?.addEventListener('click',()=>{manualSetupDialog='object';selectedLed=null;document.querySelector('#objectSearch').value='';updateScene();});
+document.querySelector('#openObjectChooser')?.addEventListener('click',()=>{manualSetupDialog='object';sceneStep=Math.max(2,sceneStep);selectedLed=null;document.querySelector('#objectSearch').value='';updateScene();});
 document.querySelector('#selectVariableTab')?.addEventListener('click',()=>{sceneStep=Math.max(6,sceneStep);updateScene();});
 document.querySelector('#openVariableChooser')?.addEventListener('click',()=>{sceneStep=Math.max(7,sceneStep);manualSetupDialog='variable';updateScene();});
 document.querySelectorAll('.entry-setup-slide [data-setup-close]').forEach(button=>button.addEventListener('click',()=>{manualSetupDialog=null;if(sceneStep===7)sceneStep=6;updateScene();}));
