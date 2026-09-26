@@ -3519,3 +3519,11 @@ button.diode-word{
 .entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n2{left:23%!important;top:190px!important}
 .entry-setup-slide .entry-setup-layout[data-setup-step="4"] .object-n3{right:3%!important;top:8px!important}
 .entry-setup-slide .entry-setup-dialog#objectChooser:not([hidden]) .object-n1{left:-48px!important;right:auto!important;top:48px!important}
+
+/* Cumulative chooser badges by actual setup step; popup-open state must not reveal later steps early. */
+.entry-setup-slide .entry-setup-dialog#objectChooser:not([hidden]) .setup-object-number{display:none!important}
+.entry-setup-slide .entry-setup-layout[data-setup-step="2"] .entry-setup-dialog#objectChooser:not([hidden]) .object-n1,
+.entry-setup-slide .entry-setup-layout[data-setup-step="3"] .entry-setup-dialog#objectChooser:not([hidden]) .object-n1,
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .entry-setup-dialog#objectChooser:not([hidden]) .object-n1,
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .entry-setup-dialog#objectChooser:not([hidden]) .object-n2,
+.entry-setup-slide .entry-setup-layout[data-setup-step="4"] .entry-setup-dialog#objectChooser:not([hidden]) .object-n3{display:block!important}
